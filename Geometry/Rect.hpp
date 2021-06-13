@@ -2,8 +2,8 @@
 
 #include <type_traits>
 
-#include "Common/Geometry/Point2D.hpp"
-#include "Common/Geometry/Size.hpp"
+#include "Engine/Geometry/Point2D.hpp"
+#include "Engine/Geometry/Size.hpp"
 
 template<typename T> requires(std::integral<T> || std::floating_point<T>)
 class Rect

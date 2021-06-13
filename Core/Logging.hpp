@@ -8,8 +8,8 @@
 #include <string_view>
 #include <unordered_map>
 
-#include "Common/File/Filepath.hpp"
-#include "Common/Utility/Hashing.hpp"
+#include "Engine/File/Filepath.hpp"
+#include "Engine/Utility/Hashing.hpp"
 
 #pragma warning(push, 0) // This ignores all warnings raised inside External headers
 #define SPDLOG_COMPILED_LIB

@@ -1,6 +1,6 @@
 #include "GraphicsBuffer.hpp"
 
-#include "Common/Core/Assert.hpp"
+#include "Engine/Core/Assert.hpp"
 
 namespace Graphics
 {

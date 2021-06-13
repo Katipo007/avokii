@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Common/Core/API/DearImGuiAPI.hpp"
+#include "Engine/Core/API/DearImGuiAPI.hpp"
 
-#include "Common/Geometry/Size.hpp"
+#include "Engine/Geometry/Size.hpp"
 
 namespace API
 {

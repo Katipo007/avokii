@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Common/CompileTime/PlatformDetection.hpp"
+#include "Engine/CompileTime/PlatformDetection.hpp"
 
 #ifdef _DEBUG // TODO: replace with a custom define
 #	if defined( PLATFORM_WINDOWS )
@@ -19,6 +19,6 @@
 #define BIT(x) ( 1 << x )
 
 // these are at the bottom because these files reference this one
-#include "Common/Deployment/Deployment.hpp"
-#include "Common/Core/Logging.hpp"
-#include "Common/Core/Assert.hpp"
+#include "Engine/Deployment/Deployment.hpp"
+#include "Engine/Core/Logging.hpp"
+#include "Engine/Core/Assert.hpp"

@@ -1,8 +1,8 @@
 #include "Renderer.hpp"
 
-#include "Common/Core/API/VideoAPI.hpp"
-#include "Common/Core/Graphics/Window.hpp"
-#include "Common/DataTypes/Colour.hpp"
+#include "Engine/Core/API/VideoAPI.hpp"
+#include "Engine/Core/Graphics/Window.hpp"
+#include "Engine/DataTypes/Colour.hpp"
 #include "Visual/Camera.hpp"
 #include "Visual/Graphics/Shader.hpp"
 #include "Visual/Graphics/Texture.hpp"

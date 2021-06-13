@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Common/Core/Input/KeyboardInput.hpp"
+#include "Engine/Core/Input/KeyboardInput.hpp"
 
 struct SDL_KeyboardEvent;
 struct SDL_TextEditingEvent;

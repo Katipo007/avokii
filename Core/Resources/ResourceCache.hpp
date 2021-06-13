@@ -4,7 +4,7 @@
 #include <string>
 #include <unordered_map>
 
-#include "Common/Utility/StringHashMap.hpp"
+#include "Engine/Utility/StringHashMap.hpp"
 #include "ResourceTypes.hpp"
 #include "Concepts.hpp"
 

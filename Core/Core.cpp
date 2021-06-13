@@ -5,13 +5,13 @@
 #include "ResourceManager.hpp"
 #include "AbstractGame.hpp"
 
-#include "Common/Core/API/BaseAPI.hpp"
-#include "Common/Core/API/DearImGuiAPI.hpp"
-#include "Common/Core/API/InputAPI.hpp"
-#include "Common/Core/API/SystemAPI.hpp"
-#include "Common/Core/API/VideoAPI.hpp"
+#include "Engine/Core/API/BaseAPI.hpp"
+#include "Engine/Core/API/DearImGuiAPI.hpp"
+#include "Engine/Core/API/InputAPI.hpp"
+#include "Engine/Core/API/SystemAPI.hpp"
+#include "Engine/Core/API/VideoAPI.hpp"
 
-#include "Common/Core/Resources/StandardResources.hpp"
+#include "Engine/Core/Resources/StandardResources.hpp"
 
 Core::Core( CoreProperties&& props, std::unique_ptr<AbstractGame> game_ )
 	: game( std::move( game_ ) )

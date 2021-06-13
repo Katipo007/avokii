@@ -83,7 +83,6 @@
     <ClInclude Include="Utility\TupleReflection.hpp" />
     <ClInclude Include="Utility\Unreachable.hpp" />
     <ClInclude Include="Utility\Yaml.hpp" />
-    <ClInclude Include="Version\BuildVersion.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\AbstractGame.cpp" />
@@ -103,7 +102,6 @@
       <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Level4</WarningLevel>
     </ClCompile>
     <ClCompile Include="Utility\Yaml.cpp" />
-    <ClCompile Include="Version\BuildVersion.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -161,12 +159,10 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PreBuildEvent>
-      <Command>call $(SolutionDir)Engine\BuildScripts\PreBuildScript.bat $(SolutionDir) $(OutputPath)</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
-  <PropertyGroup>
-    <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
-  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -183,7 +179,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PreBuildEvent>
-      <Command>call $(SolutionDir)Engine\BuildScripts\PreBuildScript.bat $(SolutionDir) $(OutputPath)</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Common/Core/API/VideoAPI.hpp"
+#include "Engine/Core/API/VideoAPI.hpp"
 #include "Visual/Graphics/DeviceCapabilities.hpp"
 
 namespace API { class SystemAPI; }

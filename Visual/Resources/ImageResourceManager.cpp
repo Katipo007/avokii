@@ -1,8 +1,8 @@
 #include "ImageResourceManager.hpp"
 
-#include "Common/Core/API/VideoAPI.hpp"
-#include "Common/File/FileOps.hpp"
-#include "Common/Utility/json.hpp"
+#include "Engine/Core/API/VideoAPI.hpp"
+#include "Engine/File/FileOps.hpp"
+#include "Engine/Utility/json.hpp"
 
 #include "Visual/Graphics/Texture.hpp"
 

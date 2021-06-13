@@ -1,9 +1,9 @@
 #include "Texture.hpp"
 
-#include "Common/Core/Core.hpp"
-#include "Common/Core/ResourceManager.hpp"
-#include "Common/Core/API/VideoAPI.hpp"
-#include "Common/Core/Resources/ResourceLoader.hpp"
+#include "Engine/Core/Core.hpp"
+#include "Engine/Core/ResourceManager.hpp"
+#include "Engine/Core/API/VideoAPI.hpp"
+#include "Engine/Core/Resources/ResourceLoader.hpp"
 
 namespace Graphics
 {

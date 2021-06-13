@@ -5,7 +5,7 @@
 #include <functional>
 #include <iostream>
 
-#include "Common/DataTypes/Mat4.hpp"
+#include "Engine/DataTypes/Mat4.hpp"
 
 namespace Colour::Interpolation
 {

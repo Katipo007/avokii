@@ -1,10 +1,10 @@
 #include "SpriteSheet.hpp"
 
-#include "Common/Core/ResourceManager.hpp"
-#include "Common/Core/Resources/ResourceLoader.hpp"
-#include "Common/File/FileOps.hpp"
-#include "Common/Utility/ContainerOperations.hpp"
-#include "Common/Utility/json.hpp"
+#include "Engine/Core/ResourceManager.hpp"
+#include "Engine/Core/Resources/ResourceLoader.hpp"
+#include "Engine/File/FileOps.hpp"
+#include "Engine/Utility/ContainerOperations.hpp"
+#include "Engine/Utility/json.hpp"
 
 #include "Visual/Graphics/Texture.hpp"
 

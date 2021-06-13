@@ -4,7 +4,7 @@
 #include <limits>
 
 #include "Point2D.hpp"
-#include "Common/Core/Assert.hpp"
+#include "Engine/Core/Assert.hpp"
 
 template<typename T> requires(std::integral<T> || std::floating_point<T>)
 struct Size

@@ -4,8 +4,8 @@
 #include <string>
 #include <vector>
 
-#include "Common/Core/API/CoreAPIsEnum.hpp"
-#include "Common/Utility/Timestep.hpp"
+#include "Engine/Core/API/CoreAPIsEnum.hpp"
+#include "Engine/Utility/Timestep.hpp"
 
 class AbstractGame;
 class Core;

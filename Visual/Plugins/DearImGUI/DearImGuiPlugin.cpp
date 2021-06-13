@@ -1,8 +1,8 @@
 #include "DearImGuiPlugin.hpp"
 
-#include "Common/Core/API/SystemAPI.hpp"
-#include "Common/Core/API/VideoAPI.hpp"
-#include "Common/Core/Graphics/Window.hpp"
+#include "Engine/Core/API/SystemAPI.hpp"
+#include "Engine/Core/API/VideoAPI.hpp"
+#include "Engine/Core/Graphics/Window.hpp"
 
 #include "Visual/Plugins/OpenGL/OpenGLHeader.hpp"
 #include "Visual/DearImGui/DearImGui.hpp"

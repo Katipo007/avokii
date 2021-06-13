@@ -3,8 +3,8 @@
 #include <string>
 #include <optional>
 
-#include "Common/Geometry/Rect.hpp"
-#include "Common/Geometry/Size.hpp"
+#include "Engine/Geometry/Rect.hpp"
+#include "Engine/Geometry/Size.hpp"
 #include "Visual/Graphics/Texture.hpp"
 
 namespace Graphics

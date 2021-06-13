@@ -1,7 +1,7 @@
 #pragma once
 
 #include <cinttypes>
-#include "Common/Geometry/Size.hpp"
+#include "Engine/Geometry/Size.hpp"
 
 namespace Graphics
 {

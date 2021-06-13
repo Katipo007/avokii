@@ -4,9 +4,9 @@
 
 #include "CoreAPIsEnum.hpp"
 #include "BaseAPI.hpp"
-#include "Common/File/Filepath.hpp"
-#include "Common/Geometry/Size.hpp"
-#include "Common/Geometry/Rect.hpp"
+#include "Engine/File/Filepath.hpp"
+#include "Engine/Geometry/Size.hpp"
+#include "Engine/Geometry/Rect.hpp"
 
 namespace Graphics
 {

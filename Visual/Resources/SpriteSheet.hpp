@@ -1,13 +1,13 @@
 #pragma once
 
-#include "Common/Core/Resources/Resource.hpp"
-#include "Common/Core/Resources/ResourceTypes.hpp"
+#include "Engine/Core/Resources/Resource.hpp"
+#include "Engine/Core/Resources/ResourceTypes.hpp"
 
-#include "Common/File/Filepath.hpp"
-#include "Common/Geometry/Point2D.hpp"
-#include "Common/Geometry/Size.hpp"
-#include "Common/Geometry/Rect.hpp"
-#include "Common/Utility/StringHashMap.hpp"
+#include "Engine/File/Filepath.hpp"
+#include "Engine/Geometry/Point2D.hpp"
+#include "Engine/Geometry/Size.hpp"
+#include "Engine/Geometry/Rect.hpp"
+#include "Engine/Utility/StringHashMap.hpp"
 
 class ResourceManager;
 

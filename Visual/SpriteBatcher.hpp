@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Common/DataTypes/Colour.hpp"
-#include "Common/DataTypes/Vec2.hpp"
-#include "Common/DataTypes/Vec3.hpp"
-#include "Common/DataTypes/Mat4.hpp"
+#include "Engine/DataTypes/Colour.hpp"
+#include "Engine/DataTypes/Vec2.hpp"
+#include "Engine/DataTypes/Vec3.hpp"
+#include "Engine/DataTypes/Mat4.hpp"
 
-#include "Common/Core/Resources/ResourceHandle.hpp"
+#include "Engine/Core/Resources/ResourceHandle.hpp"
 
 namespace API { class VideoAPI; }
 namespace Graphics { class Texture; class Sprite; }

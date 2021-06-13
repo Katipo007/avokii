@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Common/Core/Resources/ResourceHandle.hpp"
-#include "Common/Core/Resources/ResourceCache.hpp"
-#include "Common/Core/Resources/Concepts.hpp"
+#include "Engine/Core/Resources/ResourceHandle.hpp"
+#include "Engine/Core/Resources/ResourceCache.hpp"
+#include "Engine/Core/Resources/Concepts.hpp"
 
 class Core;
 

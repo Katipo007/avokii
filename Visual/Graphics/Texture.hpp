@@ -3,9 +3,9 @@
 #include <cinttypes>
 #include <string>
 
-#include "Common/Geometry/Size.hpp"
-#include "Common/Core/Resources/Resource.hpp"
-#include "Common/Core/Resources/ResourceTypes.hpp"
+#include "Engine/Geometry/Size.hpp"
+#include "Engine/Core/Resources/Resource.hpp"
+#include "Engine/Core/Resources/ResourceTypes.hpp"
 
 namespace Resources { class ResourceLoader; }
 

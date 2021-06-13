@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Common/Core/Graphics/OpenGLContext.hpp"
+#include "Engine/Core/Graphics/OpenGLContext.hpp"
 
 struct SDL_Window;
 typedef void* SDL_GLContext;

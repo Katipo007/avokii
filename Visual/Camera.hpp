@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Common/DataTypes/Vector.hpp"
-#include "Common/DataTypes/Matrix.hpp"
+#include "Engine/DataTypes/Vector.hpp"
+#include "Engine/DataTypes/Matrix.hpp"
 
 #include "Visual/WorldSpace.hpp"
 

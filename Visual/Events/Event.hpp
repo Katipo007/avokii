@@ -4,8 +4,8 @@
 #include <functional>
 #include <sstream>
 
-#include "Common/Core/Base.hpp"
-#include "Common/Utility/MagicEnum.hpp"
+#include "Engine/Core/Base.hpp"
+#include "Engine/Utility/MagicEnum.hpp"
 
 namespace Visual::Device
 {

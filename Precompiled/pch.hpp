@@ -16,8 +16,8 @@
 #include <unordered_map>
 #include <unordered_set>
 
-#include "Common/Core/Base.hpp"
-#include "Common/Core/Logging.hpp"
+#include "Engine/Core/Base.hpp"
+#include "Engine/Core/Logging.hpp"
 
 #define GLM_FORCE_SILENT_WARNINGS
 

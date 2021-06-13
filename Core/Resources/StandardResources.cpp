@@ -1,5 +1,5 @@
 #include "StandardResources.hpp"
-#include "Common/Core/ResourceManager.hpp"
+#include "Engine/Core/ResourceManager.hpp"
 
 namespace Resources::Standard
 {

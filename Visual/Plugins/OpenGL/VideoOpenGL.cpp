@@ -1,8 +1,8 @@
 #include "VideoOpenGL.hpp"
 
-#include "Common/Core/API/SystemAPI.hpp"
-#include "Common/Core/Graphics/Window.hpp"
-#include "Common/Core/Graphics/OpenGLContext.hpp"
+#include "Engine/Core/API/SystemAPI.hpp"
+#include "Engine/Core/Graphics/Window.hpp"
+#include "Engine/Core/Graphics/OpenGLContext.hpp"
 
 #include "OpenGLHeader.hpp"
 #include "BufferOpenGL.hpp"

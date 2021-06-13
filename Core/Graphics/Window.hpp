@@ -4,7 +4,7 @@
 #include <optional>
 #include <string>
 
-#include "Common/Geometry/Size.hpp"
+#include "Engine/Geometry/Size.hpp"
 
 namespace Graphics
 {
