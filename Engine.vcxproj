@@ -109,7 +109,7 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{3f3f816c-0579-4b4a-9419-2ec6544f483d}</ProjectGuid>
-    <RootNamespace>Common</RootNamespace>
+    <RootNamespace>Engine</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ProjectName>Engine</ProjectName>
   </PropertyGroup>
@@ -143,11 +143,11 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)Common\Vendor\glm\;$(SolutionDir)Common\Vendor\spdlog\include\;$(SolutionDir)Common\Vendor\yaml_cpp\include\;$(SolutionDir)Common\Vendor\bitsery\include\;$(SolutionDir)Common\Vendor\frozen\include\;$(SolutionDir)Common\Vendor\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Engine\Vendor\glm\;$(SolutionDir)Engine\Vendor\spdlog\include\;$(SolutionDir)Engine\Vendor\yaml_cpp\include\;$(SolutionDir)Engine\Vendor\bitsery\include\;$(SolutionDir)Engine\Vendor\frozen\include\;$(SolutionDir)Engine\Vendor\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)Common\Vendor\glm\;$(SolutionDir)Common\Vendor\spdlog\include\;$(SolutionDir)Common\Vendor\yaml_cpp\include\;$(SolutionDir)Common\Vendor\bitsery\include\;$(SolutionDir)Common\Vendor\frozen\include\;$(SolutionDir)Common\Vendor\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Engine\Vendor\glm\;$(SolutionDir)Engine\Vendor\spdlog\include\;$(SolutionDir)Engine\Vendor\yaml_cpp\include\;$(SolutionDir)Engine\Vendor\bitsery\include\;$(SolutionDir)Engine\Vendor\frozen\include\;$(SolutionDir)Engine\Vendor\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -161,7 +161,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PreBuildEvent>
-      <Command>call $(SolutionDir)Common\BuildScripts\PreBuildScript.bat $(SolutionDir) $(OutputPath)</Command>
+      <Command>call $(SolutionDir)Engine\BuildScripts\PreBuildScript.bat $(SolutionDir) $(OutputPath)</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <PropertyGroup>
@@ -183,7 +183,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PreBuildEvent>
-      <Command>call $(SolutionDir)Common\BuildScripts\PreBuildScript.bat $(SolutionDir) $(OutputPath)</Command>
+      <Command>call $(SolutionDir)Engine\BuildScripts\PreBuildScript.bat $(SolutionDir) $(OutputPath)</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
