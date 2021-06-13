@@ -90,9 +90,6 @@
     <ClInclude Include="File\Filepath.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Character\CharacterUtility.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Geometry\Point2D.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -103,9 +100,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Precompiled\pch.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Version\BuildVersion.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DataTypes\Mat3.hpp">
@@ -255,9 +249,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="File\FileOps.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Version\BuildVersion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Precompiled\pch.cpp">
