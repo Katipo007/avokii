@@ -1,33 +1,19 @@
 #pragma once
 
-#pragma push_macro("X")
-#undef X
-
-#pragma push_macro("ASSET_TYPES")
-#define ASSET_TYPES \
-	X( Texture ) \
-	X( Shader ) \
-	X( SpriteSheet ) \
-	X( Sprite )
+#include "Engine/Utility/MagicEnum.hpp"
 
 namespace Resources
 {
-#define X( type ) type,
 	enum class AssetType
 	{
-		ASSET_TYPES
+		Texture,
+		Shader,
+		MaterialDefinition,
+		Material,
+		Mesh,
+		SpriteSheet,
+		Sprite,
 	};
-#undef X
 
-	constexpr const char* GetAssetTypeName( const AssetType type )
-	{
-#define X( type ) #type,
-		constexpr const char* const names[] = { ASSET_TYPES };
-#undef X
-
-		return names[(size_t)type];
-	}
+	constexpr std::string_view GetAssetTypeName( const AssetType type ) noexcept { return magic_enum::enum_name( type ); }
 }
-
-#pragma pop_macro("ASSET_TYPES")
-#pragma pop_macro("X")
