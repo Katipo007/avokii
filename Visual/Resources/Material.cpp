@@ -19,13 +19,13 @@ namespace Graphics
 		return {};
 	}
 
-	void Material::SetShader( std::shared_ptr<const Shader> shader )
+	void Material::SetShader( std::shared_ptr<const Shader> new_shader )
 	{
-		this->shader = shader;
+		this->shader = new_shader;
 	}
 
-	void Material::SetTextures( std::vector<std::shared_ptr<const Texture>> textures )
+	void Material::SetTextures( std::vector<std::shared_ptr<const Texture>> new_textures )
 	{
-		this->textures = textures;
+		this->textures = new_textures;
 	}
 }

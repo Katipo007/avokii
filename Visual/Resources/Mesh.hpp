@@ -23,7 +23,7 @@ namespace Graphics
 	{
 	public:
 		static const BufferLayout vertex_format;
-#pragma pack(push, 0)
+#pragma pack(push, 1)
 		struct Vertex
 		{
 			glm::vec4 pos;
