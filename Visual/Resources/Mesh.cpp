@@ -2,8 +2,10 @@
 
 namespace Graphics
 {
-	Mesh::Mesh()
+	Mesh::Mesh( BufferLayout _layout )
+		: vertex_layout{ _layout }
 	{
+		ASSERT( vertex_layout.GetStride() > 0 );
 	}
 
 	Mesh::Mesh( Resources::ResourceLoader& loader )
@@ -33,5 +35,10 @@ namespace Graphics
 	void Mesh::SetMaterial( std::shared_ptr<const Material> new_material )
 	{
 		this->material = new_material;
+	}
+
+	BasicMesh::BasicMesh()
+		: Mesh( vertex_format )
+	{
 	}
 }
