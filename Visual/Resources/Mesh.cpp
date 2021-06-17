@@ -38,7 +38,7 @@ namespace Graphics
 	}
 
 	BasicMesh::BasicMesh()
-		: Mesh( vertex_format )
+		: Mesh{ BasicMeshLayout }
 	{
 	}
 }
