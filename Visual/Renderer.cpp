@@ -59,6 +59,8 @@ namespace Visual
 
 	void Renderer::Submit( const std::shared_ptr<Graphics::Shader>& shader, const std::shared_ptr<Graphics::VertexArray>& vertex_array, const glm::mat4& model_transform )
 	{
+		ASSERT( shader );
+
 		shader->Bind();
 		shader->SetMat4( "u_ViewProjection", static_scene_data->view_projection_matrix );
 		shader->SetMat4( "u_Model", model_transform );
