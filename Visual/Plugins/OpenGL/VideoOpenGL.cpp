@@ -28,7 +28,10 @@ namespace Graphics::API
 		glDisable( GL_DEPTH_TEST );
 		glDisable( GL_STENCIL_TEST );
 		glDisable( GL_SCISSOR_TEST );
-		glDisable( GL_CULL_FACE );
+		//glDisable( GL_CULL_FACE );
+		glEnable( GL_CULL_FACE );
+		glFrontFace( GL_CW );
+		glCullFace( GL_BACK );
 	}
 
 	void VideoOpenGL::EndRender()
