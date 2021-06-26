@@ -6,5 +6,5 @@
 
 namespace Avokii
 {
-	namespace Json = nlohmann::json;
+	using Json = nlohmann::json;
 }
