@@ -1,12 +1,11 @@
 #pragma once
 
 #include <string>
-#include <unordered_map>
 
-#include "Engine/DataTypes/Vector.hpp"
-#include "Engine/DataTypes/Matrix.hpp"
+#include "Types/Vector.hpp"
+#include "Types/Matrix.hpp"
 
-namespace Graphics
+namespace Avokii::Graphics
 {
 	class Shader
 	{

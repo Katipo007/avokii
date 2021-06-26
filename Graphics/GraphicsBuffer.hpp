@@ -4,7 +4,7 @@
 #include <optional>
 #include <string>
 
-namespace Graphics
+namespace Avokii::Graphics
 {
 	enum class ShaderDataType
 	{
@@ -53,22 +53,22 @@ namespace Graphics
 		BufferLayout() {}
 		BufferLayout( const std::initializer_list<BufferElement>& elements );
 
-		uint32_t GetStride() const { return stride; }
-		const std::vector<BufferElement>& GetElements() const { return elements; }
+		uint32_t GetStride() const { return mStride; }
+		const std::vector<BufferElement>& GetElements() const { return mElements; }
 
-		std::vector<BufferElement>::iterator begin() { return elements.begin(); }
-		std::vector<BufferElement>::iterator end() { return elements.end(); }
-		std::vector<BufferElement>::const_iterator begin() const { return elements.begin(); }
-		std::vector<BufferElement>::const_iterator end() const { return elements.end(); }
-		std::vector<BufferElement>::const_iterator cbegin() const { return elements.cbegin(); }
-		std::vector<BufferElement>::const_iterator cend() const { return elements.cend(); }
+		std::vector<BufferElement>::iterator begin() { return mElements.begin(); }
+		std::vector<BufferElement>::iterator end() { return mElements.end(); }
+		std::vector<BufferElement>::const_iterator begin() const { return mElements.begin(); }
+		std::vector<BufferElement>::const_iterator end() const { return mElements.end(); }
+		std::vector<BufferElement>::const_iterator cbegin() const { return mElements.cbegin(); }
+		std::vector<BufferElement>::const_iterator cend() const { return mElements.cend(); }
 
 	private:
 		void CalculateOffsetsAndStride();
 
 	private:
-		std::vector<BufferElement> elements;
-		uint32_t stride = 0;
+		std::vector<BufferElement> mElements;
+		uint32_t mStride = 0;
 	};
 
 

@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Graphics
+namespace Avokii::Graphics
 {
 	using Index_T = uint32_t;
 }

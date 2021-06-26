@@ -3,13 +3,13 @@
 #include <cinttypes>
 #include <string>
 
-#include "Engine/Geometry/Size.hpp"
-#include "Engine/Core/Resources/Resource.hpp"
-#include "Engine/Core/Resources/ResourceTypes.hpp"
+#include "Geometry/Size.hpp"
+#include "Resources/BaseResource.hpp"
+#include "Resources/ResourceTypes.hpp"
 
-namespace Resources { class ResourceLoader; }
+namespace Avokii { class ResourceLoader; }
 
-namespace Graphics
+namespace Avokii::Graphics
 {
 	enum class TextureWrapSetting
 	{
@@ -33,13 +33,13 @@ namespace Graphics
 	};
 
 	class Texture
-		: public ::Resources::Resource
+		: public BaseResource
 	{
 	public:
 		virtual ~Texture() = default;
 
-		static constexpr ::Resources::AssetType GetResourceType() noexcept { return ::Resources::AssetType::Texture; }
-		static std::shared_ptr<Texture> LoadResource( ::Resources::ResourceLoader& loader );
+		static constexpr AssetType GetResourceType() noexcept { return AssetType::Texture; }
+		static std::shared_ptr<Texture> LoadResource( ResourceLoader& loader );
 
 		virtual const Size<uint32_t>& GetSize() const noexcept = 0;
 

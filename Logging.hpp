@@ -38,6 +38,8 @@ namespace Avokii
 		constexpr LoggerChannelId Assertion{ "Assertion" };
 		constexpr LoggerChannelId Application{ "Application" };
 		constexpr LoggerChannelId Resource{ "Resource" };
+
+		constexpr LoggerChannelId OpenGL{ "OpenGL" };
 	}
 }
 

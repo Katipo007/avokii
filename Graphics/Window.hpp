@@ -3,7 +3,7 @@
 #include <functional>
 #include <optional>
 
-#include "Types/String.hpp"
+#include "String.hpp"
 #include "Geometry/Size.hpp"
 
 namespace Avokii

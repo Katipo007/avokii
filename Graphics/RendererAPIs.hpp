@@ -1,6 +1,6 @@
 #pragma once
 
-namespace RendererAPIs
+namespace Avokii::RendererAPIs
 {
 	enum class API
 	{

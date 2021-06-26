@@ -3,9 +3,10 @@
 #include <memory>
 #include <optional>
 #include <vector>
+
 #include "GraphicsBuffer.hpp"
 
-namespace Graphics
+namespace Avokii::Graphics
 {
 	struct VertexArrayDefinition
 	{

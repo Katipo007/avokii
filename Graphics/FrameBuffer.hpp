@@ -1,17 +1,15 @@
 #pragma once
 
 #include <cinttypes>
-#include "Engine/Geometry/Size.hpp"
+#include "Geometry/Size.hpp"
 
-namespace Graphics
+namespace Avokii::Graphics
 {
 	struct FrameBufferSpecification
 	{
-		Size<uint32_t> size = { 0, 0 };
-
-		uint32_t samples = 1;
-
-		bool swap_chain_target = false;
+		Size<uint32_t> size{ 0, 0 };
+		uint32_t samples{ 1 };
+		bool swap_chain_target{ false };
 	};
 
 	class FrameBuffer

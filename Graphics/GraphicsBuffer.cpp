@@ -1,8 +1,8 @@
 #include "GraphicsBuffer.hpp"
 
-#include "Engine/Core/Assert.hpp"
+#include "Assert.hpp"
 
-namespace Graphics
+namespace Avokii::Graphics
 {
     uint32_t ShaderDataTypeSize( const ShaderDataType& type )
     {
@@ -29,17 +29,17 @@ namespace Graphics
 		case ShaderDataType::Bool:		return 1;
 
 		default:
-			ASSERT( false, "Unknown ShaderDataType!" );
+			AV_ASSERT( false, "Unknown ShaderDataType!" );
 			return 0;
 		}
     }
 
 	BufferElement::BufferElement( ShaderDataType type, std::string_view name, bool normalised )
-		: name( (std::string)name )
-		, type( type )
-		, offset( 0 )
-		, normalised( normalised )
-		, size( ShaderDataTypeSize( type ) )
+		: name{ name.data() }
+		, type{ type }
+		, offset{ 0 }
+		, normalised{ normalised }
+		, size{ ShaderDataTypeSize( type ) }
 	{
 	
 	}
@@ -69,13 +69,13 @@ namespace Graphics
 		case ShaderDataType::Bool:		return 1;
 
 		default:
-			ASSERT( false, "Unknown ShaderDataType!" );
+			AV_ASSERT( false, "Unknown ShaderDataType!" );
 			return 0;
 		}
 	}
 
 	BufferLayout::BufferLayout( const std::initializer_list<BufferElement>& elements )
-		: elements( elements )
+		: mElements{ elements }
 	{
 		CalculateOffsetsAndStride();
 	}
@@ -83,12 +83,12 @@ namespace Graphics
 	void BufferLayout::CalculateOffsetsAndStride()
 	{
 		size_t offset = 0;
-		stride = 0;
-		for (auto& element : elements)
+		mStride = 0;
+		for (auto& element : mElements)
 		{
 			element.offset = offset;
 			offset += element.size;
-			stride += element.size;
+			mStride += element.size;
 		}
 	}
 }

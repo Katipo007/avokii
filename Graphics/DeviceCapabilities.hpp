@@ -1,7 +1,7 @@
 
 #include <cinttypes>
 
-namespace Graphics
+namespace Avokii::Graphics
 {
 	struct DeviceCapabilities
 	{
