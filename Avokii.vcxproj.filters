@@ -168,7 +168,7 @@
     <ClInclude Include="Utility\StringUtility.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\Timestep.hpp">
+    <ClInclude Include="Timestep.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Utility\Unreachable.hpp">

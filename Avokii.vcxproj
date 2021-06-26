@@ -75,7 +75,7 @@
     <ClInclude Include="Utility\StateMachine\Will.hpp" />
     <ClInclude Include="Utility\StringHashMap.hpp" />
     <ClInclude Include="Utility\StringUtility.hpp" />
-    <ClInclude Include="Utility\Timestep.hpp" />
+    <ClInclude Include="Timestep.hpp" />
     <ClInclude Include="Utility\TupleReflection.hpp" />
     <ClInclude Include="Utility\Unreachable.hpp" />
   </ItemGroup>
