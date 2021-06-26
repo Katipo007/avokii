@@ -117,28 +117,28 @@
     <ClInclude Include="Types\Vector.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\StateMachine\Might.hpp">
+    <ClInclude Include="StateMachine\Might.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\StateMachine\NoAction.hpp">
+    <ClInclude Include="StateMachine\NoAction.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\StateMachine\OneOf.hpp">
+    <ClInclude Include="StateMachine\OneOf.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\StateMachine\TransitionTo.hpp">
+    <ClInclude Include="StateMachine\TransitionTo.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\StateMachine\DefaultAction.hpp">
+    <ClInclude Include="StateMachine\DefaultAction.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\StateMachine\OnEvent.hpp">
+    <ClInclude Include="StateMachine\OnEvent.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\StateMachine\StateMachine.hpp">
+    <ClInclude Include="StateMachine\StateMachine.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\StateMachine\Will.hpp">
+    <ClInclude Include="StateMachine\Will.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Containers\ContainerOperations.hpp">
@@ -189,7 +189,7 @@
     <ClInclude Include="Core\Input\InputButtonDevice.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\StateMachine\Concepts.hpp">
+    <ClInclude Include="StateMachine\Concepts.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Utility\TupleReflection.hpp">

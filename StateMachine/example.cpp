@@ -6,7 +6,7 @@
 #include "OnEvent.hpp"
 #include "Will.hpp"
 
-using namespace fsm;
+using namespace Avokii::fsm;
 
 namespace example
 {
