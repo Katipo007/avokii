@@ -39,6 +39,13 @@ namespace Avokii
 		}
 	};
 
+	template<typename T>
+	concept APIConcept = requires(T t)
+	{
+		std::derived_from<T, API::BaseAPI>;
+		{ T::GetType() } -> std::same_as<APIType>;
+	};
+
 	/// <summary>
 	/// The be all container for the application
 	/// </summary>
@@ -50,35 +57,33 @@ namespace Avokii
 
 		void Init();
 
-		AbstractGame& GetGame() const { return *game; }
-		ResourceManager& GetResourceManager() const { return *resource_manager; }
+		AbstractGame& GetGame() const { return *mpGame; }
+		ResourceManager& GetResourceManager() const { return *mpResourceManager; }
 
-		template<class API_T>
+		template<APIConcept API_T>
 		API_T* GetAPI() noexcept { return const_cast<API_T*>(((const Core*)this)->GetAPI<API_T>()); }
 
-		template<class API_T>
+		template<APIConcept API_T>
 		const API_T* GetAPI() const noexcept
 		{
-			constexpr auto type = API_T::GetType();
-			static_assert(std::is_same<decltype(type), const APIType>::value, "API_T::GetType() return type must be APIType");
+			constexpr auto type{ API_T::GetType() };
 			return dynamic_cast<const API_T*>(GetAPI( type ));
 		}
 
-		template<class API_T>
+		template<APIConcept API_T>
 		API_T& GetRequiredAPI() noexcept { return const_cast<API_T&>(((const Core*)this)->GetRequiredAPI<API_T>()); }
 
-		template<class API_T>
+		template<APIConcept API_T>
 		const API_T& GetRequiredAPI() const noexcept
 		{
-			constexpr auto type = API_T::GetType();
-			static_assert(std::is_same<decltype(type), const APIType>::value, "API_T::GetType() return type must be APIType");
+			constexpr auto type{ API_T::GetType() };
 			return dynamic_cast<const API_T&>(GetRequiredAPI( type ));
 		}
 
-		inline API::BaseAPI* GetAPI( const APIType type ) noexcept { return (type < apis.size()) ? apis[type].get() : nullptr; }
-		inline const API::BaseAPI* GetAPI( const APIType type ) const noexcept { return (type < apis.size()) ? apis[type].get() : nullptr; }
-		inline API::BaseAPI& GetRequiredAPI( const APIType type ) { if (auto* api = GetAPI( type )) return *api; throw std::runtime_error( "Missing required API" ); }
-		inline const API::BaseAPI& GetRequiredAPI( const APIType type ) const { if (auto* api = GetAPI( type )) return *api; throw std::runtime_error( "Missing required API" ); }
+		inline API::BaseAPI* GetAPI( const APIType type ) noexcept;
+		inline const API::BaseAPI* GetAPI( const APIType type ) const noexcept;
+		inline API::BaseAPI& rGetRequiredAPI( const APIType type );
+		inline const API::BaseAPI& GetRequiredAPI( const APIType type ) const;
 
 		int Dispatch();
 
@@ -98,18 +103,18 @@ namespace Avokii
 		void ShutdownAPIs();
 
 	private:
-		bool is_initialised = false;
+		bool mIsInitialised = false;
 
-		int target_fps;
-		bool is_running = true;
-		int exit_code = -1;
+		int mTargetFps;
+		bool mIsRunning = true;
+		int mExitCode = -1;
 
-		std::unique_ptr<AbstractGame> game;
-		std::unique_ptr<ResourceManager> resource_manager;
+		std::unique_ptr<AbstractGame> mpGame;
+		std::unique_ptr<ResourceManager> mpResourceManager;
 
-		const std::function<void( ResourceManager& )> resource_initaliser_func;
+		const std::function<void( ResourceManager& )> mResourceInitaliserFunc;
 
-		std::vector<std::unique_ptr<API::BaseAPI>> apis;
-		std::vector<API::BaseAPI*> active_apis;
+		std::vector<std::unique_ptr<API::BaseAPI>> mApis;
+		std::vector<API::BaseAPI*> mActiveApis;
 	};
 }

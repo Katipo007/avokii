@@ -53,4 +53,10 @@ namespace Avokii::ContainerOps
 	{
 		return std::any_of( std::begin( container ), std::end( container ), pred );
 	}
+
+	template<std::ranges::range CONTAINER>
+	size_t CountIf( const CONTAINER& container, std::predicate<std::ranges::range_value_t<const CONTAINER>> auto pred )
+	{
+		return std::count_if( std::begin( container ), std::end( container ), pred );
+	}
 }

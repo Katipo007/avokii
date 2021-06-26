@@ -24,7 +24,7 @@ namespace
 namespace Avokii
 {
 	Logger::Logger( Filepath log_file_directory )
-		: log_file_directory( log_file_directory )
+		: log_file_directory{ log_file_directory }
 	{
 	}
 

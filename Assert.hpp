@@ -3,7 +3,7 @@
 #include <filesystem>
 
 #include "Avokii.hpp"
-#include "Core/Logging.hpp"
+#include "Logging.hpp"
 
 #if (AV_ENABLE_ASSERTS == 1)
 

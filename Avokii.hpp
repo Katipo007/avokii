@@ -18,5 +18,5 @@
 #define AV_STRINGIFY_MACRO(x) #x
 
 // these are at the bottom because these files reference this one
-#include "Core/Logging.hpp"
+#include "Logging.hpp"
 #include "Assert.hpp"

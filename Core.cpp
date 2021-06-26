@@ -13,30 +13,34 @@
 
 #include "Resources/StandardResources.hpp"
 
+#include "Containers/ContainerOperations.hpp"
+
+using namespace Avokii::ContainerOps;
+
 namespace Avokii
 {
-	Core::Core( CoreProperties&& props, std::unique_ptr<AbstractGame> game_ )
-		: game( std::move( game_ ) )
-		, resource_initaliser_func( props.resource_initaliser_func )
-		, target_fps( std::max( 0, props.fps ) )
+	Core::Core( CoreProperties&& _props, std::unique_ptr<AbstractGame> _game )
+		: mpGame( std::move( _game ) )
+		, mResourceInitaliserFunc{ _props.resource_initaliser_func }
+		, mTargetFps{ std::max( 0, _props.fps ) }
 	{
-		AV_ASSERT( props.IsValid() );
-		if (!props.IsValid())
+		AV_ASSERT( _props.IsValid() );
+		if (!_props.IsValid())
 			throw std::runtime_error( "Bad core properties" );
 
-		if (!game)
+		if (!mpGame)
 			throw std::runtime_error( "Where yo game at? (Game object was null at Core construction)" );
 
 		///
 		/// initialise plugins
 		///
-		apis.resize( props.max_plugins );
-		for (APIType t = 0; t < props.max_plugins; t++)
+		mApis.resize( _props.max_plugins );
+		for (APIType t = 0; t < _props.max_plugins; t++)
 		{
-			if (auto plugin = props.plugin_factory( *this, t ))
-				apis[t] = std::move( plugin );
+			if (auto plugin = _props.plugin_factory( *this, t ))
+				mApis[t] = std::move( plugin );
 		}
-		AV_LOG_INFO( LoggingChannels::Application, "{} plugins initalised", std::count_if( std::begin( apis ), std::end( apis ), []( const auto& entry ) { return entry != nullptr; } ) );
+		AV_LOG_INFO( LoggingChannels::Application, "{} plugins initalised", CountIf( mApis, []( const auto& entry ) { return entry != nullptr; } ) );
 	}
 
 	Core::~Core()
@@ -46,17 +50,43 @@ namespace Avokii
 
 	void Core::Init()
 	{
-		assert( !is_initialised );
+		assert( !mIsInitialised );
 
 		InitResources();
 		InitAPIs();
 		InitRNG();
 
-		game->mpCore = this;
-		game->mpResourceManager = resource_manager.get();
-		game->Init();
+		mpGame->mpCore = this;
+		mpGame->mpResourceManager = mpResourceManager.get();
+		mpGame->Init();
 
-		is_initialised = true;
+		mIsInitialised = true;
+	}
+
+	inline API::BaseAPI* Core::GetAPI( const APIType type ) noexcept
+	{
+		return mApis.at( type ).get();
+	}
+
+	inline const API::BaseAPI* Core::GetAPI( const APIType type ) const noexcept
+	{
+		return mApis.at( type ).get();
+	}
+
+	inline API::BaseAPI& Core::rGetRequiredAPI( const APIType type )
+	{
+		if (auto* api = GetAPI( type ))
+			return *api;
+		
+		throw std::runtime_error( "Missing required API" );
+	}
+
+	inline const API::BaseAPI& Core::GetRequiredAPI( const APIType type ) const
+	{
+		if (auto* api = GetAPI( type ))
+			return *api;
+		
+		throw std::runtime_error( "Missing required API" );
 	}
 
 	int Core::Dispatch()
@@ -69,9 +99,9 @@ namespace Avokii
 		Clock_T::time_point last_time;
 		target_time = last_time = start_time;
 
-		if (target_fps <= 0)
+		if (mTargetFps <= 0)
 		{
-			while (is_running)
+			while (mIsRunning)
 			{
 				const auto current_time = Clock_T::now();
 				const double current_time_seconds = std::chrono::duration_cast<std::chrono::milliseconds>(current_time.time_since_epoch()).count() / 1000.0;
@@ -85,7 +115,7 @@ namespace Avokii
 		}
 		else
 		{
-			while (is_running)
+			while (mIsRunning)
 			{
 				Clock_T::time_point current_time = Clock_T::now();
 				const double current_time_seconds = std::chrono::duration_cast<std::chrono::milliseconds>(current_time.time_since_epoch()).count() / 1000.0;
@@ -94,15 +124,15 @@ namespace Avokii
 				if (current_time >= target_time)
 				{
 					constexpr int MaxFixedStepsPerFrame = 5;
-					const double fixed_timestep_seconds = 1.0 / target_fps;
+					const double fixed_timestep_seconds = 1.0 / mTargetFps;
 
 					// Perform a given number of steps this frame
-					const int steps_needed = static_cast<int>(std::chrono::duration<float>( current_time - target_time ).count() * target_fps);
+					const int steps_needed = static_cast<int>(std::chrono::duration<float>( current_time - target_time ).count() * mTargetFps);
 					for (int i = 0; i < std::min( steps_needed, MaxFixedStepsPerFrame ); i++)
 						DoFixedUpdate( PreciseTimestep( current_time_seconds, fixed_timestep_seconds ) );
 
 					num_steps += steps_needed;
-					target_time = start_time + std::chrono::microseconds( (num_steps * 1000000ll) / target_fps );
+					target_time = start_time + std::chrono::microseconds( (num_steps * 1000000ll) / mTargetFps );
 				}
 				else
 				{
@@ -123,13 +153,13 @@ namespace Avokii
 
 	void Core::InitResources()
 	{
-		AV_ASSERT( !resource_manager );
-		resource_manager = std::make_unique<ResourceManager>( *this );
+		AV_ASSERT( !mpResourceManager );
+		mpResourceManager = std::make_unique<ResourceManager>( *this );
 
-		InitStandardResources( *resource_manager );
+		InitStandardResources( *mpResourceManager );
 
-		if (resource_initaliser_func)
-			resource_initaliser_func( *resource_manager );
+		if (mResourceInitaliserFunc)
+			mResourceInitaliserFunc( *mpResourceManager );
 	}
 
 	void Core::InitRNG()
@@ -142,28 +172,28 @@ namespace Avokii
 
 	void Core::Shutdown()
 	{
-		AV_ASSERT( is_initialised );
+		AV_ASSERT( mIsInitialised );
 
-		game->OnGameEnd();
-		game.reset();
+		mpGame->OnGameEnd();
+		mpGame.reset();
 
 		ShutdownAPIs();
-		resource_manager.reset();
+		mpResourceManager.reset();
 
-		is_initialised = false;
+		mIsInitialised = false;
 	}
 
 	void Core::DoFixedUpdate( const PreciseTimestep& ts )
 	{
 		assert( ts.delta > 0 );
 
-		for (auto& plugin : active_apis)
+		for (auto& plugin : mActiveApis)
 			plugin->OnFixedUpdate( ts, StepType::PreGameStep );
 
-		if (is_running)
-			game->OnFixedUpdate( ts );
+		if (mIsRunning)
+			mpGame->OnFixedUpdate( ts );
 
-		for (auto& plugin : active_apis)
+		for (auto& plugin : mActiveApis)
 			plugin->OnFixedUpdate( ts, StepType::PostGameStep );
 	}
 
@@ -172,19 +202,19 @@ namespace Avokii
 		AV_ASSERT( ts.delta >= 0 );
 		PumpEvents( ts );
 
-		for (auto& plugin : active_apis)
+		for (auto& plugin : mActiveApis)
 			plugin->OnVariableUpdate( ts, StepType::PreGameStep );
 
-		if (game->GetExitCode())
+		if (mpGame->GetExitCode())
 		{
-			exit_code = game->GetExitCode().value();
-			is_running = false;
+			mExitCode = mpGame->GetExitCode().value();
+			mIsRunning = false;
 		}
 
-		if (is_running)
-			game->OnVariableUpdate( ts );
+		if (mIsRunning)
+			mpGame->OnVariableUpdate( ts );
 
-		for (auto& plugin : active_apis)
+		for (auto& plugin : mActiveApis)
 			plugin->OnVariableUpdate( ts, StepType::PostGameStep );
 
 		DoRender( ts );
@@ -196,13 +226,13 @@ namespace Avokii
 		{
 			video_api->BeginRender();
 
-			for (auto& plugin : active_apis)
+			for (auto& plugin : mActiveApis)
 				plugin->OnRender( ts, StepType::PreGameStep );
 
-			if (is_running)
-				game->OnRender( ts );
+			if (mIsRunning)
+				mpGame->OnRender( ts );
 
-			for (auto& plugin : active_apis)
+			for (auto& plugin : mActiveApis)
 				plugin->OnRender( ts, StepType::PostGameStep );
 
 			video_api->EndRender();
@@ -221,8 +251,8 @@ namespace Avokii
 
 		if (!system_api->GenerateEvents( video_api, input_api, dearimgui_api ))
 		{
-			exit_code = 0;
-			is_running = false;
+			mExitCode = 0;
+			mIsRunning = false;
 		}
 	}
 
@@ -230,26 +260,26 @@ namespace Avokii
 	{
 		// order is important
 
-		active_apis.clear();
-		std::for_each( std::begin( apis ), std::end( apis ), [this]( const std::unique_ptr<API::BaseAPI>& entry )
+		mActiveApis.clear();
+		for (auto& api : mApis )
+		{
+			if (api != nullptr)
 			{
-				if (entry)
-				{
-					entry->Init();
-					active_apis.push_back( entry.get() );
-				}
-			} );
+				api->Init();
+				mActiveApis.push_back( api.get() );
+			}
+		};
 	}
 
 	void Core::ShutdownAPIs()
 	{
 		// order is important and should be done in reverse of that in InitAPIs()
 
-		active_apis.clear();
-		std::for_each( std::rbegin( apis ), std::rend( apis ), []( const std::unique_ptr<API::BaseAPI>& entry )
-			{
-				if (entry)
-					entry->Shutdown();
-			} );
+		mActiveApis.clear();
+		for (auto& api : mApis | std::views::reverse )
+		{
+			if (api != nullptr)
+				api->Shutdown();
+		};
 	}
 }

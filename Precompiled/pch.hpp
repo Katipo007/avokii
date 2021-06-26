@@ -21,7 +21,7 @@
 #include <vector>
 
 #include "Avokii.hpp"
-#include "Core/Logging.hpp"
+#include "Logging.hpp"
 #include "String.hpp"
 
 #pragma warning(disable: 4201)

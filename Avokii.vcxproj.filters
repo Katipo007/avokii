@@ -36,10 +36,10 @@
     <ClInclude Include="API\VideoAPI.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Graphics\OpenGLContext.hpp">
+    <ClInclude Include="Graphics\OpenGLContext.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Graphics\Window.hpp">
+    <ClInclude Include="Graphics\Window.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Resources\BaseResource.hpp">
@@ -60,7 +60,7 @@
     <ClInclude Include="Resources\StandardResources.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Core\AbstractGame.hpp">
+    <ClInclude Include="AbstractGame.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Assert.hpp">
@@ -69,7 +69,7 @@
     <ClInclude Include="Avokii.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Core.hpp">
+    <ClInclude Include="Core.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Resources\ResourceManager.hpp">
@@ -174,19 +174,19 @@
     <ClInclude Include="Utility\Unreachable.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Logging.hpp">
+    <ClInclude Include="Logging.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Input\KeyboardInput.hpp">
+    <ClInclude Include="Input\KeyboardInput.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Input\InputDevice.hpp">
+    <ClInclude Include="Input\InputDevice.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Input\Keycodes.hpp">
+    <ClInclude Include="Input\Keycodes.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Input\InputButtonDevice.hpp">
+    <ClInclude Include="Input\InputButtonDevice.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="StateMachine\Concepts.hpp">
@@ -233,10 +233,10 @@
     <ClCompile Include="Resources\StandardResources.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Core\AbstractGame.cpp">
+    <ClCompile Include="AbstractGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Core\Core.cpp">
+    <ClCompile Include="Core.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Resources\ResourceManager.cpp">
@@ -248,13 +248,13 @@
     <ClCompile Include="Precompiled\pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Core\Logging.cpp">
+    <ClCompile Include="Logging.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Core\Input\InputButtonDevice.cpp">
+    <ClCompile Include="Input\InputButtonDevice.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Core\Input\KeyboardInput.cpp">
+    <ClCompile Include="Input\KeyboardInput.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

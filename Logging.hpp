@@ -21,8 +21,12 @@ namespace Avokii
 {
 	struct LoggerChannelId
 	{
-		inline constexpr LoggerChannelId( std::string_view id ) : value( CompileTime::FNV16Hash( id.data() ) ) {}
-		inline constexpr LoggerChannelId( uint16_t id ) : value( id ) {}
+		inline constexpr LoggerChannelId( std::string_view id )
+			: value{ CompileTime::FNV16Hash( id.data() ) }
+		{}
+		inline constexpr LoggerChannelId( uint16_t id )
+			: value{ id }
+		{}
 
 		uint16_t value;
 
@@ -31,8 +35,9 @@ namespace Avokii
 
 	namespace LoggingChannels
 	{
-		constexpr LoggerChannelId Assertion( "Assertion" );
-		constexpr LoggerChannelId Application( "Application" );
+		constexpr LoggerChannelId Assertion{ "Assertion" };
+		constexpr LoggerChannelId Application{ "Application" };
+		constexpr LoggerChannelId Resource{ "Resource" };
 	}
 }
 

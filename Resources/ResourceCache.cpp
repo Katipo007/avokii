@@ -48,7 +48,7 @@ namespace Avokii
 			return AddResource( loaded_resource );
 		}
 
-		AV_LOG_ERROR( LoggingChannels::Assertion, "Failed to load asset with id '{}'", asset_id );
+		AV_LOG_ERROR( LoggingChannels::Resource, "Failed to load asset with id '{}'", asset_id );
 		return UntypedResourcePtr{};
 	}
 
@@ -71,7 +71,7 @@ namespace Avokii
 				++it;
 		}
 		
-		AV_LOG_INFO( LoggingChannels::Application, "Purged '{}' old resources from {} cache", old_size - mResources.size(), GetAssetTypeName( mAssetType ) );
+		AV_LOG_INFO( LoggingChannels::Resource, "Purged '{}' old resources from {} cache", old_size - mResources.size(), GetAssetTypeName( mAssetType ) );
 	}
 
 	void BaseResourceCache::NextGeneration()

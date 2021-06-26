@@ -13,23 +13,23 @@
   <ItemGroup>
     <ClInclude Include="Containers\ConstexprHashMap.hpp" />
     <ClInclude Include="PlatformDetection.hpp" />
-    <ClInclude Include="Core\AbstractGame.hpp" />
+    <ClInclude Include="AbstractGame.hpp" />
     <ClInclude Include="API\BaseAPI.hpp" />
     <ClInclude Include="API\CoreAPIsEnum.hpp" />
     <ClInclude Include="API\DearImGuiAPI.hpp" />
     <ClInclude Include="API\InputAPI.hpp" />
-    <ClInclude Include="Core\Input\InputButtonDevice.hpp" />
-    <ClInclude Include="Core\Input\InputDevice.hpp" />
-    <ClInclude Include="Core\Input\KeyboardInput.hpp" />
-    <ClInclude Include="Core\Input\Keycodes.hpp" />
-    <ClInclude Include="Core\Logging.hpp" />
+    <ClInclude Include="Input\InputButtonDevice.hpp" />
+    <ClInclude Include="Input\InputDevice.hpp" />
+    <ClInclude Include="Input\KeyboardInput.hpp" />
+    <ClInclude Include="Input\Keycodes.hpp" />
+    <ClInclude Include="Logging.hpp" />
     <ClInclude Include="API\SystemAPI.hpp" />
     <ClInclude Include="API\VideoAPI.hpp" />
     <ClInclude Include="Assert.hpp" />
     <ClInclude Include="Avokii.hpp" />
-    <ClInclude Include="Core\Core.hpp" />
-    <ClInclude Include="Core\Graphics\OpenGLContext.hpp" />
-    <ClInclude Include="Core\Graphics\Window.hpp" />
+    <ClInclude Include="Core.hpp" />
+    <ClInclude Include="Graphics\OpenGLContext.hpp" />
+    <ClInclude Include="Graphics\Window.hpp" />
     <ClInclude Include="Resources\ResourceId.hpp" />
     <ClInclude Include="Resources\ResourceManager.hpp" />
     <ClInclude Include="Resources\Concepts.hpp" />
@@ -82,11 +82,11 @@
     <ClInclude Include="Utility\Unreachable.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Core\AbstractGame.cpp" />
-    <ClCompile Include="Core\Input\InputButtonDevice.cpp" />
-    <ClCompile Include="Core\Input\KeyboardInput.cpp" />
-    <ClCompile Include="Core\Logging.cpp" />
-    <ClCompile Include="Core\Core.cpp" />
+    <ClCompile Include="AbstractGame.cpp" />
+    <ClCompile Include="Input\InputButtonDevice.cpp" />
+    <ClCompile Include="Input\KeyboardInput.cpp" />
+    <ClCompile Include="Logging.cpp" />
+    <ClCompile Include="Core.cpp" />
     <ClCompile Include="Resources\ResourceManager.cpp" />
     <ClCompile Include="Resources\ResourceCache.cpp" />
     <ClCompile Include="Resources\ResourceLoader.cpp" />
