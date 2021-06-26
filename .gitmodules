@@ -16,3 +16,6 @@
 [submodule "magic_enum"]
 	path = Vendor/magic_enum
 	url = https://github.com/Neargye/magic_enum.git
+[submodule "frozen"]
+	path = Vendor/frozen
+	url = https://github.com/serge-sans-paille/frozen.git
