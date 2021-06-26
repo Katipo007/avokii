@@ -12,6 +12,23 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Containers\ConstexprHashMap.hpp" />
+    <ClInclude Include="Graphics\Camera.hpp" />
+    <ClInclude Include="Graphics\DeviceCapabilities.hpp" />
+    <ClInclude Include="Graphics\FrameBuffer.hpp" />
+    <ClInclude Include="Graphics\GraphicsBuffer.hpp" />
+    <ClInclude Include="Graphics\RendererAPIs.hpp" />
+    <ClInclude Include="Graphics\Rendering\Renderer.hpp" />
+    <ClInclude Include="Graphics\Resources\Image.hpp" />
+    <ClInclude Include="Graphics\Resources\ImageResourceManager.hpp" />
+    <ClInclude Include="Graphics\Resources\Material.hpp" />
+    <ClInclude Include="Graphics\Resources\Mesh.hpp" />
+    <ClInclude Include="Graphics\Resources\SpriteSheet.hpp" />
+    <ClInclude Include="Graphics\Shader.hpp" />
+    <ClInclude Include="Graphics\Rendering\SpriteBatcher.hpp" />
+    <ClInclude Include="Graphics\Texture.hpp" />
+    <ClInclude Include="Graphics\Types.hpp" />
+    <ClInclude Include="Graphics\VertexArray.hpp" />
+    <ClInclude Include="Graphics\WorldSpace.hpp" />
     <ClInclude Include="PlatformDetection.hpp" />
     <ClInclude Include="AbstractGame.hpp" />
     <ClInclude Include="API\BaseAPI.hpp" />
@@ -83,6 +100,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AbstractGame.cpp" />
+    <ClCompile Include="Graphics\Camera.cpp" />
+    <ClCompile Include="Graphics\GraphicsBuffer.cpp" />
+    <ClCompile Include="Graphics\Rendering\Renderer.cpp" />
+    <ClCompile Include="Graphics\Rendering\SpriteBatcher.cpp" />
+    <ClCompile Include="Graphics\Resources\Image.cpp" />
+    <ClCompile Include="Graphics\Resources\ImageResourceManager.cpp" />
+    <ClCompile Include="Graphics\Resources\Material.cpp" />
+    <ClCompile Include="Graphics\Resources\Mesh.cpp" />
+    <ClCompile Include="Graphics\Resources\SpriteSheet.cpp" />
+    <ClCompile Include="Graphics\Texture.cpp" />
     <ClCompile Include="Input\InputButtonDevice.cpp" />
     <ClCompile Include="Input\KeyboardInput.cpp" />
     <ClCompile Include="Logging.cpp" />
