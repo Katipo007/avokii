@@ -27,15 +27,15 @@ namespace Avokii
 		[[nodiscard]] AssetType GetResourceType() const noexcept { return mAssetType; }
 
 		[[nodiscard]] bool Exists( ResourceId_T resource_id ) const noexcept;
-		[[nodiscard]] UntypedResourcePtr GetUntyped( ResourceId_T resource_id ) const noexcept;
+		[[nodiscard]] UntypedResourcePtr GetUntyped( ResourceId_T _resourceId ) const noexcept;
 
-		UntypedResourcePtr Load( StringView asset_id );
-		void Unload( ResourceId_T resource_id );
+		UntypedResourcePtr LoadUntyped( StringView _assetId );
+		void Unload( ResourceId_T _resourceId );
 		/// <summary>
 		/// Unload resources that currently aren't being used.
 		/// </summary>
 		/// <param name="min_generations">Minimum number of generations this resource hasn't been used</param>
-		void Purge( size_t min_generations = 3 );
+		void Purge( size_t _minGenerations = 3 );
 
 		void NextGeneration();
 
@@ -66,7 +66,7 @@ namespace Avokii
 	};
 
 	template<Concepts::Resource R>
-	class ResourceCache
+	class ResourceCache final
 		: public BaseResourceCache
 	{
 	protected:
@@ -78,9 +78,14 @@ namespace Avokii
 		{}
 		virtual ~ResourceCache() {}
 
-		[[nodiscard]] ResourcePtr Get( ResourceId resource_id ) const
+		[[nodiscard]] ResourcePtr Get( ResourceId_T _resourceId ) const
 		{
-			return std::dynamic_pointer_cast<const R>(GetUntyped( resource_id ));
+			return std::dynamic_pointer_cast<const R>(GetUntyped( _resourceId ));
+		}
+
+		[[nodiscard]] ResourcePtr Load( StringView _assetId )
+		{
+			return std::dynamic_pointer_cast<const R>(LoadUntyped( _assetId ));
 		}
 
 		[[nodiscard]] ResourcePtr FindIf( const std::function<bool( const R& )>& pred ) const

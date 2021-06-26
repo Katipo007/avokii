@@ -34,19 +34,31 @@ namespace Avokii
 		}
 
 		template<Concepts::Resource R>
-		[[nodiscard]] bool Exists( ResourceId_T _resource_id ) const noexcept { return GetCache<R>().Exists( _resource_id ); }
+		[[nodiscard]] bool Exists( ResourceId_T _resourceId ) const noexcept { return GetCache<R>().Exists( _resourceId ); }
 
 		template<Concepts::Resource R>
-		[[nodiscard]] bool IsLoaded( ResourceId_T _resource_id ) const noexcept { return GetCache<R>().IsLoaded( _resource_id ); }
+		[[nodiscard]] bool IsLoaded( ResourceId_T _resourceId ) const noexcept { return GetCache<R>().IsLoaded( _resourceId ); }
 
 		template<Concepts::Resource R>
-		[[nodiscard]] ResourceHandle<const R> Get( ResourceId_T _resource_id ) const { return ResourceHandle<const R>( GetCache<R>().Get( _resource_id ) ); }
+		[[nodiscard]] ResourceHandle<const R> Get( ResourceId_T _resourceId ) const { return ResourceHandle<const R>( GetCache<R>().Get( _resourceId ) ); }
 
 		template<Concepts::Resource R>
-		void Unload( ResourceId_T _resource_id ) { GetCache<R>().Unload( _resource_id ); }
+		[[nodiscard]] ResourceHandle<const R> GetOrLoad( StringView _assetId )
+		{
+			if (auto found = Get<R>( ToResourceId( _assetId ) ))
+				return found;
+
+			return Load<R>( _assetId );
+		}
 
 		template<Concepts::Resource R>
-		void Purge( size_t _min_generations = 3 ) { GetCache<R>().Purge( _min_generations ); }
+		ResourceHandle<const R> Load( StringView _assetId ) { return rGetCache<R>().Load( _assetId ); }
+
+		template<Concepts::Resource R>
+		void Unload( ResourceId_T _resourceId ) { GetCache<R>().Unload( _resourceId ); }
+
+		template<Concepts::Resource R>
+		void Purge( size_t _minGenerations = 3 ) { GetCache<R>().Purge( _minGenerations ); }
 
 		template<Concepts::Resource R>
 		[[nodiscard]] const ResourceCache<R>& GetCache() const
@@ -62,7 +74,18 @@ namespace Avokii
 		Core& rGetCore() noexcept { return mCore; }
 		const Core& GetCore() const noexcept { return mCore; }
 
-	protected:
+	private:
+		template<Concepts::Resource R>
+		[[nodiscard]] ResourceCache<R>& rGetCache()
+		{
+			constexpr AssetType type{ R::GetResourceType() };
+
+			if (auto* cache = GetCacheInternal( type ))
+				return *dynamic_cast<ResourceCache<R>*>(cache);
+
+			throw std::runtime_error( "Given resource type is not initialised for this ResourceManager" );
+		}
+
 		BaseResourceCache* GetCacheInternal( const AssetType type );
 		const BaseResourceCache* GetCacheInternal( const AssetType type ) const;
 

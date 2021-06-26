@@ -35,10 +35,10 @@ namespace Avokii
 		return UntypedResourcePtr{};
 	}
 
-	BaseResourceCache::UntypedResourcePtr BaseResourceCache::Load( StringView asset_id )
+	BaseResourceCache::UntypedResourcePtr BaseResourceCache::LoadUntyped( StringView _assetId )
 	{
 		// not in the cache, try loading
-		ResourceLoader loader{ mManager, asset_id };
+		ResourceLoader loader{ mManager, _assetId };
 		if (auto loaded_resource = LoadResource( loader ))
 		{
 			loaded_resource->mAssetId = loader.GetAssetId();
@@ -48,7 +48,7 @@ namespace Avokii
 			return AddResource( loaded_resource );
 		}
 
-		AV_LOG_ERROR( LoggingChannels::Resource, "Failed to load asset with id '{}'", asset_id );
+		AV_LOG_ERROR( LoggingChannels::Resource, "Failed to load asset with id '{}'", _assetId );
 		return UntypedResourcePtr{};
 	}
 
