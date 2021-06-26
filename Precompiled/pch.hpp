@@ -3,21 +3,26 @@
 #ifndef AVOKII_PCH_HPP
 #define AVOKII_PCH_HPP
 
+
+#include <array>
+#include <algorithm>
+#include <cinttypes>
+#include <concepts>
+#include <functional>
 #include <iostream>
 #include <memory>
-#include <utility>
-#include <algorithm>
-#include <functional>
-
+#include <optional>
 #include <string>
 #include <sstream>
-#include <array>
-#include <vector>
+#include <type_traits>
 #include <unordered_map>
 #include <unordered_set>
+#include <utility>
+#include <vector>
 
 #include "Avokii.hpp"
 #include "Core/Logging.hpp"
+#include "String.hpp"
 
 #pragma warning(disable: 4201)
 

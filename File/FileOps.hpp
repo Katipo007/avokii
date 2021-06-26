@@ -13,14 +13,14 @@
 
 namespace Avokii::FileOps
 {
-	bool StreamReadString( std::istream& file, std::string& out_file_contents );
+	bool StreamReadString( std::istream& file, String& out_file_contents );
 
-	bool ReadFile( const Filepath& filename, std::string& out_file_contents );
-	inline bool ReadFile( std::string_view filename, std::string& out_file_contents ) { return ReadFile( Filepath( filename ), out_file_contents ); }
+	bool ReadFile( const Filepath& filename, String& out_file_contents );
+	inline bool ReadFile( StringView filename, String& out_file_contents ) { return ReadFile( Filepath{ filename }, out_file_contents ); }
 
-	std::vector<std::string> GetFilesInFolder( const Filepath& path );
-	inline std::vector<std::string> GetFilesInFolder( std::string_view path ) { return GetFilesInFolder( Filepath( path ) ); }
+	std::vector<String> GetFilesInFolder( const Filepath& path );
+	inline std::vector<String> GetFilesInFolder( StringView path ) { return GetFilesInFolder( Filepath{ path } ); }
 
 	Filepath GetFileDirectory( const Filepath& filepath, bool relative_to_working_directory = true );
-	inline Filepath GetFileDirectory( std::string_view filepath, bool relative_to_working_directory = true ) { return GetFileDirectory( Filepath( filepath ), relative_to_working_directory ); }
+	inline Filepath GetFileDirectory( StringView filepath, bool relative_to_working_directory = true ) { return GetFileDirectory( Filepath{ filepath }, relative_to_working_directory ); }
 }

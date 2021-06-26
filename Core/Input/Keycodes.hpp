@@ -2,7 +2,7 @@
 
 #include <cinttypes>
 
-namespace Input
+namespace Avokii::Input
 {
 	using ButtonCode_T = int;
 

@@ -4,5 +4,5 @@
 
 namespace Avokii
 {
-	using HashedString = ::entt::hashed_string;
+	using HashedString = ::entt::basic_hashed_string<Char>;
 }

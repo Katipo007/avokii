@@ -18,19 +18,19 @@ namespace
 
 namespace Avokii::FileOps
 {
-	bool StreamReadString( std::istream& file, std::string& out_file_contents )
+	bool StreamReadString( std::istream& file, String& out_file_contents )
 	{
 		std::streamoff len = StreamSize( file );
 		if (len == -1)
 			return false;
 
-		out_file_contents.resize( static_cast<std::string::size_type>(len) );
+		out_file_contents.resize( static_cast<String::size_type>(len) );
 
 		file.read( &out_file_contents[0], out_file_contents.length() );
 		return true;
 	}
 
-	bool ReadFile( const Filepath& filename, std::string& file_contents )
+	bool ReadFile( const Filepath& filename, String& file_contents )
 	{
 		std::ifstream file( filename, std::ios::binary );
 
@@ -44,9 +44,9 @@ namespace Avokii::FileOps
 		return success;
 	}
 
-	std::vector<std::string> GetFilesInFolder( const Filepath& path )
+	std::vector<String> GetFilesInFolder( const Filepath& path )
 	{
-		auto filenames = std::vector<std::string>();
+		auto filenames = std::vector<String>();
 		for (const auto& entry : std::filesystem::directory_iterator( path ))
 			filenames.emplace_back( std::move( entry.path().string() ) );
 

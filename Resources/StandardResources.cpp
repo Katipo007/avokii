@@ -1,7 +1,7 @@
 #include "StandardResources.hpp"
-#include "Engine/Core/ResourceManager.hpp"
+#include "ResourceManager.hpp"
 
-namespace Resources::Standard
+namespace Avokii
 {
 	void InitStandardResources( ResourceManager& manager )
 	{

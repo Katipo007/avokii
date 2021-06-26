@@ -105,9 +105,9 @@ namespace Avokii
 	};
 }
 
-#define LOGGING_API_CALL(channel, level, fmt, ...) ::Logger::GetInstance().Log( channel, level, fmt, __VA_ARGS__ )
-#define LOG_TRACE(channel, fmt, ...)		LOGGING_API_CALL( channel, ::Logger::Level::Trace, fmt, __VA_ARGS__ )
-#define LOG_INFO(channel, fmt, ...)			LOGGING_API_CALL( channel, ::Logger::Level::Info, fmt, __VA_ARGS__ )
-#define LOG_WARN(channel, fmt, ...)			LOGGING_API_CALL( channel, ::Logger::Level::Warning, fmt, __VA_ARGS__ )
-#define LOG_ERROR(channel, fmt, ...)		LOGGING_API_CALL( channel, ::Logger::Level::Error, fmt, __VA_ARGS__ )
-#define LOG_CRITICAL(channel, fmt, ...)		LOGGING_API_CALL( channel, ::Logger::Level::Critical, fmt, __VA_ARGS__ )
+#define AV_LOGGING_API_CALL(channel, level, fmt, ...) ::Avokii::Logger::GetInstance().Log( channel, level, fmt, __VA_ARGS__ )
+#define AV_LOG_TRACE(channel, fmt, ...)			AV_LOGGING_API_CALL( channel, ::Avokii::Logger::Level::Trace, fmt, __VA_ARGS__ )
+#define AV_LOG_INFO(channel, fmt, ...)			AV_LOGGING_API_CALL( channel, ::Avokii::Logger::Level::Info, fmt, __VA_ARGS__ )
+#define AV_LOG_WARN(channel, fmt, ...)			AV_LOGGING_API_CALL( channel, ::Avokii::Logger::Level::Warning, fmt, __VA_ARGS__ )
+#define AV_LOG_ERROR(channel, fmt, ...)			AV_LOGGING_API_CALL( channel, ::Avokii::Logger::Level::Error, fmt, __VA_ARGS__ )
+#define AV_LOG_CRITICAL(channel, fmt, ...)		AV_LOGGING_API_CALL( channel, ::Avokii::Logger::Level::Critical, fmt, __VA_ARGS__ )

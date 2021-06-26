@@ -2,10 +2,10 @@
 
 #include <cstdio>
 
-#include "Engine/Utility/ConstExprContainers.hpp"
+#include "Containers/ConstexprHashMap.hpp"
 #include "Keycodes.hpp"
 
-namespace Input
+namespace Avokii::Input
 {
 	KeyboardInput::KeyboardInput( size_t button_count )
 		: InputButtonDevice( button_count )
@@ -25,7 +25,7 @@ namespace Input
 
 		if (!is_shift_down && !is_ctrl_down)
 		{
-			static constexpr frozen::unordered_map<ButtonCode_T, TextControlCode, 13> mappings{
+			static constexpr ConstexprHashMap<ButtonCode_T, TextControlCode, 13> mappings{
 				{ Keys::Backspace,		TextControlCode::Backspace },
 				{ Keys::Delete,			TextControlCode::Delete },
 				{ Keys::Enter,			TextControlCode::Enter },
@@ -47,7 +47,7 @@ namespace Input
 
 		if (!is_shift_down && is_ctrl_down)
 		{
-			static constexpr frozen::unordered_map<ButtonCode_T, TextControlCode, 6> mappings{
+			static constexpr ConstexprHashMap<ButtonCode_T, TextControlCode, 6> mappings{
 				{ Keys::C,			TextControlCode::Copy },
 				{ Keys::V,			TextControlCode::Paste },
 				{ Keys::X,			TextControlCode::Cut },
@@ -63,7 +63,7 @@ namespace Input
 
 		if (is_shift_down && !is_ctrl_down)
 		{
-			static constexpr frozen::unordered_map<ButtonCode_T, TextControlCode, 4> mappings{
+			static constexpr ConstexprHashMap<ButtonCode_T, TextControlCode, 4> mappings{
 				{ Keys::Left,	TextControlCode::SelectLeft },
 				{ Keys::Right,	TextControlCode::SelectRight },
 				{ Keys::Up,		TextControlCode::SelectUp },
@@ -76,7 +76,7 @@ namespace Input
 
 		if (is_shift_down && is_ctrl_down)
 		{
-			static constexpr frozen::unordered_map<ButtonCode_T, TextControlCode, 1> mappings{
+			static constexpr ConstexprHashMap<ButtonCode_T, TextControlCode, 1> mappings{
 				{ Keys::Z,	TextControlCode::Redo },
 			};
 

@@ -2,7 +2,7 @@
 
 #include "InputButtonDevice.hpp"
 
-namespace Input
+namespace Avokii::Input
 {
 	enum class TextControlCode
 	{

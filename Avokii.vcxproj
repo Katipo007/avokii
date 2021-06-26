@@ -11,32 +11,34 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Containers\ConstexprHashMap.hpp" />
     <ClInclude Include="PlatformDetection.hpp" />
     <ClInclude Include="Core\AbstractGame.hpp" />
-    <ClInclude Include="Core\API\BaseAPI.hpp" />
-    <ClInclude Include="Core\API\CoreAPIsEnum.hpp" />
-    <ClInclude Include="Core\API\DearImGuiAPI.hpp" />
-    <ClInclude Include="Core\API\InputAPI.hpp" />
+    <ClInclude Include="API\BaseAPI.hpp" />
+    <ClInclude Include="API\CoreAPIsEnum.hpp" />
+    <ClInclude Include="API\DearImGuiAPI.hpp" />
+    <ClInclude Include="API\InputAPI.hpp" />
     <ClInclude Include="Core\Input\InputButtonDevice.hpp" />
     <ClInclude Include="Core\Input\InputDevice.hpp" />
     <ClInclude Include="Core\Input\KeyboardInput.hpp" />
     <ClInclude Include="Core\Input\Keycodes.hpp" />
     <ClInclude Include="Core\Logging.hpp" />
-    <ClInclude Include="Core\API\SystemAPI.hpp" />
-    <ClInclude Include="Core\API\VideoAPI.hpp" />
+    <ClInclude Include="API\SystemAPI.hpp" />
+    <ClInclude Include="API\VideoAPI.hpp" />
     <ClInclude Include="Assert.hpp" />
     <ClInclude Include="Avokii.hpp" />
     <ClInclude Include="Core\Core.hpp" />
     <ClInclude Include="Core\Graphics\OpenGLContext.hpp" />
     <ClInclude Include="Core\Graphics\Window.hpp" />
-    <ClInclude Include="Core\ResourceManager.hpp" />
-    <ClInclude Include="Core\Resources\Concepts.hpp" />
-    <ClInclude Include="Core\Resources\Resource.hpp" />
-    <ClInclude Include="Core\Resources\ResourceCache.hpp" />
-    <ClInclude Include="Core\Resources\ResourceHandle.hpp" />
-    <ClInclude Include="Core\Resources\ResourceLoader.hpp" />
-    <ClInclude Include="Core\Resources\ResourceTypes.hpp" />
-    <ClInclude Include="Core\Resources\StandardResources.hpp" />
+    <ClInclude Include="Resources\ResourceId.hpp" />
+    <ClInclude Include="Resources\ResourceManager.hpp" />
+    <ClInclude Include="Resources\Concepts.hpp" />
+    <ClInclude Include="Resources\BaseResource.hpp" />
+    <ClInclude Include="Resources\ResourceCache.hpp" />
+    <ClInclude Include="Resources\ResourceHandle.hpp" />
+    <ClInclude Include="Resources\ResourceLoader.hpp" />
+    <ClInclude Include="Resources\ResourceTypes.hpp" />
+    <ClInclude Include="Resources\StandardResources.hpp" />
     <ClInclude Include="Types\Bytes.hpp" />
     <ClInclude Include="Types\Colour.hpp" />
     <ClInclude Include="File\FileOps.hpp" />
@@ -45,8 +47,8 @@
     <ClInclude Include="Geometry\Rect.hpp" />
     <ClInclude Include="Geometry\Size.hpp" />
     <ClInclude Include="Precompiled\pch.hpp" />
-    <ClInclude Include="Types\String.hpp" />
-    <ClInclude Include="Utility\ContainerOperations.hpp" />
+    <ClInclude Include="String.hpp" />
+    <ClInclude Include="Containers\ContainerOperations.hpp" />
     <ClInclude Include="Entity\Entity.hpp" />
     <ClInclude Include="Entity\EnttHeader.hpp" />
     <ClInclude Include="Entity\Fwd.hpp" />
@@ -73,7 +75,7 @@
     <ClInclude Include="Utility\StateMachine\OnEvent.hpp" />
     <ClInclude Include="Utility\StateMachine\StateMachine.hpp" />
     <ClInclude Include="Utility\StateMachine\Will.hpp" />
-    <ClInclude Include="Utility\StringHashMap.hpp" />
+    <ClInclude Include="Containers\StringHashMap.hpp" />
     <ClInclude Include="Utility\StringUtility.hpp" />
     <ClInclude Include="Timestep.hpp" />
     <ClInclude Include="Utility\TupleReflection.hpp" />
@@ -85,10 +87,10 @@
     <ClCompile Include="Core\Input\KeyboardInput.cpp" />
     <ClCompile Include="Core\Logging.cpp" />
     <ClCompile Include="Core\Core.cpp" />
-    <ClCompile Include="Core\ResourceManager.cpp" />
-    <ClCompile Include="Core\Resources\ResourceCache.cpp" />
-    <ClCompile Include="Core\Resources\ResourceLoader.cpp" />
-    <ClCompile Include="Core\Resources\StandardResources.cpp" />
+    <ClCompile Include="Resources\ResourceManager.cpp" />
+    <ClCompile Include="Resources\ResourceCache.cpp" />
+    <ClCompile Include="Resources\ResourceLoader.cpp" />
+    <ClCompile Include="Resources\StandardResources.cpp" />
     <ClCompile Include="File\FileOps.cpp" />
     <ClCompile Include="Precompiled\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

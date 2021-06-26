@@ -5,7 +5,7 @@
 
 namespace Avokii
 {
-	using Char = char8_t;
+	using Char = char;
 	using String = std::basic_string<Char>;
 	using StringView = std::basic_string_view<Char>;
 

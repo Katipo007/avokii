@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Engine/Utility/MagicEnum.hpp"
+#include "Utility/MagicEnum.hpp"
 
-namespace Resources
+namespace Avokii
 {
 	enum class AssetType
 	{

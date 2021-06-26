@@ -4,7 +4,7 @@
 #include <functional>
 #include <ranges>
 
-namespace Avokii::Containers
+namespace Avokii::ContainerOps
 {
 	template<std::ranges::range CONTAINER>
 	auto Find( CONTAINER& container, const std::ranges::range_value_t<CONTAINER>& value ) -> std::ranges::iterator_t<CONTAINER>

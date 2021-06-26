@@ -1,8 +1,10 @@
 #include "InputButtonDevice.hpp"
 
-#include "Engine/Utility/ContainerOperations.hpp"
+#include "Containers/ContainerOperations.hpp"
 
-namespace Input
+using namespace Avokii::ContainerOps;
+
+namespace Avokii::Input
 {
 	InputButtonDevice::InputButtonDevice( size_t num_buttons )
 	{
@@ -16,9 +18,9 @@ namespace Input
 		return button_down.size();
 	}
 
-	std::string_view InputButtonDevice::GetButtonName( ButtonCode_T code ) const
+	StringView InputButtonDevice::GetButtonName( ButtonCode_T code ) const
 	{
-		static std::string button_name;
+		static thread_local String button_name;
 		return (button_name = "Button(" + std::to_string( code ) + ")");
 	}
 
@@ -39,40 +41,37 @@ namespace Input
 
 	bool InputButtonDevice::IsButtonPressed( ButtonCode_T code )
 	{
-		return ((code >= 0) && (code < button_pressed.size())) && button_pressed[code];
+		return button_pressed.at( code );
 	}
 
 	bool InputButtonDevice::IsButtonPressedRepeat( ButtonCode_T code )
 	{
-		return ((code >= 0) && (code < button_pressed_repeat.size())) && button_pressed_repeat[code];
+		return button_pressed_repeat.at( code );
 	}
 
 	bool InputButtonDevice::IsButtonReleased( ButtonCode_T code )
 	{
-		return ((code >= 0) && (code < button_released.size())) && button_released[code];
+		return button_released.at( code );
 	}
 
 	bool InputButtonDevice::IsButtonDown( ButtonCode_T code )
 	{
-		return ((code >= 0) && (code < button_down.size())) && button_down[code];
+		return button_down.at( code );
 	}
 
 	void InputButtonDevice::ClearButton( ButtonCode_T code )
 	{
-		if ((code >= 0) && (code < button_down.size()))
-			button_pressed[code] = button_pressed_repeat[code] = button_down[code] = button_released[code] = 0;
+		button_pressed.at( code ) = button_pressed_repeat.at( code ) = button_down.at( code ) = button_released.at( code ) = 0;
 	}
 
 	void InputButtonDevice::ClearButtonPress( ButtonCode_T code )
 	{
-		if ((code >= 0) && (code < button_down.size()))
-			button_pressed[code] = button_pressed_repeat[code] = 0;
+		button_pressed.at( code ) = button_pressed_repeat.at( code ) = 0;
 	}
 
 	void InputButtonDevice::ClearButtonRelease( ButtonCode_T code )
 	{
-		if ((code >= 0) && (code < button_down.size()))
-			button_released[code] = 0;
+		button_released.at( code ) = 0;
 	}
 
 	void InputButtonDevice::ClearButtonPresses()

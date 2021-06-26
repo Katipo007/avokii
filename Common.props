@@ -3,7 +3,7 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <IncludePath>$(SolutionDir);$(SolutionDir)Vendor\glm\;$(SolutionDir)Vendor\spdlog\include\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir);$(SolutionDir)Vendor\glm\;$(SolutionDir)Vendor\spdlog\include\;$(SolutionDir)Vendor\frozen\include\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
@@ -20,7 +20,7 @@
       <PrecompiledHeaderFile>Precompiled/pch.hpp</PrecompiledHeaderFile>
       <ForcedIncludeFiles>Precompiled/pch.hpp</ForcedIncludeFiles>
       <TreatAngleIncludeAsExternal>true</TreatAngleIncludeAsExternal>
-      <DisableSpecificWarnings>4652</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4652;5045</DisableSpecificWarnings>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup />

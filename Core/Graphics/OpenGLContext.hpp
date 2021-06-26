@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Graphics
+namespace Avokii::Graphics
 {
 	class OpenGLContext
 	{

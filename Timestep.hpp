@@ -25,4 +25,11 @@ namespace Avokii
 
 		operator Timestep() const { return Timestep( (float)time, (float)delta ); }
 	};
+
+	enum class StepType
+	{
+		PreGameStep,
+		GameStep,
+		PostGameStep,
+	};
 }

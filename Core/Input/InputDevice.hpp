@@ -1,9 +1,6 @@
 #pragma once
 
-#include <string>
-#include <string_view>
-
-namespace Input
+namespace Avokii::Input
 {
 	class InputDevice
 	{
@@ -11,6 +8,6 @@ namespace Input
 		virtual ~InputDevice() = default;
 
 		virtual bool IsEnabled() const noexcept { return true; }
-		virtual std::string_view GetName() const { return ""; }
+		virtual StringView GetName() const { return ""; }
 	};
 }

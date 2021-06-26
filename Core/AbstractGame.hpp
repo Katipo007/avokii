@@ -1,33 +1,37 @@
 #pragma once
 
 #include <optional>
-#include "Engine/Utility/Timestep.hpp"
+#include "Timestep.hpp"
 
-class Core;
-class ResourceManager;
-
-class AbstractGame
+namespace Avokii
 {
-	friend class Core;
+	class Core;
+	class ResourceManager;
 
-public:
-	virtual ~AbstractGame();
+	class AbstractGame
+	{
+		friend class Core;
 
-	void Exit( int exit_code );
+	public:
+		virtual ~AbstractGame();
 
-protected:
-	virtual void Init() = 0;
-	virtual void OnGameEnd() = 0;
-	const std::optional<int>& GetExitCode() const noexcept { return application_exit_code; }
+		void Exit( int exit_code );
 
-	virtual void OnFixedUpdate( const PreciseTimestep& ts ) = 0;
-	virtual void OnVariableUpdate( const PreciseTimestep& ts ) = 0;
-	virtual void OnRender( const PreciseTimestep& ts ) = 0;
+	protected:
+		virtual void Init() = 0;
+		virtual void OnGameEnd() = 0;
+		std::optional<int> GetExitCode() const noexcept { return mApplicationExitCode; }
 
-protected:
-	Core* core = nullptr;
-	ResourceManager* resource_manager = nullptr;
+		virtual void OnFixedUpdate( const PreciseTimestep& ts ) = 0;
+		virtual void OnVariableUpdate( const PreciseTimestep& ts ) = 0;
+		virtual void OnRender( const PreciseTimestep& ts ) = 0;
 
-private:
-	std::optional<int> application_exit_code = std::nullopt;
-};
+		Core& GetCore() noexcept { AV_ASSERT( mpCore != nullptr ); return *mpCore; }
+		const Core& rGetCore() const noexcept { AV_ASSERT( mpCore != nullptr ); return *mpCore; }
+
+	private:
+		Core* mpCore = nullptr;
+		ResourceManager* mpResourceManager = nullptr;
+		std::optional<int> mApplicationExitCode = std::nullopt;
+	};
+}

@@ -4,7 +4,7 @@
 
 #include "InputDevice.hpp"
 
-namespace Input
+namespace Avokii::Input
 {
 	using ButtonCode_T = int;
 
@@ -17,7 +17,7 @@ namespace Input
 
 		virtual size_t GetButtonCount() const noexcept;
 
-		virtual std::string_view GetButtonName( ButtonCode_T code ) const;
+		virtual StringView GetButtonName( ButtonCode_T code ) const;
 
 		virtual bool IsAnyButtonPressed();
 		virtual bool IsAnyButtonReleased();
