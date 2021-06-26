@@ -16,7 +16,7 @@ namespace
 	}
 }
 
-namespace FileOps
+namespace Avokii::FileOps
 {
 	bool StreamReadString( std::istream& file, std::string& out_file_contents )
 	{

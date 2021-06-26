@@ -1,28 +1,28 @@
 #pragma once
 
-struct Timestep
+namespace Avokii
 {
-	float time;
-	float delta;
+	struct Timestep
+	{
+		float time;
+		float delta;
 
-	Timestep( float time_ = 0.f, float delta_time_ = 0.f )
-		: time( time_ ), delta( delta_time_ ) {}
-};
+		Timestep( float _time = 0.f, float _delta_time = 0.f )
+			: time{ _time }
+			, delta{ _delta_time }
+		{}
+	};
 
-struct PreciseTimestep
-{
-	double time;
-	double delta;
+	struct PreciseTimestep
+	{
+		double time;
+		double delta;
 
-	PreciseTimestep( double time_ = 0.f, double delta_time_ = 0.f )
-		: time( time_ ), delta( delta_time_ ) {}
+		PreciseTimestep( double _time = 0.f, double _delta_time = 0.f )
+			: time( _time )
+			, delta( _delta_time )
+		{}
 
-	operator Timestep() const { return Timestep( (float)time, (float)delta ); }
-};
-
-enum class StepType : unsigned char
-{
-	PreGameStep = 0,
-	//GameStep = 1,
-	PostGameStep = 2,
-};
+		operator Timestep() const { return Timestep( (float)time, (float)delta ); }
+	};
+}

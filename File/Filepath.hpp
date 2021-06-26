@@ -2,4 +2,7 @@
 
 #include <filesystem>
 
-using Filepath = std::filesystem::path;
+namespace Avokii
+{
+	using Filepath = std::filesystem::path;
+}

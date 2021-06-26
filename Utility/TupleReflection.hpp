@@ -2,17 +2,18 @@
 
 #include <concepts>
 #include <type_traits>
+#include <tuple>
 
-namespace TupleReflection
+namespace Avokii::TupleReflection
 {
 	template <typename, typename>
 	struct tuple_index {};
 
 	template <typename... Types, typename T>
-	struct tuple_index<std::tuple<T, Types...>, T> { static const std::size_t value = 0; };
+	struct tuple_index<std::tuple<T, Types...>, T> { static const size_t value = 0; };
 
 	template <typename U, typename... Types, typename T>
-	struct tuple_index<std::tuple<U, Types...>, T> { static const std::size_t value = 1 + tuple_index<std::tuple<Types...>, T>::value; };
+	struct tuple_index<std::tuple<U, Types...>, T> { static const size_t value = 1 + tuple_index<std::tuple<Types...>, T>::value; };
 
 	template<typename, typename>
 	struct tuple_contains {};

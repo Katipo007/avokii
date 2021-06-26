@@ -1,5 +1,8 @@
 #pragma once
 
-#include "Engine/Vendor/entt/src/entt/core/hashed_string.hpp"
+#include "Vendor/entt/src/entt/core/hashed_string.hpp"
 
-using HashedString = entt::hashed_string;
+namespace Avokii
+{
+	using HashedString = ::entt::hashed_string;
+}

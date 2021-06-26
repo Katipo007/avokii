@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef DIORAMA_ROGUELITE_COMMON_PCH_HPP
-#define DIORAMA_ROGUELITE_COMMON_PCH_HPP
+#ifndef AVOKII_PCH_HPP
+#define AVOKII_PCH_HPP
 
 #include <iostream>
 #include <memory>
@@ -16,12 +16,9 @@
 #include <unordered_map>
 #include <unordered_set>
 
-#include "Engine/Core/Base.hpp"
-#include "Engine/Core/Logging.hpp"
-
-#define GLM_FORCE_SILENT_WARNINGS
+#include "Avokii.hpp"
+#include "Core/Logging.hpp"
 
 #pragma warning(disable: 4201)
 
-#endif // DIORAMA_ROGUELITE_COMMON_PCH_HPP
-
+#endif // AVOKII_PCH_HPP

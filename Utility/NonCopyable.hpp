@@ -1,11 +1,15 @@
 #pragma once
 
-class NonCopyable
+namespace Avokii
 {
-protected:
-	NonCopyable() = default;
+	class NonCopyable
+	{
+	protected:
+		NonCopyable() = default;
+		virtual ~NonCopyable() = default;
 
-private:
-	NonCopyable( const NonCopyable& ) = delete;
-	NonCopyable operator=( const NonCopyable& ) = delete;
-};
+	private:
+		NonCopyable( const NonCopyable& ) = delete;
+		NonCopyable operator=( const NonCopyable& ) = delete;
+	};
+}

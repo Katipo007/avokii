@@ -3,7 +3,7 @@
 #include <cinttypes>
 #include <string>
 
-namespace CompileTime
+namespace Avokii::CompileTime
 {
 	namespace __internal
 	{
@@ -14,15 +14,12 @@ namespace CompileTime
 		constexpr static uint64_t prime_64 = static_cast<uint64_t>( 1099511628211ull );
 	}
 
-#if defined(_MSC_VER)
-	__pragma( warning( push ) );
-	__pragma( warning( disable:4307 ) );
-#endif
+#pragma warning( push )
+#pragma warning( disable:4307 )
 	constexpr inline uint32_t FNV32Hash( const char* const aString, const uint32_t val = __internal::default_offset_basis_32 )
 	{
 		return ( aString[ 0 ] == '\0' ) ? val : FNV32Hash( &aString[ 1 ], static_cast<uint32_t>( ( val * static_cast<unsigned long long>( __internal::prime_32 ) ) ^ static_cast<uint32_t>( aString[ 0 ] ) ) );
 	}
-
 
 	constexpr inline uint16_t FNV16Hash( const char* const aString, const uint32_t val = __internal::default_offset_basis_32 )
 	{
@@ -34,13 +31,10 @@ namespace CompileTime
 	{
 		return ( aString[ 0 ] == '\0' ) ? val : FNV64Hash( &aString[ 1 ], ( val * __internal::prime_64 ) ^ static_cast<uint64_t>( aString[ 0 ] ) );
 	}
-
-#if defined(_MSC_VER)
-	__pragma( warning( pop ) );
-#endif
+#pragma warning( pop )
 }
 
-namespace Hashing
+namespace Avokii::Hashing
 {
 	template <typename S> struct fnv_internal;
 	template <typename S> struct fnv1;
@@ -109,5 +103,8 @@ namespace Hashing
 	};
 }
 
-constexpr uint16_t operator"" _fnv16( const char* v, size_t size ) { (void)size; return CompileTime::FNV16Hash( v ); }
-constexpr uint32_t operator"" _fnv32( const char* v, size_t size ) { (void)size; return CompileTime::FNV32Hash( v ); }
+namespace Avokii
+{
+	constexpr uint16_t operator"" _fnv16( const char* v, size_t size ) { (void)size; return CompileTime::FNV16Hash( v ); }
+	constexpr uint32_t operator"" _fnv32( const char* v, size_t size ) { (void)size; return CompileTime::FNV32Hash( v ); }
+}

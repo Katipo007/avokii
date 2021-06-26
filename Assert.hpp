@@ -1,0 +1,29 @@
+#pragma once
+
+#include <filesystem>
+
+#include "Avokii.hpp"
+#include "Core/Logging.hpp"
+
+#if (AV_ENABLE_ASSERTS == 1)
+
+#	define AV_INTERNAL_ASSERT_IMPL(channel, check, msg, ...) do { if(!(check)) { AV_LOG_ERROR( channel, msg, __VA_ARGS__ ); AV_DEBUGBREAK(); } } while(0)
+#	define AV_INTERNAL_ASSERT_WITH_MSG(channel, check, ...) AV_INTERNAL_ASSERT_IMPL(channel, check, "Assertion failed: {2} at {0}:{1}", std::filesystem::path(__FILE__).filename().string(), __LINE__, __VA_ARGS__)
+#	define AV_INTERNAL_ASSERT_NO_MSG(channel, check) AV_INTERNAL_ASSERT_IMPL(channel, check, "Assertion '{0}' failed at {1}:{2}", AV_STRINGIFY_MACRO(check), std::filesystem::path(__FILE__).filename().string(), __LINE__)
+
+#	define AV_INTERNAL_ASSERT_GET_MACRO_NAME(arg1, arg2, macro, ...) macro
+#	define AV_INTERNAL_ASSERT_GET_MACRO(...) AV_EXPAND_MACRO( AV_INTERNAL_ASSERT_GET_MACRO_NAME(__VA_ARGS__, AV_INTERNAL_ASSERT_WITH_MSG, AV_INTERNAL_ASSERT_NO_MSG) )
+
+// Currently accepts at least the condition and one additional parameter (the message) being optional
+#	define AV_ASSERT(...) AV_EXPAND_MACRO( AV_INTERNAL_ASSERT_GET_MACRO(__VA_ARGS__)(::LoggingChannels::Assertion, __VA_ARGS__) )
+#	define AV_ASSERT_CHANNEL(channel, ...) AV_EXPAND_MACRO( AV_INTERNAL_ASSERT_GET_MACRO(__VA_ARGS__)(channel, __VA_ARGS__) )
+
+#	define AV_NOT_IMPLEMENTED do { AV_LOG_ERROR( ::LoggingChannels::Assertion, "Function not implemented!" ); AV_DEBUGBREAK(); } while(0)
+#else
+#	define AV_ASSERT(x, ...) do {} while(0)
+#	define AV_ASSERT_CHANNEL(channel, x, ...) do {} while(0)
+
+#	define AV_NOT_IMPLEMENTED do { AV_LOG_ERROR( ::LoggingChannels::Assertion, "Function not implemented!" ); } while(0)
+#endif
+
+#define AV_FATAL(msg) do { AV_LOG_CRITICAL( ::LoggingChannels::Assertion, "Application has encountered a fatal error and will abort. {0}", msg ); AV_DEBUGBREAK(); abort(); } while(0)

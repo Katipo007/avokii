@@ -11,7 +11,7 @@
 // Copyright 2016 Kurt Guntheroth, 978-1-491-92206-4
 // Updated to c++17 by Benjamin Edwards, 2020
 
-namespace FileOps
+namespace Avokii::FileOps
 {
 	bool StreamReadString( std::istream& file, std::string& out_file_contents );
 
