@@ -20,6 +20,7 @@
       <PrecompiledHeaderFile>Precompiled/pch.hpp</PrecompiledHeaderFile>
       <ForcedIncludeFiles>Precompiled/pch.hpp</ForcedIncludeFiles>
       <TreatAngleIncludeAsExternal>true</TreatAngleIncludeAsExternal>
+      <DisableSpecificWarnings>4652</DisableSpecificWarnings>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup />
