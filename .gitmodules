@@ -1,0 +1,27 @@
+[submodule "spdlog"]
+	path = Vendor/spdlog
+	url = https://github.com/gabime/spdlog.git
+[submodule "glm"]
+	path = Vendor/glm
+	url = https://github.com/g-truc/glm.git
+[submodule "entt"]
+	path = Vendor/entt
+	url = https://github.com/skypjack/entt
+[submodule "sigslot"]
+	path = Vendor/sigslot
+	url = https://github.com/palacaze/sigslot
+[submodule "nlohmann/json"]
+	path = Vendor/nlohmann/json
+	url = https://github.com/nlohmann/json
+[submodule "magic_enum"]
+	path = Vendor/magic_enum
+	url = https://github.com/Neargye/magic_enum.git
+[submodule "frozen"]
+	path = Vendor/frozen
+	url = https://github.com/serge-sans-paille/frozen.git
+[submodule "yaml_cpp"]
+	path = Vendor/yaml_cpp
+	url = https://github.com/jbeder/yaml-cpp.git
+[submodule "bitsery"]
+	path = Vendor/bitsery
+	url = https://github.com/fraillt/bitsery.git
