@@ -6,5 +6,5 @@ namespace Avokii
 {
 	template<typename T>
 	using Mat3 = glm::mat<3, 3, T>;
-	using Mat3f = Mat4<float>;
+	using Mat3f = Mat3<float>;
 }
