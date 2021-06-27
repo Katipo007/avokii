@@ -26,8 +26,11 @@ namespace Avokii
 		virtual void OnVariableUpdate( const PreciseTimestep& ts ) = 0;
 		virtual void OnRender( const PreciseTimestep& ts ) = 0;
 
-		Core& GetCore() noexcept { AV_ASSERT( mpCore != nullptr ); return *mpCore; }
-		const Core& rGetCore() const noexcept { AV_ASSERT( mpCore != nullptr ); return *mpCore; }
+		Core& rGetCore() noexcept { AV_ASSERT( mpCore != nullptr ); return *mpCore; }
+		const Core& GetCore() const noexcept { AV_ASSERT( mpCore != nullptr ); return *mpCore; }
+
+		ResourceManager& rGetResourceManager() noexcept { AV_ASSERT( mpResourceManager != nullptr ); return *mpResourceManager; }
+		const ResourceManager& GetResourceManager() const noexcept { AV_ASSERT( mpResourceManager != nullptr ); return *mpResourceManager; }
 
 	private:
 		Core* mpCore = nullptr;
