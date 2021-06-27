@@ -1,14 +1,14 @@
 #pragma once
 
-#include "Visual/Graphics/FrameBuffer.hpp"
+#include "Graphics/FrameBuffer.hpp"
 
-namespace Graphics::API
+namespace Avokii::API
 {
 	class FrameBufferOpenGL
-		: public ::Graphics::FrameBuffer
+		: public Graphics::FrameBuffer
 	{
 	public:
-		FrameBufferOpenGL( const FrameBufferSpecification& spec );
+		FrameBufferOpenGL( const Graphics::FrameBufferSpecification& spec );
 		virtual ~FrameBufferOpenGL() override;
 
 		void Invalidate();
@@ -19,10 +19,10 @@ namespace Graphics::API
 		virtual void Resize( uint32_t width, uint32_t height ) override;
 
 		virtual uint32_t GetNativeColourAttachment() const override { return static_cast<uint32_t>( opengl_colour_attachment ); }
-		virtual const FrameBufferSpecification& GetSpecification() const override { return specification; }
+		virtual const Graphics::FrameBufferSpecification& GetSpecification() const override { return specification; }
 
 	private:
-		FrameBufferSpecification specification;
+		Graphics::FrameBufferSpecification specification;
 		unsigned int opengl_framebuffer_id;
 		unsigned int opengl_colour_attachment;
 		unsigned int opengl_depth_attachment;

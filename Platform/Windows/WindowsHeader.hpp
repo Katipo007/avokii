@@ -1,6 +1,6 @@
 #pragma once
 
-#if defined(PLATFORM_WINDOWS)
+#if defined(AVOKII_PLATFORM_WINDOWS)
 #	ifndef NOMINMAX
 // See github.com/skypjack/entt/wiki/Frequently-Asked-Questions#warning-c4003-the-min-the-max-and-the-macro
 #		define NOMINMAX

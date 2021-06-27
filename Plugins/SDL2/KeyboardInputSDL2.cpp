@@ -1,10 +1,10 @@
 #include "KeyboardInputSDL2.hpp"
 
-#include "Engine/Core/Input/Keycodes.hpp"
-#include "Engine/Utility/Unreachable.hpp"
+#include "Input/Keycodes.hpp"
+#include "Utility/Unreachable.hpp"
 #include "SDL2Include.hpp"
 
-namespace Plugins
+namespace Avokii::Plugins
 {
 	KeyboardInputSDL2::KeyboardInputSDL2()
 		: KeyboardInput( SDL_NUM_SCANCODES )

@@ -1,13 +1,13 @@
 #pragma once
 
-#include "Engine/Core/API/SystemAPI.hpp"
+#include "API/SystemAPI.hpp"
 
-namespace Graphics::API
+namespace Avokii::Plugins
 {
 	class WindowSDL2;
 
 	class SystemSDL2 final
-		: public ::API::SystemAPI
+		: public API::SystemAPI
 	{
 	public:
 		explicit SystemSDL2();
@@ -24,7 +24,7 @@ namespace Graphics::API
 		std::thread CreateThread( std::string_view name, std::function<void()> runnable ) override;
 		void Sleep( unsigned long milliseconds ) override;
 
-		bool GenerateEvents( ::API::VideoAPI* video, ::API::InputAPI* input, ::API::DearImGuiAPI* dearimgui ) override;
+		bool GenerateEvents( API::VideoAPI* video, API::InputAPI* input, API::DearImGuiAPI* dearimgui ) override;
 
 		std::string_view GetName() const noexcept override;
 

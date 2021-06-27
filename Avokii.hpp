@@ -14,6 +14,10 @@
 #	define AV_ENABLE_ASSERTS 0
 #endif
 
+#ifdef AVOKII_PLATFORM_WINDOWS
+#	define AVOKII_RENDERER_IMPLEMENTATION_OPENGL
+#endif
+
 #define AV_EXPAND_MACRO(x) x
 #define AV_STRINGIFY_MACRO(x) #x
 

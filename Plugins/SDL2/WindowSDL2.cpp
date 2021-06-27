@@ -1,16 +1,16 @@
 #include "WindowSDL2.hpp"
 
 #include "SDL2Include.hpp"
-#ifdef PLATFORM_WINDOWS
+#ifdef AVOKII_PLATFORM_WINDOWS
 #	include <SDL2/SDL_syswm.h>
 #endif
 
-namespace Graphics::API
+namespace Avokii::Plugins
 {
 	WindowSDL2::WindowSDL2( SDL_Window* sdl_window_ )
 		: sdl_window( sdl_window_ )
 	{
-		ASSERT( sdl_window != nullptr );
+		AV_ASSERT( sdl_window != nullptr );
 	}
 
 	WindowSDL2::~WindowSDL2()
@@ -36,67 +36,67 @@ namespace Graphics::API
 		SDL_SetWindowSize( sdl_window, new_size.width, new_size.height );
 	}
 
-	void WindowSDL2::SetMode( const WindowMode new_mode )
+	void WindowSDL2::SetMode( const Graphics::WindowMode new_mode )
 	{
 		switch (new_mode)
 		{
-		case WindowMode::Window:
+		case Graphics::WindowMode::Window:
 			SDL_SetWindowBordered( sdl_window, SDL_TRUE );
 			SDL_SetWindowFullscreen( sdl_window, 0 );
 			break;
 
-		case WindowMode::Fullscreen:
+		case Graphics::WindowMode::Fullscreen:
 			SDL_SetWindowBordered( sdl_window, SDL_TRUE );
 			SDL_SetWindowFullscreen( sdl_window, SDL_WINDOW_FULLSCREEN );
 			break;
 
-		case WindowMode::BorderlessFullscreen:
+		case Graphics::WindowMode::BorderlessFullscreen:
 			SDL_SetWindowBordered( sdl_window, SDL_FALSE );
 			SDL_SetWindowFullscreen( sdl_window, SDL_WINDOW_FULLSCREEN_DESKTOP );
 			break;
 		}
 	}
 
-	WindowMode WindowSDL2::GetMode() const
+	Graphics::WindowMode WindowSDL2::GetMode() const
 	{
 		auto flags = SDL_GetWindowFlags( sdl_window );
 
 		if ((flags & SDL_WINDOW_FULLSCREEN_DESKTOP) && (flags & SDL_WINDOW_BORDERLESS))
-			return WindowMode::BorderlessFullscreen;
+			return Graphics::WindowMode::BorderlessFullscreen;
 		else if (flags & SDL_WINDOW_FULLSCREEN)
-			return WindowMode::Fullscreen;
+			return Graphics::WindowMode::Fullscreen;
 
-		return WindowMode::Window;
+		return Graphics::WindowMode::Window;
 	}
 
-	void WindowSDL2::SetState( const WindowState new_state )
+	void WindowSDL2::SetState( const Graphics::WindowState new_state )
 	{
 		switch (new_state)
 		{
-		case WindowState::Maximised:
+		case Graphics::WindowState::Maximised:
 			SDL_MaximizeWindow( sdl_window );
 			break;
 
-		case WindowState::Minimised:
+		case Graphics::WindowState::Minimised:
 			SDL_MinimizeWindow( sdl_window );
 			break;
 
-		case WindowState::Normal:
+		case Graphics::WindowState::Normal:
 			SDL_RestoreWindow( sdl_window );
 			break;
 		}
 	}
 
-	WindowState WindowSDL2::GetState() const
+	Graphics::WindowState WindowSDL2::GetState() const
 	{
 		auto flags = SDL_GetWindowFlags( sdl_window );
 		
 		if (flags & SDL_WINDOW_MINIMIZED)
-			return WindowState::Minimised;
+			return Graphics::WindowState::Minimised;
 		else if (flags & SDL_WINDOW_MAXIMIZED)
-			return WindowState::Maximised;
+			return Graphics::WindowState::Maximised;
 
-		return WindowState::Normal;
+		return Graphics::WindowState::Normal;
 	}
 
 	void WindowSDL2::Show()
@@ -145,7 +145,7 @@ namespace Graphics::API
 
 	void* WindowSDL2::GetNativeHandle()
 	{
-#ifdef PLATFORM_WINDOWS
+#ifdef AVOKII_PLATFORM_WINDOWS
 		SDL_SysWMinfo wminfo;
 		SDL_VERSION( &wminfo.version );
 		if (SDL_GetWindowWMInfo( sdl_window, &wminfo ) == 1)
@@ -158,9 +158,9 @@ namespace Graphics::API
 
 	std::string_view WindowSDL2::GetNativeHandleType() const
 	{
-#ifdef PLATFORM_WINDOWS
+#ifdef AVOKII_PLATFORM_WINDOWS
 		return "HWND";
-#elif defined(PLATFORM_APPLE)
+#elif defined(AVOKII_PLATFORM_APPLE)
 		return "SDL";
 #else
 		return "";

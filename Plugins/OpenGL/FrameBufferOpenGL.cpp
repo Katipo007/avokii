@@ -6,9 +6,9 @@ namespace
 	constexpr uint32_t MaxFramebufferSize = 8192u;
 }
 
-namespace Graphics::API
+namespace Avokii::API
 {
-	FrameBufferOpenGL::FrameBufferOpenGL( const FrameBufferSpecification & spec )
+	FrameBufferOpenGL::FrameBufferOpenGL( const Graphics::FrameBufferSpecification & spec )
 		: specification( spec )
 		, opengl_framebuffer_id( 0 )
 		, opengl_colour_attachment( 0 )
@@ -54,7 +54,7 @@ namespace Graphics::API
 		glTexStorage2D( GL_TEXTURE_2D, 1, GL_DEPTH24_STENCIL8, static_cast<GLsizei>( specification.size.width ), static_cast<GLsizei>( specification.size.height ) );
 		glFramebufferTexture2D( GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, opengl_depth_attachment, 0 );
 
-		ASSERT( glCheckFramebufferStatus( GL_FRAMEBUFFER ) == GL_FRAMEBUFFER_COMPLETE, "Frame buffer is incomplete!" );
+		AV_ASSERT( glCheckFramebufferStatus( GL_FRAMEBUFFER ) == GL_FRAMEBUFFER_COMPLETE, "Frame buffer is incomplete!" );
 
 		glBindFramebuffer( GL_FRAMEBUFFER, 0 );
 	}
@@ -74,12 +74,12 @@ namespace Graphics::API
 	{
 		if( width == 0 || height == 0 )
 		{
-			LOG_WARN( LoggingChannels::OpenGL, "Attempting to resize framebuffer with a 0 dimension! ({0} x {1})", width, height );
+			AV_LOG_WARN( LoggingChannels::OpenGL, "Attempting to resize framebuffer with a 0 dimension! ({0} x {1})", width, height );
 			return;
 		}
 		else if( width > MaxFramebufferSize || height > MaxFramebufferSize)
 		{
-			LOG_WARN( LoggingChannels::OpenGL, "Attempting to resize framebuffer beyond limits! ({0} x {1})", width, height );
+			AV_LOG_WARN( LoggingChannels::OpenGL, "Attempting to resize framebuffer beyond limits! ({0} x {1})", width, height );
 			return;
 		}
 

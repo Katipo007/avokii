@@ -1,14 +1,14 @@
 #pragma once
 
-#include "Engine/Core/Graphics/OpenGLContext.hpp"
+#include "Graphics/OpenGLContext.hpp"
 
 struct SDL_Window;
 typedef void* SDL_GLContext;
 
-namespace Graphics::API
+namespace Avokii::Plugins
 {
 	class OpenGLContextSDL2
-		: public ::Graphics::OpenGLContext
+		: public Graphics::OpenGLContext
 	{
 	public:
 		explicit OpenGLContextSDL2( SDL_Window* window );
@@ -16,7 +16,7 @@ namespace Graphics::API
 		virtual ~OpenGLContextSDL2();
 
 		virtual void Bind() override;
-		virtual std::unique_ptr<OpenGLContext> CreateSharedContext() override;
+		virtual std::unique_ptr<Graphics::OpenGLContext> CreateSharedContext() override;
 
 	private:
 		SDL_Window* const window;

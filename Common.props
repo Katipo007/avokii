@@ -3,7 +3,8 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <IncludePath>$(SolutionDir);$(SolutionDir)Vendor\glm\;$(SolutionDir)Vendor\spdlog\include\;$(SolutionDir)Vendor\frozen\include\;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir);$(ProjectDir)Vendor\;$(ProjectDir)Vendor\glm\;$(ProjectDir)Vendor\glew\include\;$(ProjectDir)Vendor\spdlog\include\;$(ProjectDir)Vendor\frozen\include\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)\Vendor\;$(ProjectDir)\Vendor\SDL\lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>

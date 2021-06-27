@@ -1,5 +1,5 @@
 
-#ifdef PLATFORM_WINDOWS
+#ifdef AVOKII_PLATFORM_WINDOWS
 
 #include "Visual/Input/Input.hpp"
 

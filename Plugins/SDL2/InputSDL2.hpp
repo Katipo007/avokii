@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Engine/Core/API/InputAPI.hpp"
+#include "API/InputAPI.hpp"
 
-namespace API { class SystemAPI; }
+namespace Avokii::API { class SystemAPI; }
 
 struct SDL_KeyboardEvent;
 struct SDL_TextEditingEvent;
@@ -11,7 +11,7 @@ struct SDL_MouseMotionEvent;
 struct SDL_MouseButtonEvent;
 struct SDL_MouseWheelEvent;
 
-namespace Plugins
+namespace Avokii::Plugins
 {
 	class KeyboardInputSDL2;
 

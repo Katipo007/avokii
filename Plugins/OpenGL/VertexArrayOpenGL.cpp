@@ -5,35 +5,37 @@
 
 namespace
 {
-	static GLenum GetShaderDataTypeToOpenGLBaseType( ::Graphics::ShaderDataType type )
+	static GLenum GetShaderDataTypeToOpenGLBaseType( Avokii::Graphics::ShaderDataType type )
 	{
 		switch( type )
 		{
-			case ::Graphics::ShaderDataType::Float:
-			case ::Graphics::ShaderDataType::Float2:
-			case ::Graphics::ShaderDataType::Float3:
-			case ::Graphics::ShaderDataType::Float4:
-			case ::Graphics::ShaderDataType::Mat3:
-			case ::Graphics::ShaderDataType::Mat4:
+			using enum Avokii::Graphics::ShaderDataType;
+
+			case Float:
+			case Float2:
+			case Float3:
+			case Float4:
+			case Mat3:
+			case Mat4:
 				return GL_FLOAT;
 
-			case ::Graphics::ShaderDataType::Int:
-			case ::Graphics::ShaderDataType::Int2:
-			case ::Graphics::ShaderDataType::Int3:
-			case ::Graphics::ShaderDataType::Int4:
+			case Int:
+			case Int2:
+			case Int3:
+			case Int4:
 				return GL_INT;
 
-			case ::Graphics::ShaderDataType::uInt:
-			case ::Graphics::ShaderDataType::uInt2:
-			case ::Graphics::ShaderDataType::uInt3:
-			case ::Graphics::ShaderDataType::uInt4:
+			case uInt:
+			case uInt2:
+			case uInt3:
+			case uInt4:
 				return GL_UNSIGNED_INT;
 
-			case ::Graphics::ShaderDataType::Bool:
+			case Bool:
 				return GL_BOOL;
 		}
 
-		ASSERT( false, "Unrecognised ShaderDataType!" );
+		AV_ASSERT( false, "Unrecognised ShaderDataType!" );
 		return 0;
 	}
 
@@ -48,7 +50,7 @@ namespace
 
 	void PopBoundVao()
 	{
-		ASSERT( !bound_vao_stack.empty() );
+		AV_ASSERT( !bound_vao_stack.empty() );
 		glBindVertexArray( bound_vao_stack.top() );
 		bound_vao_stack.pop();
 	}
@@ -61,9 +63,9 @@ namespace
 	}
 }
 
-namespace Graphics::API
+namespace Avokii::API
 {
-	VertexArrayOpenGL::VertexArrayOpenGL( const ::Graphics::VertexArrayDefinition& props )
+	VertexArrayOpenGL::VertexArrayOpenGL( const Graphics::VertexArrayDefinition& props )
 		: name( props.name ? *props.name : "Unnamed vertex array" )
 		, vao( 0 )
 		, vbi( 0 )
@@ -104,10 +106,10 @@ namespace Graphics::API
 		glBindVertexArray( 0 );
 	}
 
-	void VertexArrayOpenGL::AddVertexBuffer( const std::shared_ptr<VertexBuffer>& vertex_buffer )
+	void VertexArrayOpenGL::AddVertexBuffer( const std::shared_ptr<Graphics::VertexBuffer>& vertex_buffer )
 	{
-		ASSERT( GetBoundVao() == vao );
-		ASSERT( vertex_buffer->GetLayout().GetElements().size(), "Vertex buffer has no layout!" );
+		AV_ASSERT( GetBoundVao() == vao );
+		AV_ASSERT( vertex_buffer->GetLayout().GetElements().size(), "Vertex buffer has no layout!" );
 
 		vertex_buffer->Bind();
 		vertex_buffers.push_back( vertex_buffer );
@@ -117,10 +119,12 @@ namespace Graphics::API
 		{
 			switch( element.type )
 			{
-				case ::Graphics::ShaderDataType::Float:
-				case ::Graphics::ShaderDataType::Float2:
-				case ::Graphics::ShaderDataType::Float3:
-				case ::Graphics::ShaderDataType::Float4:
+				using enum Graphics::ShaderDataType;
+
+				case Float:
+				case Float2:
+				case Float3:
+				case Float4:
 				{
 					glEnableVertexAttribArray( vbi );
 					glVertexAttribPointer( vbi
@@ -134,15 +138,15 @@ namespace Graphics::API
 					break;
 				}
 
-				case ::Graphics::ShaderDataType::Int:
-				case ::Graphics::ShaderDataType::Int2:
-				case ::Graphics::ShaderDataType::Int3:
-				case ::Graphics::ShaderDataType::Int4:
-				case ::Graphics::ShaderDataType::uInt:
-				case ::Graphics::ShaderDataType::uInt2:
-				case ::Graphics::ShaderDataType::uInt3:
-				case ::Graphics::ShaderDataType::uInt4:
-				case ::Graphics::ShaderDataType::Bool:
+				case Int:
+				case Int2:
+				case Int3:
+				case Int4:
+				case uInt:
+				case uInt2:
+				case uInt3:
+				case uInt4:
+				case Bool:
 				{
 					glEnableVertexAttribArray( vbi );
 					glVertexAttribIPointer( vbi
@@ -155,8 +159,8 @@ namespace Graphics::API
 					break;
 				}
 
-				case ::Graphics::ShaderDataType::Mat3:
-				case ::Graphics::ShaderDataType::Mat4:
+				case Mat3:
+				case Mat4:
 				{
 					const auto count = element.GetComponentCount();
 					for( uint32_t i = 0; i < count; ++i )
@@ -176,24 +180,24 @@ namespace Graphics::API
 				}
 
 				default:
-					ASSERT( false, "Unrecognised ShaderDataType!" );
+					AV_ASSERT( false, "Unrecognised ShaderDataType!" );
 					break;
 			}
 		}
 	}
 
-	void VertexArrayOpenGL::SetIndexBuffer( const std::shared_ptr<IndexBuffer>& new_index_buffer )
+	void VertexArrayOpenGL::SetIndexBuffer( const std::shared_ptr<Graphics::IndexBuffer>& new_index_buffer )
 	{
-		ASSERT( GetBoundVao() == vao );
-		ASSERT( !this->index_buffer );
+		AV_ASSERT( GetBoundVao() == vao );
+		AV_ASSERT( !this->index_buffer );
 
 		new_index_buffer->Bind();
 		this->index_buffer = new_index_buffer;
 	}
 
-	const std::shared_ptr<VertexBuffer>& VertexArrayOpenGL::GetVertexBuffer( size_t i ) const
+	const std::shared_ptr<Graphics::VertexBuffer>& VertexArrayOpenGL::GetVertexBuffer( size_t i ) const
 	{
-		ASSERT( i < vertex_buffers.size() );
+		AV_ASSERT( i < vertex_buffers.size() );
 		return vertex_buffers[ i ];
 	}
 

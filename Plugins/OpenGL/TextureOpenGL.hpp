@@ -1,16 +1,16 @@
 #pragma once
 
-#include "Engine/File/Filepath.hpp"
-#include "Visual/Graphics/Texture.hpp"
+#include "File/Filepath.hpp"
+#include "Graphics/Texture.hpp"
 
-namespace Graphics::API
+namespace Avokii::API
 {
 	class TextureOpenGL
-		: public ::Graphics::Texture
+		: public Graphics::Texture
 	{
 	public:
-		TextureOpenGL( const ::Graphics::TextureDefinition& props );
-		TextureOpenGL( const Filepath& path, const ::Graphics::TextureLoadProperties& props );
+		TextureOpenGL( const Graphics::TextureDefinition& props );
+		TextureOpenGL( const Filepath& path, const Graphics::TextureLoadProperties& props );
 		virtual ~TextureOpenGL() override;
 
 		virtual const Size<uint32_t>& GetSize() const noexcept override { return size; }

@@ -1,8 +1,8 @@
 #include "VideoOpenGL.hpp"
 
-#include "Engine/Core/API/SystemAPI.hpp"
-#include "Engine/Core/Graphics/Window.hpp"
-#include "Engine/Core/Graphics/OpenGLContext.hpp"
+#include "API/SystemAPI.hpp"
+#include "Graphics/Window.hpp"
+#include "Graphics/OpenGLContext.hpp"
 
 #include "OpenGLHeader.hpp"
 #include "BufferOpenGL.hpp"
@@ -11,9 +11,9 @@
 #include "TextureOpenGL.hpp"
 #include "VertexArrayOpenGL.hpp"
 
-namespace Graphics::API
+namespace Avokii::API
 {
-	VideoOpenGL::VideoOpenGL( ::API::SystemAPI& system_ )
+	VideoOpenGL::VideoOpenGL( SystemAPI& system_ )
 		: system( system_ )
 	{
 	}
@@ -57,7 +57,7 @@ namespace Graphics::API
 
 	const Graphics::Window& VideoOpenGL::GetWindow() const
 	{
-		ASSERT( window != nullptr );
+		AV_ASSERT( window != nullptr );
 		return *window;
 	}
 
@@ -108,7 +108,7 @@ namespace Graphics::API
 			{
 				int value = 0;
 				glGetIntegerv( GL_MAX_TEXTURE_IMAGE_UNITS, &value );
-				ASSERT( value >= 0 ); // hopefully never a negative number
+				AV_ASSERT( value >= 0 ); // hopefully never a negative number
 
 				// hopefully they can support at least two textures
 				if (value < 2)
@@ -194,13 +194,13 @@ namespace Graphics::API
 
 		switch (severity)
 		{
-		case GL_DEBUG_SEVERITY_HIGH:         LOG_CRITICAL( LoggingChannels::OpenGL, message ); DEBUGBREAK(); return;
-		case GL_DEBUG_SEVERITY_MEDIUM:       LOG_ERROR( LoggingChannels::OpenGL, message ); return;
-		case GL_DEBUG_SEVERITY_LOW:          LOG_WARN( LoggingChannels::OpenGL, message ); return;
-		case GL_DEBUG_SEVERITY_NOTIFICATION: LOG_TRACE( LoggingChannels::OpenGL, message ); return;
+		case GL_DEBUG_SEVERITY_HIGH:         AV_LOG_CRITICAL( LoggingChannels::OpenGL, message ); AV_DEBUGBREAK(); return;
+		case GL_DEBUG_SEVERITY_MEDIUM:       AV_LOG_ERROR( LoggingChannels::OpenGL, message ); return;
+		case GL_DEBUG_SEVERITY_LOW:          AV_LOG_WARN( LoggingChannels::OpenGL, message ); return;
+		case GL_DEBUG_SEVERITY_NOTIFICATION: AV_LOG_TRACE( LoggingChannels::OpenGL, message ); return;
 		}
 
-		ASSERT( false, "Unknown severity level!" );
+		AV_ASSERT( false, "Unknown severity level!" );
 	}
 
 	void VideoOpenGL::SetViewport( Rect<uint32_t> rect )

@@ -1,12 +1,12 @@
 #pragma once
 
-#include "Engine/File/Filepath.hpp"
-#include "Visual/Graphics/Shader.hpp"
+#include "File/Filepath.hpp"
+#include "Graphics/Shader.hpp"
 
-namespace Graphics::API
+namespace Avokii::API
 {
 	class ShaderOpenGL
-		: public ::Graphics::Shader
+		: public Graphics::Shader
 	{
 	public:
 		ShaderOpenGL( const Filepath& filepath );

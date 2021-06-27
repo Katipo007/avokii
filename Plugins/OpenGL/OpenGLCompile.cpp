@@ -1,18 +1,18 @@
 #include "OpenGLHeader.hpp"
 
 // link glew library
-#ifdef PLATFORM_WINDOWS
+#ifdef AVOKII_PLATFORM_WINDOWS
 #	ifdef GLEW_STATIC
 #		ifdef _WIN64
-#			pragma comment(lib, "Visual/Vendor/glew/lib/Release/x64/glew32s.lib")
+#			pragma comment(lib, "Vendor/glew/lib/Release/x64/glew32s.lib")
 #		else
-#			pragma comment(lib, "Visual/Vendor/glew/lib/Release/Win32/glew32s.lib")
+#			pragma comment(lib, "Vendor/glew/lib/Release/Win32/glew32s.lib")
 #		endif
 #	else
 #		ifdef _WIN64
-#			pragma comment(lib, "Visual/Vendor/glew/lib/Release/x64/glew32.lib")
+#			pragma comment(lib, "Vendor/glew/lib/Release/x64/glew32.lib")
 #		else
-#			pragma comment(lib, "Visual/Vendor/glew/lib/Release/Win32/glew32.lib")
+#			pragma comment(lib, "Vendor/glew/lib/Release/Win32/glew32.lib")
 #		endif
 #	endif
 #endif
@@ -22,6 +22,5 @@
 
 // include the glew SOURCE file (actual file should remain excluded from project)
 #pragma warning(push, 0)
-#	include "Visual/Vendor/glew/src/glew.c"
+#	include "Vendor/glew/src/glew.c"
 #pragma warning(pop)
-

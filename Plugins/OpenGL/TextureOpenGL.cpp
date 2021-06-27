@@ -1,23 +1,23 @@
 #include "TextureOpenGL.hpp"
 #include "OpenGLHeader.hpp"
 
-#include "Engine/Utility/Unreachable.hpp"
+#include "Utility/Unreachable.hpp"
 
-#include "Visual/Utility/StbImage.hpp"
+#include "Vendor/stb_image/stb_image.h"
 
-namespace Graphics::API
+namespace Avokii::API
 {
 	namespace
 	{
-		GLuint ConvertTextureWrapSetting( TextureWrapSetting value )
+		GLuint ConvertTextureWrapSetting( Graphics::TextureWrapSetting value )
 		{
 			switch( value )
 			{
-			case TextureWrapSetting::ClampToEdge:
+			case Graphics::TextureWrapSetting::ClampToEdge:
 				return GL_CLAMP_TO_EDGE;
-			case TextureWrapSetting::Repeat:
+			case Graphics::TextureWrapSetting::Repeat:
 				return  GL_REPEAT;
-			case TextureWrapSetting::MirroredRepeat:
+			case Graphics::TextureWrapSetting::MirroredRepeat:
 				return GL_MIRRORED_REPEAT;
 			}
 
@@ -25,7 +25,7 @@ namespace Graphics::API
 		}
 	}
 
-	TextureOpenGL::TextureOpenGL( const TextureDefinition& definition )
+	TextureOpenGL::TextureOpenGL( const Graphics::TextureDefinition& definition )
 		: size( definition.size )
 	{
 		opengl_internal_format = GL_RGBA8;
@@ -41,9 +41,9 @@ namespace Graphics::API
 		glTextureParameteri( opengl_texture_id, GL_TEXTURE_WRAP_T, ConvertTextureWrapSetting( definition.wrap_t ) );
 	}
 
-	TextureOpenGL::TextureOpenGL( const Filepath& filepath, const TextureLoadProperties& props )
+	TextureOpenGL::TextureOpenGL( const Filepath& filepath, const Graphics::TextureLoadProperties& props )
 	{
-		ASSERT( std::filesystem::is_regular_file( filepath ) );
+		AV_ASSERT( std::filesystem::is_regular_file( filepath ) );
 		
 		const auto _filepath = filepath.string();
 		int _out_w, _out_h, _out_channels;
@@ -51,7 +51,7 @@ namespace Graphics::API
 		stbi_uc* _data = nullptr;
 		_data = stbi_load( _filepath.c_str(), &_out_w, &_out_h, &_out_channels, 0 );
 
-		ASSERT( _data, "Failed to load image" );
+		AV_ASSERT( _data, "Failed to load image" );
 
 		size = Size( (uint32_t)_out_w, (uint32_t)_out_h );
 
@@ -73,12 +73,12 @@ namespace Graphics::API
 			_data_format = GL_RED;
 		}
 		else
-			ASSERT( false, "Unsupported number of channels in image!" );
+			AV_ASSERT( false, "Unsupported number of channels in image!" );
 
 		opengl_internal_format = _internal_format;
 		opengl_data_format = _data_format;
 
-		ASSERT( opengl_internal_format & opengl_data_format, "Unsupported image format!" );
+		AV_ASSERT( opengl_internal_format & opengl_data_format, "Unsupported image format!" );
 
 		glCreateTextures( GL_TEXTURE_2D, 1, &opengl_texture_id );
 		glTextureStorage2D( opengl_texture_id, 1, opengl_internal_format, static_cast<GLsizei>( size.width ), static_cast<GLsizei>( size.height ) );
@@ -104,7 +104,7 @@ namespace Graphics::API
 	{
 		(void)data_size;
 		uint32_t _bpp = (opengl_data_format == GL_RGBA) ? 4 : 3; (void)_bpp;
-		ASSERT( data_size == size.width * size.height * _bpp, "Data size must exactly match texture!" );
+		AV_ASSERT( data_size == size.width * size.height * _bpp, "Data size must exactly match texture!" );
 		glTextureSubImage2D( opengl_texture_id, 0, 0, 0, static_cast<GLsizei>( size.width ), static_cast<GLsizei>( size.height ), opengl_data_format, GL_UNSIGNED_BYTE, data );
 	}
 

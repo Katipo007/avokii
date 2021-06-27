@@ -16,7 +16,7 @@ namespace
 
 	void PopBoundVbo()
 	{
-		ASSERT( !BoundVboStack.empty() );
+		AV_ASSERT( !BoundVboStack.empty() );
 		glBindBuffer( GL_ARRAY_BUFFER, BoundVboStack.top() );
 		BoundVboStack.pop();
 	}
@@ -33,15 +33,15 @@ namespace
 
 	void PopBoundIbo()
 	{
-		ASSERT( !bound_ibo_stack.empty() );
+		AV_ASSERT( !bound_ibo_stack.empty() );
 		glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, bound_ibo_stack.top() );
 		bound_ibo_stack.pop();
 	}
 }
 
-namespace Graphics::API
+namespace Avokii::API
 {
-	VertexBufferOpenGL::VertexBufferOpenGL( const VertexBufferDefinition& definition )
+	VertexBufferOpenGL::VertexBufferOpenGL( const Graphics::VertexBufferDefinition& definition )
 		: name( definition.name.value_or( "Unnamed vertex buffer" ) )
 		, layout( definition.layout )
 	{
@@ -84,12 +84,12 @@ namespace Graphics::API
 		PopBoundVbo();
 	}
 
-	void VertexBufferOpenGL::SetLayout( const BufferLayout & layout_ )
+	void VertexBufferOpenGL::SetLayout( const Graphics::BufferLayout & layout_ )
 	{
 		layout = layout_;
 	}
 
-	IndexBufferOpenGL::IndexBufferOpenGL( const IndexBufferDefinition& definition )
+	IndexBufferOpenGL::IndexBufferOpenGL( const Graphics::IndexBufferDefinition& definition )
 		: name( definition.name.value_or( "Unnamed index buffer" ) )
 		, count( (uint32_t)definition.indices.size() )
 	{

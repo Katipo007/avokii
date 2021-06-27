@@ -1,12 +1,12 @@
 #pragma once
 
-#include "Engine/Core/Input/KeyboardInput.hpp"
+#include "Input/KeyboardInput.hpp"
 
 struct SDL_KeyboardEvent;
 struct SDL_TextEditingEvent;
 struct SDL_TextInputEvent;
 
-namespace Plugins
+namespace Avokii::Plugins
 {
 	class InputSDL2;
 

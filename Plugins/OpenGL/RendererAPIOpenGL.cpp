@@ -1,6 +1,6 @@
 #include "RendererAPIOpenGL.hpp"
 
-#ifdef RENDERER_IMPLEMENTATION_OPENGL
+#ifdef AVOKII_RENDERER_IMPLEMENTATION_OPENGL
 #include "OpenGLHeader.hpp"
 
 #include "BufferOpenGL.hpp"

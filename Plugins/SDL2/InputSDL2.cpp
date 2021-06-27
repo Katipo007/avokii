@@ -1,10 +1,10 @@
 #include "InputSDL2.hpp"
 
-#include "Engine/Core/API/SystemAPI.hpp"
+#include "API/SystemAPI.hpp"
 #include "KeyboardInputSDL2.hpp"
 #include "SDL2Include.hpp"
 
-namespace Plugins
+namespace Avokii::Plugins
 {
 	InputSDL2::InputSDL2( API::SystemAPI& system )
 		: system( system )

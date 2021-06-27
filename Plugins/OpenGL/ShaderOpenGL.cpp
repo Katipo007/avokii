@@ -4,7 +4,7 @@
 #include <fstream>
 
 #pragma warning( push, 0 )
-#include "Engine/Vendor/glm/glm/gtc/type_ptr.hpp" // glm::value_ptr
+#include "Vendor/glm/glm/gtc/type_ptr.hpp" // glm::value_ptr
 #pragma warning( pop )
 
 namespace
@@ -16,18 +16,18 @@ namespace
 		else if (type == "fragment" || type == "pixel")
 			return GL_FRAGMENT_SHADER;
 
-		ASSERT( false, "Unrecognised shader type!" );
+		AV_ASSERT( false, "Unrecognised shader type!" );
 		return 0;
 	}
 }
 
-namespace Graphics::API
+namespace Avokii::API
 {
 	ShaderOpenGL::ShaderOpenGL( const Filepath& filepath )
 		: opengl_program_id( 0 )
 	{
-		ASSERT( !std::filesystem::is_directory( filepath ) );
-		ASSERT( !filepath.empty(), "Empty filename!" );
+		AV_ASSERT( !std::filesystem::is_directory( filepath ) );
+		AV_ASSERT( !filepath.empty(), "Empty filename!" );
 
 		const auto file_src = ReadFile( filepath );
 		const auto shader_sources = PreProcess( file_src );
@@ -179,7 +179,7 @@ namespace Graphics::API
 			}
 			else
 			{
-				LOG_ERROR( LoggingChannels::OpenGL, "Could not read from file '{0}'", filepath.string().c_str() );
+				AV_LOG_ERROR( LoggingChannels::OpenGL, "Could not read from file '{0}'", filepath.string().c_str() );
 			}
 
 			return _result;
@@ -187,7 +187,7 @@ namespace Graphics::API
 		}
 		else
 		{
-			LOG_ERROR( LoggingChannels::OpenGL, "Could not open file '{0}' for reading", filepath.string().c_str() );
+			AV_LOG_ERROR( LoggingChannels::OpenGL, "Could not open file '{0}' for reading", filepath.string().c_str() );
 		}
 
 		return std::string();
@@ -206,16 +206,16 @@ namespace Graphics::API
 		{
 			// TODO: non-windows newlines
 			const auto eol = source.find_first_of( "\r\n", type_token_pos ); // end of the shader type declaration line
-			ASSERT( eol != std::string_view::npos, "Syntax error" );
+			AV_ASSERT( eol != std::string_view::npos, "Syntax error" );
 
 			const auto begin = type_token_pos + type_token_len + 1; // start of shader type name (right after the #type symbol)
 			const auto type_name = source.substr( begin, eol - begin );
 
 			const auto shader_type_id = GetShaderTypeFromString( type_name );
-			ASSERT( shader_type_id, "Invalid shader type specified!" );
+			AV_ASSERT( shader_type_id, "Invalid shader type specified!" );
 
 			const auto next_line_pos = source.find_first_not_of( "\r\n", eol );
-			ASSERT( next_line_pos != std::string_view::npos, "Syntax error" );
+			AV_ASSERT( next_line_pos != std::string_view::npos, "Syntax error" );
 			type_token_pos = source.find( type_token, next_line_pos );
 
 			sources[shader_type_id] = (type_token_pos == std::string_view::npos) ? source.substr( next_line_pos ) : source.substr( next_line_pos, type_token_pos - next_line_pos );
@@ -228,8 +228,8 @@ namespace Graphics::API
 	{
 		GLuint program = glCreateProgram();
 
-		ASSERT( shader_sources.count( GL_VERTEX_SHADER ) > 0, "Missing vertex shader" );
-		ASSERT( shader_sources.count( GL_FRAGMENT_SHADER ) > 0, "Missing fragment shader" );
+		AV_ASSERT( shader_sources.count( GL_VERTEX_SHADER ) > 0, "Missing vertex shader" );
+		AV_ASSERT( shader_sources.count( GL_FRAGMENT_SHADER ) > 0, "Missing fragment shader" );
 
 		std::unordered_map< GLenum /* type */, GLenum /* shader id */ > shader_ids;
 		for (auto& entry : shader_sources)
@@ -261,8 +261,8 @@ namespace Graphics::API
 					glDeleteShader( shader );
 
 					// report error
-					LOG_ERROR( LoggingChannels::OpenGL, "Error compiling OpenGL shader: {0}", msg.data() );
-					ASSERT_CHANNEL( LoggingChannels::OpenGL, false, "Shader compilation failed" );
+					AV_LOG_ERROR( LoggingChannels::OpenGL, "Error compiling OpenGL shader: {0}", msg.data() );
+					AV_ASSERT_CHANNEL( LoggingChannels::OpenGL, false, "Shader compilation failed" );
 					break;
 				}
 			}
@@ -297,8 +297,8 @@ namespace Graphics::API
 					glDeleteShader( shader.second );
 
 				// report error
-				LOG_ERROR( LoggingChannels::OpenGL, "Error linking OpenGL shader program: {0}", msg.data() );
-				ASSERT_CHANNEL( LoggingChannels::OpenGL, false, "Shader link failed" );
+				AV_LOG_ERROR( LoggingChannels::OpenGL, "Error linking OpenGL shader program: {0}", msg.data() );
+				AV_ASSERT_CHANNEL( LoggingChannels::OpenGL, false, "Shader link failed" );
 				return;
 			}
 		}

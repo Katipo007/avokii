@@ -3,15 +3,15 @@
 #include <chrono>
 #include <thread>
 
-#include "Engine/Core/API/DearImGuiAPI.hpp"
-#include "Engine/Core/API/InputAPI.hpp"
+#include "API/DearImGuiAPI.hpp"
+#include "API/InputAPI.hpp"
 
 #include "SDL2Include.hpp"
 #include "OpenGLContextSDL2.hpp"
 #include "InputSDL2.hpp"
 #include "WindowSDL2.hpp"
 
-namespace Graphics::API
+namespace Avokii::Plugins
 {
     SystemSDL2::SystemSDL2()
     {
@@ -28,8 +28,8 @@ namespace Graphics::API
         {
             if (SDL_Init( flags ) != 0)
             {
-                LOG_CRITICAL( LoggingChannels::Application, "SDL2 could not initialize! SDL_Error: '{0}'", SDL_GetError() );
-                FATAL( "SDL2 could not initialize!" );
+                AV_LOG_CRITICAL( LoggingChannels::Application, "SDL2 could not initialize! SDL_Error: '{0}'", SDL_GetError() );
+                AV_FATAL( "SDL2 could not initialize!" );
             }
         }
     }
@@ -72,7 +72,7 @@ namespace Graphics::API
 
     std::unique_ptr<Graphics::OpenGLContext> SystemSDL2::CreateOpenGLContext()
     {
-        ASSERT( !windows.empty() );
+        AV_ASSERT( !windows.empty() );
         if (!windows.empty())
             return std::make_unique<OpenGLContextSDL2>( windows.front()->GetSDLWindow() );
 
@@ -110,15 +110,15 @@ namespace Graphics::API
 
         switch (definition.mode)
         {
-        case WindowMode::Window:
+        case Graphics::WindowMode::Window:
             flags |= SDL_WINDOW_RESIZABLE;
             break;
 
-        case WindowMode::BorderlessFullscreen:
+        case Graphics::WindowMode::BorderlessFullscreen:
             flags |= SDL_WINDOW_BORDERLESS;
             break;
 
-        case WindowMode::Fullscreen:
+        case Graphics::WindowMode::Fullscreen:
             flags |= SDL_WINDOW_FULLSCREEN;
             break;
         }
@@ -187,7 +187,7 @@ namespace Graphics::API
         } while (std::chrono::high_resolution_clock::now() < end);
     }
 
-    bool SystemSDL2::GenerateEvents( ::API::VideoAPI* video, ::API::InputAPI* input, ::API::DearImGuiAPI* dearimgui )
+    bool SystemSDL2::GenerateEvents( API::VideoAPI* video, API::InputAPI* input, API::DearImGuiAPI* dearimgui )
     {
         SDL_Event event;
         SDL_PumpEvents();

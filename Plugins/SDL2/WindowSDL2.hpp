@@ -1,16 +1,16 @@
 #pragma once
 
-#include "Engine/Core/Graphics/Window.hpp"
+#include "Graphics/Window.hpp"
 
 struct SDL_WindowEvent;
 struct SDL_Window;
 
-namespace Graphics::API
+namespace Avokii::Plugins
 {
 	class SystemSDL2;
 
 	class WindowSDL2
-		: public ::Graphics::Window
+		: public Graphics::Window
 	{
 		friend class SystemSDL2;
 
@@ -28,10 +28,10 @@ namespace Graphics::API
 		virtual Size<uint32_t> GetSize() const override;
 		virtual void SetSize( const Size<uint32_t> new_size ) override;
 
-		virtual void SetMode( const WindowMode ) override;
-		virtual WindowMode GetMode() const override;
-		virtual void SetState( const WindowState ) override;
-		virtual WindowState GetState() const override;
+		virtual void SetMode( const Graphics::WindowMode ) override;
+		virtual Graphics::WindowMode GetMode() const override;
+		virtual void SetState( const Graphics::WindowState ) override;
+		virtual Graphics::WindowState GetState() const override;
 
 		virtual void Show() override;
 		virtual void Hide() override;
