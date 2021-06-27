@@ -117,7 +117,7 @@ namespace Avokii::Graphics
 	/// PerspectiveCamera
 	/// 
 	PerspectiveCamera::PerspectiveCamera()
-		: mFov{ glm::radians( 60 ) }
+		: mFov{ glm::radians( 60.f ) }
 		, mAspect{ 1 }
 		, mClipNear{ 0.1f }
 		, mClipFar{ 100.f }
@@ -147,10 +147,20 @@ namespace Avokii::Graphics
 		mProjectionDirty = true;
 	}
 
+	void PerspectiveCamera::Resetd( float fov_deg, float aspect, float clip_near, float clip_far )
+	{
+		Reset( glm::radians( fov_deg ), aspect, clip_near, clip_far );
+	}
+
 	void PerspectiveCamera::SetFOV( float _fov_rad )
 	{
 		mFov = _fov_rad;
 		mProjectionDirty = true;
+	}
+
+	void PerspectiveCamera::SetFOVd( float fov_deg )
+	{
+		SetFOV( glm::radians( fov_deg ) );
 	}
 
 	void PerspectiveCamera::SetAspectRatio( float _aspect )

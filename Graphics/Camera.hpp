@@ -43,9 +43,9 @@ namespace Avokii::Graphics
 		float GetClipFar() const { RecalculatePerspective(); return mClipFar; }
 
 		virtual void Reset( float fov_rad, float aspect, float clip_near, float clip_far );
-		inline void Resetd( float fov_deg, float aspect, float clip_near, float clip_far ) { Reset( glm::radians( fov_deg ), aspect, clip_near, clip_far ); }
+		void Resetd( float fov_deg, float aspect, float clip_near, float clip_far );
 		virtual void SetFOV( float fov_rad );
-		inline void SetFOVd( float fov_deg ) { SetFOV( glm::radians( fov_deg ) ); }
+		void SetFOVd( float fov_deg );
 		virtual void SetAspectRatio( float aspect );
 		virtual void SetAspectRatio( uint32_t width, uint32_t height ) { SetAspectRatio( (float)height / float( width ) ); }
 		virtual void SetClipSpace( float clip_near, float clip_far );

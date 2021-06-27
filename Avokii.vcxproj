@@ -18,8 +18,6 @@
     <ClInclude Include="Graphics\GraphicsBuffer.hpp" />
     <ClInclude Include="Graphics\RendererAPIs.hpp" />
     <ClInclude Include="Graphics\Rendering\Renderer.hpp" />
-    <ClInclude Include="Graphics\Resources\Image.hpp" />
-    <ClInclude Include="Graphics\Resources\ImageResourceManager.hpp" />
     <ClInclude Include="Graphics\Resources\Material.hpp" />
     <ClInclude Include="Graphics\Resources\Mesh.hpp" />
     <ClInclude Include="Graphics\Resources\SpriteSheet.hpp" />
@@ -104,8 +102,6 @@
     <ClCompile Include="Graphics\GraphicsBuffer.cpp" />
     <ClCompile Include="Graphics\Rendering\Renderer.cpp" />
     <ClCompile Include="Graphics\Rendering\SpriteBatcher.cpp" />
-    <ClCompile Include="Graphics\Resources\Image.cpp" />
-    <ClCompile Include="Graphics\Resources\ImageResourceManager.cpp" />
     <ClCompile Include="Graphics\Resources\Material.cpp" />
     <ClCompile Include="Graphics\Resources\Mesh.cpp" />
     <ClCompile Include="Graphics\Resources\SpriteSheet.cpp" />

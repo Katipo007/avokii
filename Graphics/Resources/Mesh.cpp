@@ -1,44 +1,44 @@
 #include "Mesh.hpp"
 
-namespace Graphics
+namespace Avokii::Graphics
 {
 	Mesh::Mesh( BufferLayout _layout )
-		: vertex_layout{ _layout }
+		: vertexLayout{ _layout }
 	{
-		ASSERT( vertex_layout.GetStride() > 0 );
+		AV_ASSERT( vertexLayout.GetStride() > 0 );
 	}
 
-	Mesh::Mesh( Resources::ResourceLoader& loader )
+	Mesh::Mesh( ResourceLoader& _rLoader )
 	{
-		(void)loader;
-		NOT_IMPLEMENTED;
+		(void)_rLoader;
+		AV_NOT_IMPLEMENTED;
 	}
 
-	std::shared_ptr<Mesh> Mesh::LoadResource( Resources::ResourceLoader& loader )
+	std::shared_ptr<Mesh> Mesh::LoadResource( ResourceLoader& _rLoader )
 	{
-		(void)loader;
-		NOT_IMPLEMENTED;
+		(void)_rLoader;
+		AV_NOT_IMPLEMENTED;
 		return {};
 	}
 
-	void Mesh::SetVertices( std::span<const std::byte> new_bytes, uint32_t new_num_vertices )
+	void Mesh::SetVertices( std::span<const std::byte> _newBytes, uint32_t _newNumVertices )
 	{
-		this->vertex_data.assign( std::begin( new_bytes ), std::end( new_bytes ) );
-		this->num_vertices = new_num_vertices;
+		vertexData.assign( std::begin( _newBytes ), std::end( _newBytes ) );
+		numVertices = _newNumVertices;
 	}
 
-	void Mesh::SetIndices( std::span<const Index_T> new_indices )
+	void Mesh::SetIndices( std::span<const Index_T> _newIndices )
 	{
-		this->indices.assign( std::begin( new_indices ), std::end( new_indices ) );
+		indices.assign( std::begin( _newIndices ), std::end( _newIndices ) );
 	}
 
-	void Mesh::SetMaterial( std::shared_ptr<const Material> new_material )
+	void Mesh::SetMaterial( std::shared_ptr<const Material> _newMaterial )
 	{
-		this->material = new_material;
+		material = _newMaterial;
 	}
 
 	BasicMesh::BasicMesh()
-		: Mesh{ BasicMeshLayout }
+		: Mesh{ sBasicMeshLayout }
 	{
 	}
 }

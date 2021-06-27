@@ -1,41 +1,40 @@
 #pragma once
 
-#include "Engine/DataTypes/Mat4.hpp"
+#include "Types/Mat4.hpp"
 
-namespace API { class VideoAPI; }
-
-namespace Graphics
+namespace Avokii
 {
-	class Shader;
-	class VertexArray;
-	class Window;
-}
+	namespace API { class VideoAPI; }
 
-namespace Visual
-{
-	class Camera;
-
-	// 3D renderer interface
-	class Renderer
+	namespace Graphics
 	{
-	public:
-		explicit Renderer( ::API::VideoAPI& video );
-		virtual ~Renderer();
+		class Camera;
+		class Shader;
+		class VertexArray;
+		class Window;
 
-		void Init();
-		void Shutdown();
+		// 3D renderer interface
+		class Renderer
+		{
+		public:
+			explicit Renderer( API::VideoAPI& rVideo );
+			virtual ~Renderer();
 
-		void OnWindowResize( const uint32_t width, const uint32_t height );
+			void Init();
+			void Shutdown();
 
-		void BeginScene( Camera& camera );
-		void EndScene();
+			void OnWindowResize( const uint32_t width, const uint32_t height );
 
-		void Submit( const std::shared_ptr<Graphics::Shader>& shader, const std::shared_ptr<Graphics::VertexArray>& vertex_array, const glm::mat4& model_transform = glm::mat4( 1.f ) );
+			void BeginScene( Camera& rCamera );
+			void EndScene();
 
-	private:
-		::API::VideoAPI& video;
+			void Submit( const std::shared_ptr<Graphics::Shader>& shader, const std::shared_ptr<Graphics::VertexArray>& vertexArray, const Mat4f& modelTransform = Mat4f{ 1.f } );
 
-		struct SceneData;
-		static std::unique_ptr<SceneData> static_scene_data;
-	};
+		private:
+			API::VideoAPI& mrVideo;
+
+			struct SceneData;
+			static std::unique_ptr<SceneData> msSceneData;
+		};
+	}
 }

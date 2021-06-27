@@ -10,11 +10,6 @@
 namespace Graphics
 {
 	class Texture;
-}
-
-namespace Resources
-{
-	class ImageDefinition;
 
 	class Image
 	{

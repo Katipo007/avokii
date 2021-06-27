@@ -1,31 +1,31 @@
 #include "Material.hpp"
 
-namespace Graphics
+namespace Avokii::Graphics
 {
 	Material::Material()
 	{
 	}
 
-	Material::Material( Resources::ResourceLoader& loader )
+	Material::Material( ResourceLoader& _rLoader )
 	{
-		(void)loader;
-		NOT_IMPLEMENTED;
+		(void)_rLoader;
+		AV_NOT_IMPLEMENTED;
 	}
 
-	std::shared_ptr<Material> Material::LoadResource( Resources::ResourceLoader& loader )
+	std::shared_ptr<Material> Material::LoadResource( ResourceLoader& _rLoader )
 	{
-		(void)loader;
-		NOT_IMPLEMENTED;
+		(void)_rLoader;
+		AV_NOT_IMPLEMENTED;
 		return {};
 	}
 
-	void Material::SetShader( std::shared_ptr<const Shader> new_shader )
+	void Material::SetShader( std::shared_ptr<const Shader> _newShader )
 	{
-		this->shader = new_shader;
+		shader = _newShader;
 	}
 
-	void Material::SetTextures( std::vector<std::shared_ptr<const Texture>> new_textures )
+	void Material::SetTextures( std::vector<std::shared_ptr<const Texture>> _newTextures )
 	{
-		this->textures = new_textures;
+		textures = _newTextures;
 	}
 }

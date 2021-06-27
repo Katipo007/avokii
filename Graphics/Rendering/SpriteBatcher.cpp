@@ -307,30 +307,30 @@ namespace Avokii::Graphics
 
 		const auto& texture_id = FindOrAddTexture( sprite_sheet->GetTexture() );
 		const auto& uvs = img.uvs;
-		const auto& multiply_colour = data->multiply_colour.top();
+		const auto& multiply_colour = mpData->multiply_colour.top();
 
-		data->vertex_data.emplace_back( glm::vec3{ location.x + min.x, location.y + 0.f, location.z + min.y }, multiply_colour, glm::vec2( uvs.GetLeft(), uvs.GetTop() ), texture_id ); // top left
-		data->vertex_data.emplace_back( glm::vec3{ location.x + max.x, location.y + 0.f, location.z + min.y }, multiply_colour, glm::vec2( uvs.GetRight(), uvs.GetTop() ), texture_id ); // top right
-		data->vertex_data.emplace_back( glm::vec3{ location.x + min.x, location.y + 0.f, location.z + max.y }, multiply_colour, glm::vec2( uvs.GetLeft(), uvs.GetBottom() ), texture_id ); // bottom left
-		data->vertex_data.emplace_back( glm::vec3{ location.x + max.x, location.y + 0.f, location.z + max.y }, multiply_colour, glm::vec2( uvs.GetRight(), uvs.GetBottom() ), texture_id ); // bottom right
+		mpData->vertex_data.emplace_back( Vec3f{ _location.x + min.x, _location.y + 0.f, _location.z + min.y }, multiply_colour, Vec2f( uvs.GetLeft(), uvs.GetTop() ), texture_id ); // top left
+		mpData->vertex_data.emplace_back( Vec3f{ _location.x + max.x, _location.y + 0.f, _location.z + min.y }, multiply_colour, Vec2f( uvs.GetRight(), uvs.GetTop() ), texture_id ); // top right
+		mpData->vertex_data.emplace_back( Vec3f{ _location.x + min.x, _location.y + 0.f, _location.z + max.y }, multiply_colour, Vec2f( uvs.GetLeft(), uvs.GetBottom() ), texture_id ); // bottom left
+		mpData->vertex_data.emplace_back( Vec3f{ _location.x + max.x, _location.y + 0.f, _location.z + max.y }, multiply_colour, Vec2f( uvs.GetRight(), uvs.GetBottom() ), texture_id ); // bottom right
 
-		data->quad_index_count += 6;
-		statistics.n_quads++;
+		mpData->quad_index_count += 6;
+		++mStatistics.nQuads;
 	}
 
 	void SpriteBatcher::PushMultiplyColour( ColourRGBA colour )
 	{
-		data->multiply_colour.emplace( std::move( colour.AsFloatsRGBA() ) );
+		mpData->multiply_colour.emplace( std::move( colour.AsFloatsRGBA() ) );
 	}
 
 	void SpriteBatcher::PopMultiplyColour()
 	{
-		ASSERT( data->multiply_colour.size() > 1 );
-		data->multiply_colour.pop();
+		AV_ASSERT( mpData->multiply_colour.size() > 1 );
+		mpData->multiply_colour.pop();
 	}
 
 	void SpriteBatcher::ClearStats()
 	{
-		memset( &statistics, 0, sizeof( SpriteBatcher::Statistics ) );
+		memset( &mStatistics, 0, sizeof( SpriteBatcher::Statistics ) );
 	}
 }

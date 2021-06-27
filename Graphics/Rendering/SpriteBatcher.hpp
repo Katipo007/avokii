@@ -10,69 +10,69 @@
 namespace Avokii
 {
 	namespace API { class VideoAPI; }
-	namespace Resources { class Image; }
-}
+	class Image;
 
-namespace Avokii::Graphics
-{
-	class Camera;
-	class Sprite;
-	class Texture;
-
-	// Unlike Renderer this does not provide a static interface and allows multiple instances to be created
-	//
-	// "Flat" refers to a "floor" or laid on the ground
-	// "Standing" refers to standing upright, perpendicular to the floor
-	class SpriteBatcher final
+	namespace Graphics
 	{
-	private:
-		using TextureSlotId = unsigned int;
+		class Camera;
+		class Sprite;
+		class Texture;
 
-	public:
-		struct Statistics
+		// Unlike Renderer this does not provide a static interface and allows multiple instances to be created
+		//
+		// "Flat" refers to a "floor" or laid on the ground
+		// "Standing" refers to standing upright, perpendicular to the floor
+		class SpriteBatcher final
 		{
-			uint32_t nDrawCalls = 0;
-			uint32_t nQuads = 0;
+		private:
+			using TextureSlotId = unsigned int;
 
-			uint32_t GetTotalVertexCount() const { return nQuads * 4; }
-			uint32_t GetTotalIndexCount() const { return nQuads * 6; }
-		};
+		public:
+			struct Statistics
+			{
+				uint32_t nDrawCalls = 0;
+				uint32_t nQuads = 0;
 
-	public:
-		explicit SpriteBatcher( API::VideoAPI& video );
-		virtual ~SpriteBatcher();
+				uint32_t GetTotalVertexCount() const { return nQuads * 4; }
+				uint32_t GetTotalIndexCount() const { return nQuads * 6; }
+			};
 
-		void Begin( const Camera& camera, const Mat4f& world_transform = Mat4f{ 1.f } );
-		void EndScene();
+		public:
+			explicit SpriteBatcher( API::VideoAPI& video );
+			virtual ~SpriteBatcher();
+
+			void Begin( const Camera& rCamera, const Mat4f& worldTransform = Mat4f{ 1.f } );
+			void EndScene();
 
 #pragma region Drawing state
-		void PushMultiplyColour( ColourRGBA colour );
-		void PopMultiplyColour();
+			void PushMultiplyColour( ColourRGBA colour );
+			void PopMultiplyColour();
 
-		void Flush();
+			void Flush();
 #pragma endregion
 
 #pragma region Submission
-		void DrawStandingSprite( const ResourceHandle<Sprite>& sprite, Vec3f location );
+			void DrawStandingSprite( const ResourceHandle<Sprite>& sprite, Vec3f location );
 #pragma endregion
 
-		const Statistics& GetStatistics() const { return mStatistics; }
-		void ClearStats();
+			const Statistics& GetStatistics() const { return mStatistics; }
+			void ClearStats();
 
-	private:
-		void StartBatch();
-		void NextBatch();
+		private:
+			void StartBatch();
+			void NextBatch();
 
-		// Warning: can cause batch breaks
-		TextureSlotId FindOrAddTexture( const std::shared_ptr<const Graphics::Texture>& texture_handle );
+			// Warning: can cause batch breaks
+			TextureSlotId FindOrAddTexture( const std::shared_ptr<const Graphics::Texture>& textureHandle );
 
-	private:
-		API::VideoAPI& mrVideo;
+		private:
+			API::VideoAPI& mrVideo;
 
-		struct Data;
-		std::unique_ptr<Data> mpData;
+			struct Data;
+			std::unique_ptr<Data> mpData;
 
-		Statistics mStatistics;
-		bool mActive{ false };
-	};
+			Statistics mStatistics;
+			bool mActive{ false };
+		};
+	}
 }
