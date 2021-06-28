@@ -306,6 +306,9 @@
     <ClInclude Include="src\Avokii\Plugins\OpenGL\VideoOpenGL.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Avokii\Graphics\DearImGui\DearImGui.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Avokii\Resources\ResourceCache.cpp">
@@ -402,6 +405,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Avokii\Graphics\Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Avokii\Graphics\DearImGui\DearImGui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

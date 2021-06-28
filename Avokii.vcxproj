@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClInclude Include="src\Avokii\Containers\ConstexprHashMap.hpp" />
     <ClInclude Include="src\Avokii\Graphics\Camera.hpp" />
+    <ClInclude Include="src\Avokii\Graphics\DearImGui\DearImGui.hpp" />
     <ClInclude Include="src\Avokii\Graphics\DeviceCapabilities.hpp" />
     <ClInclude Include="src\Avokii\Graphics\FrameBuffer.hpp" />
     <ClInclude Include="src\Avokii\Graphics\GraphicsBuffer.hpp" />
@@ -112,6 +113,7 @@
   <ItemGroup>
     <ClCompile Include="src\Avokii\AbstractGame.cpp" />
     <ClCompile Include="src\Avokii\Graphics\Camera.cpp" />
+    <ClCompile Include="src\Avokii\Graphics\DearImGui\DearImGui.cpp" />
     <ClCompile Include="src\Avokii\Graphics\GraphicsBuffer.cpp" />
     <ClCompile Include="src\Avokii\Graphics\Rendering\Renderer.cpp" />
     <ClCompile Include="src\Avokii\Graphics\Rendering\SpriteBatcher.cpp" />
