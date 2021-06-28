@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets" />
-  <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Label="UserMacros">
+    <AvokiiDir>$(ProjectDir)</AvokiiDir>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_PropertySheetDisplayName>AvokiiCommon</_PropertySheetDisplayName>
+  </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
       <WarningLevel>EnableAllWarnings</WarningLevel>
@@ -19,9 +23,14 @@
       <ForcedIncludeFiles>$(ProjectDir)src\pch.hpp</ForcedIncludeFiles>
       <TreatAngleIncludeAsExternal>true</TreatAngleIncludeAsExternal>
       <DisableSpecificWarnings>4652;5045</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>$(ProjectDir)src\;$(ProjectDir)vendor\;$(ProjectDir)vendor\glm\;$(ProjectDir)vendor\glew\include\;$(ProjectDir)vendor\spdlog\include\;$(ProjectDir)vendor\frozen\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
   </ItemDefinitionGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <BuildMacro Include="AvokiiDir">
+      <Value>$(AvokiiDir)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+  </ItemGroup>
 </Project>
