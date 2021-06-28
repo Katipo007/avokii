@@ -111,6 +111,11 @@ namespace
 
 namespace Avokii::Graphics
 {
+	SpriteSheet::SpriteSheet( ResourceManager& _rManager )
+		: mrManager{ _rManager }
+	{
+	}
+
 	const std::shared_ptr<const Texture>& SpriteSheet::GetTexture() const noexcept
 	{
 		if (!mpTexture)
@@ -119,7 +124,7 @@ namespace Avokii::Graphics
 		return mpTexture;
 	}
 
-	const SpriteSheetEntry& SpriteSheet::GetSprite( std::string_view name ) const
+	const SpriteSheetEntry& SpriteSheet::GetSprite( StringView name ) const
 	{
 		return GetSprite( GetSpriteIndex( name ) );
 	}
@@ -134,7 +139,7 @@ namespace Avokii::Graphics
 		return std::size( mSprites );
 	}
 
-	SpriteSheet::SpriteIdx_T SpriteSheet::GetSpriteIndex( std::string_view name ) const
+	SpriteSheet::SpriteIdx_T SpriteSheet::GetSpriteIndex( StringView name ) const
 	{
 		if (const auto found = mIdToSpriteIdxMap.find( name ); found != std::end( mIdToSpriteIdxMap ))
 			return found->second;
@@ -148,7 +153,7 @@ namespace Avokii::Graphics
 		return mIdToSpriteIdxMap.contains( name );
 	}
 
-	bool SpriteSheet::LoadFromJson( std::string_view json_string, const Filepath& filepath_prefix )
+	bool SpriteSheet::LoadFromJson( StringView json_string, const Filepath& filepath_prefix )
 	{
 		AV_ASSERT( std::filesystem::is_directory( filepath_prefix ) );
 		auto j = nlohmann::json::parse( json_string );

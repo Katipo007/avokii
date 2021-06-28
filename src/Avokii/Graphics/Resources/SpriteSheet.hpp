@@ -33,7 +33,7 @@ namespace Avokii
 		public:
 			using SpriteIdx_T = uint32_t;
 
-			SpriteSheet( ResourceManager& manager_ );
+			SpriteSheet( ResourceManager& _rManager );
 
 			const std::shared_ptr<const Texture>& GetTexture() const noexcept;
 			const SpriteSheetEntry& GetSprite( StringView name ) const;
