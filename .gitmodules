@@ -19,3 +19,6 @@
 [submodule "frozen"]
 	path = vendor/frozen
 	url = https://github.com/serge-sans-paille/frozen.git
+[submodule "dearimgui"]
+	path = vendor/dearimgui
+	url = https://github.com/ocornut/imgui.git
