@@ -2,10 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup>
-    <IncludePath>$(ProjectDir);$(ProjectDir)Vendor\;$(ProjectDir)Vendor\glm\;$(ProjectDir)Vendor\glew\include\;$(ProjectDir)Vendor\spdlog\include\;$(ProjectDir)Vendor\frozen\include\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)\Vendor\;$(ProjectDir)\Vendor\SDL\lib\;$(LibraryPath)</LibraryPath>
-  </PropertyGroup>
+  <PropertyGroup />
   <ItemDefinitionGroup>
     <ClCompile>
       <WarningLevel>EnableAllWarnings</WarningLevel>
@@ -18,10 +15,12 @@
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>Precompiled/pch.hpp</PrecompiledHeaderFile>
-      <ForcedIncludeFiles>Precompiled/pch.hpp</ForcedIncludeFiles>
+      <PrecompiledHeaderFile>$(ProjectDir)src\pch.hpp</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>$(ProjectDir)src\pch.hpp</ForcedIncludeFiles>
       <TreatAngleIncludeAsExternal>true</TreatAngleIncludeAsExternal>
       <DisableSpecificWarnings>4652;5045</DisableSpecificWarnings>
+      <AdditionalIncludeDirectories>$(ProjectDir)src\;$(ProjectDir)vendor\;$(ProjectDir)vendor\glm\;$(ProjectDir)vendor\glew\include\;$(ProjectDir)vendor\spdlog\include\;$(ProjectDir)vendor\frozen\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup />

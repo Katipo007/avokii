@@ -1,21 +1,21 @@
 [submodule "spdlog"]
-	path = Vendor/spdlog
+	path = vendor/spdlog
 	url = https://github.com/gabime/spdlog.git
 [submodule "glm"]
-	path = Vendor/glm
+	path = vendor/glm
 	url = https://github.com/g-truc/glm.git
 [submodule "entt"]
-	path = Vendor/entt
+	path = vendor/entt
 	url = https://github.com/skypjack/entt
 [submodule "sigslot"]
-	path = Vendor/sigslot
+	path = vendor/sigslot
 	url = https://github.com/palacaze/sigslot
 [submodule "nlohmann/json"]
-	path = Vendor/nlohmann/json
+	path = vendor/nlohmann/json
 	url = https://github.com/nlohmann/json
 [submodule "magic_enum"]
-	path = Vendor/magic_enum
+	path = vendor/magic_enum
 	url = https://github.com/Neargye/magic_enum.git
 [submodule "frozen"]
-	path = Vendor/frozen
+	path = vendor/frozen
 	url = https://github.com/serge-sans-paille/frozen.git

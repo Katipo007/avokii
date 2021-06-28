@@ -15,393 +15,393 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="PlatformDetection.hpp">
+    <ClInclude Include="src\Avokii\PlatformDetection.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="API\BaseAPI.hpp">
+    <ClInclude Include="src\Avokii\API\BaseAPI.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="API\CoreAPIsEnum.hpp">
+    <ClInclude Include="src\Avokii\API\CoreAPIsEnum.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="API\DearImGuiAPI.hpp">
+    <ClInclude Include="src\Avokii\API\DearImGuiAPI.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="API\InputAPI.hpp">
+    <ClInclude Include="src\Avokii\API\InputAPI.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="API\SystemAPI.hpp">
+    <ClInclude Include="src\Avokii\API\SystemAPI.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="API\VideoAPI.hpp">
+    <ClInclude Include="src\Avokii\API\VideoAPI.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\OpenGLContext.hpp">
+    <ClInclude Include="src\Avokii\Graphics\OpenGLContext.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\Window.hpp">
+    <ClInclude Include="src\Avokii\Graphics\Window.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Resources\BaseResource.hpp">
+    <ClInclude Include="src\Avokii\Resources\BaseResource.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Resources\ResourceCache.hpp">
+    <ClInclude Include="src\Avokii\Resources\ResourceCache.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Resources\ResourceHandle.hpp">
+    <ClInclude Include="src\Avokii\Resources\ResourceHandle.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Resources\ResourceLoader.hpp">
+    <ClInclude Include="src\Avokii\Resources\ResourceLoader.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Resources\ResourceTypes.hpp">
+    <ClInclude Include="src\Avokii\Resources\ResourceTypes.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Resources\StandardResources.hpp">
+    <ClInclude Include="src\Avokii\Resources\StandardResources.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AbstractGame.hpp">
+    <ClInclude Include="src\Avokii\AbstractGame.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Assert.hpp">
+    <ClInclude Include="src\Avokii\Assert.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Avokii.hpp">
+    <ClInclude Include="src\Avokii.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Core.hpp">
+    <ClInclude Include="src\Avokii\Core.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Resources\ResourceManager.hpp">
+    <ClInclude Include="src\Avokii\Resources\ResourceManager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Types\Bytes.hpp">
+    <ClInclude Include="src\Avokii\Types\Bytes.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="File\FileOps.hpp">
+    <ClInclude Include="src\Avokii\File\FileOps.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="File\Filepath.hpp">
+    <ClInclude Include="src\Avokii\File\Filepath.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Geometry\Point2D.hpp">
+    <ClInclude Include="src\Avokii\Geometry\Point2D.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Geometry\Rect.hpp">
+    <ClInclude Include="src\Avokii\Geometry\Rect.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Geometry\Size.hpp">
+    <ClInclude Include="src\Avokii\Geometry\Size.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Precompiled\pch.hpp">
+    <ClInclude Include="src\pch.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Types\Mat3.hpp">
+    <ClInclude Include="src\Avokii\Types\Mat3.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Types\Mat4.hpp">
+    <ClInclude Include="src\Avokii\Types\Mat4.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Types\Matrix.hpp">
+    <ClInclude Include="src\Avokii\Types\Matrix.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Types\Vec2.hpp">
+    <ClInclude Include="src\Avokii\Types\Vec2.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Types\Vec3.hpp">
+    <ClInclude Include="src\Avokii\Types\Vec3.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Types\Vec4.hpp">
+    <ClInclude Include="src\Avokii\Types\Vec4.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Types\Vector.hpp">
+    <ClInclude Include="src\Avokii\Types\Vector.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="StateMachine\Might.hpp">
+    <ClInclude Include="src\Avokii\StateMachine\Might.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="StateMachine\NoAction.hpp">
+    <ClInclude Include="src\Avokii\StateMachine\NoAction.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="StateMachine\OneOf.hpp">
+    <ClInclude Include="src\Avokii\StateMachine\OneOf.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="StateMachine\TransitionTo.hpp">
+    <ClInclude Include="src\Avokii\StateMachine\TransitionTo.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="StateMachine\DefaultAction.hpp">
+    <ClInclude Include="src\Avokii\StateMachine\DefaultAction.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="StateMachine\OnEvent.hpp">
+    <ClInclude Include="src\Avokii\StateMachine\OnEvent.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="StateMachine\StateMachine.hpp">
+    <ClInclude Include="src\Avokii\StateMachine\StateMachine.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="StateMachine\Will.hpp">
+    <ClInclude Include="src\Avokii\StateMachine\Will.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Containers\ContainerOperations.hpp">
+    <ClInclude Include="src\Avokii\Containers\ContainerOperations.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\Hashing.hpp">
+    <ClInclude Include="src\Avokii\Utility\Hashing.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\Json.hpp">
+    <ClInclude Include="src\Avokii\Utility\Json.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\MagicEnum.hpp">
+    <ClInclude Include="src\Avokii\Utility\MagicEnum.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\NonCopyable.hpp">
+    <ClInclude Include="src\Avokii\Utility\NonCopyable.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="OsAbstraction.hpp">
+    <ClInclude Include="src\Avokii\OsAbstraction.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\Signal.hpp">
+    <ClInclude Include="src\Avokii\Utility\Signal.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Containers\StringHashMap.hpp">
+    <ClInclude Include="src\Avokii\Containers\StringHashMap.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\StringUtility.hpp">
+    <ClInclude Include="src\Avokii\Utility\StringUtility.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Timestep.hpp">
+    <ClInclude Include="src\Avokii\Timestep.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\Unreachable.hpp">
+    <ClInclude Include="src\Avokii\Utility\Unreachable.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Logging.hpp">
+    <ClInclude Include="src\Avokii\Logging.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Input\KeyboardInput.hpp">
+    <ClInclude Include="src\Avokii\Input\KeyboardInput.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Input\InputDevice.hpp">
+    <ClInclude Include="src\Avokii\Input\InputDevice.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Input\Keycodes.hpp">
+    <ClInclude Include="src\Avokii\Input\Keycodes.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Input\InputButtonDevice.hpp">
+    <ClInclude Include="src\Avokii\Input\InputButtonDevice.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="StateMachine\Concepts.hpp">
+    <ClInclude Include="src\Avokii\StateMachine\Concepts.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\TupleReflection.hpp">
+    <ClInclude Include="src\Avokii\Utility\TupleReflection.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Resources\Concepts.hpp">
+    <ClInclude Include="src\Avokii\Resources\Concepts.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Entity\EnttHeader.hpp">
+    <ClInclude Include="src\Avokii\Entity\EnttHeader.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Entity\Fwd.hpp">
+    <ClInclude Include="src\Avokii\Entity\Fwd.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Entity\Entity.hpp">
+    <ClInclude Include="src\Avokii\Entity\Entity.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\HashedString.hpp">
+    <ClInclude Include="src\Avokii\Utility\HashedString.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Types\Colour.hpp">
+    <ClInclude Include="src\Avokii\Types\Colour.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="String.hpp">
+    <ClInclude Include="src\Avokii\String.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Containers\ConstexprHashMap.hpp">
+    <ClInclude Include="src\Avokii\Containers\ConstexprHashMap.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Resources\ResourceId.hpp">
+    <ClInclude Include="src\Avokii\Resources\ResourceId.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\DeviceCapabilities.hpp">
+    <ClInclude Include="src\Avokii\Graphics\DeviceCapabilities.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\FrameBuffer.hpp">
+    <ClInclude Include="src\Avokii\Graphics\FrameBuffer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\GraphicsBuffer.hpp">
+    <ClInclude Include="src\Avokii\Graphics\GraphicsBuffer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\Shader.hpp">
+    <ClInclude Include="src\Avokii\Graphics\Shader.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\Texture.hpp">
+    <ClInclude Include="src\Avokii\Graphics\Texture.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\Types.hpp">
+    <ClInclude Include="src\Avokii\Graphics\Types.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\VertexArray.hpp">
+    <ClInclude Include="src\Avokii\Graphics\VertexArray.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\RendererAPIs.hpp">
+    <ClInclude Include="src\Avokii\Graphics\RendererAPIs.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\WorldSpace.hpp">
+    <ClInclude Include="src\Avokii\Graphics\WorldSpace.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\Camera.hpp">
+    <ClInclude Include="src\Avokii\Graphics\Camera.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\Rendering\SpriteBatcher.hpp">
+    <ClInclude Include="src\Avokii\Graphics\Rendering\SpriteBatcher.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\Resources\Material.hpp">
+    <ClInclude Include="src\Avokii\Graphics\Resources\Material.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\Resources\Mesh.hpp">
+    <ClInclude Include="src\Avokii\Graphics\Resources\Mesh.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\Resources\SpriteSheet.hpp">
+    <ClInclude Include="src\Avokii\Graphics\Resources\SpriteSheet.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\Rendering\Renderer.hpp">
+    <ClInclude Include="src\Avokii\Graphics\Rendering\Renderer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Plugins\SDL2\InputSDL2.hpp">
+    <ClInclude Include="src\Avokii\Plugins\SDL2\InputSDL2.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Plugins\SDL2\KeyboardInputSDL2.hpp">
+    <ClInclude Include="src\Avokii\Plugins\SDL2\KeyboardInputSDL2.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Plugins\SDL2\OpenGLContextSDL2.hpp">
+    <ClInclude Include="src\Avokii\Plugins\SDL2\OpenGLContextSDL2.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Plugins\SDL2\SDL2Include.hpp">
+    <ClInclude Include="src\Avokii\Plugins\SDL2\SDL2Include.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Plugins\SDL2\SystemSDL2.hpp">
+    <ClInclude Include="src\Avokii\Plugins\SDL2\SystemSDL2.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Plugins\SDL2\WindowSDL2.hpp">
+    <ClInclude Include="src\Avokii\Plugins\SDL2\WindowSDL2.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Plugins\OpenGL\BufferOpenGL.hpp">
+    <ClInclude Include="src\Avokii\Plugins\OpenGL\BufferOpenGL.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Plugins\OpenGL\FrameBufferOpenGL.hpp">
+    <ClInclude Include="src\Avokii\Plugins\OpenGL\FrameBufferOpenGL.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Plugins\OpenGL\OpenGLHeader.hpp">
+    <ClInclude Include="src\Avokii\Plugins\OpenGL\OpenGLHeader.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Plugins\OpenGL\ShaderOpenGL.hpp">
+    <ClInclude Include="src\Avokii\Plugins\OpenGL\ShaderOpenGL.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Plugins\OpenGL\TextureOpenGL.hpp">
+    <ClInclude Include="src\Avokii\Plugins\OpenGL\TextureOpenGL.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Plugins\OpenGL\VertexArrayOpenGL.hpp">
+    <ClInclude Include="src\Avokii\Plugins\OpenGL\VertexArrayOpenGL.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Plugins\OpenGL\VideoOpenGL.hpp">
+    <ClInclude Include="src\Avokii\Plugins\OpenGL\VideoOpenGL.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Resources\ResourceCache.cpp">
+    <ClCompile Include="src\Avokii\Resources\ResourceCache.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Resources\ResourceLoader.cpp">
+    <ClCompile Include="src\Avokii\Resources\ResourceLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Resources\StandardResources.cpp">
+    <ClCompile Include="src\Avokii\Resources\StandardResources.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AbstractGame.cpp">
+    <ClCompile Include="src\Avokii\AbstractGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Core.cpp">
+    <ClCompile Include="src\Avokii\Core.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Resources\ResourceManager.cpp">
+    <ClCompile Include="src\Avokii\Resources\ResourceManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="File\FileOps.cpp">
+    <ClCompile Include="src\Avokii\File\FileOps.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Precompiled\pch.cpp">
+    <ClCompile Include="src\pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Logging.cpp">
+    <ClCompile Include="src\Avokii\Logging.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Input\InputButtonDevice.cpp">
+    <ClCompile Include="src\Avokii\Input\InputButtonDevice.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Input\KeyboardInput.cpp">
+    <ClCompile Include="src\Avokii\Input\KeyboardInput.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Graphics\GraphicsBuffer.cpp">
+    <ClCompile Include="src\Avokii\Graphics\GraphicsBuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Graphics\Texture.cpp">
+    <ClCompile Include="src\Avokii\Graphics\Texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Graphics\Camera.cpp">
+    <ClCompile Include="src\Avokii\Graphics\Rendering\SpriteBatcher.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Graphics\Rendering\SpriteBatcher.cpp">
+    <ClCompile Include="src\Avokii\Graphics\Resources\Material.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Graphics\Resources\Material.cpp">
+    <ClCompile Include="src\Avokii\Graphics\Resources\Mesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Graphics\Resources\Mesh.cpp">
+    <ClCompile Include="src\Avokii\Graphics\Resources\SpriteSheet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Graphics\Resources\SpriteSheet.cpp">
+    <ClCompile Include="src\Avokii\Graphics\Rendering\Renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Graphics\Rendering\Renderer.cpp">
+    <ClCompile Include="src\Avokii\Plugins\SDL2\InputSDL2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Plugins\SDL2\InputSDL2.cpp">
+    <ClCompile Include="src\Avokii\Plugins\SDL2\KeyboardInputSDL2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Plugins\SDL2\KeyboardInputSDL2.cpp">
+    <ClCompile Include="src\Avokii\Plugins\SDL2\OpenGLContextSDL2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Plugins\SDL2\OpenGLContextSDL2.cpp">
+    <ClCompile Include="src\Avokii\Plugins\SDL2\SDL2Include.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Plugins\SDL2\SDL2Include.cpp">
+    <ClCompile Include="src\Avokii\Plugins\SDL2\SystemSDL2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Plugins\SDL2\SystemSDL2.cpp">
+    <ClCompile Include="src\Avokii\Plugins\SDL2\WindowSDL2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Plugins\SDL2\WindowSDL2.cpp">
+    <ClCompile Include="src\Avokii\Plugins\OpenGL\BufferOpenGL.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Plugins\OpenGL\BufferOpenGL.cpp">
+    <ClCompile Include="src\Avokii\Plugins\OpenGL\FrameBufferOpenGL.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Plugins\OpenGL\FrameBufferOpenGL.cpp">
+    <ClCompile Include="src\Avokii\Plugins\OpenGL\ShaderOpenGL.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Plugins\OpenGL\OpenGLCompile.cpp">
+    <ClCompile Include="src\Avokii\Plugins\OpenGL\TextureOpenGL.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Plugins\OpenGL\ShaderOpenGL.cpp">
+    <ClCompile Include="src\Avokii\Plugins\OpenGL\VertexArrayOpenGL.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Plugins\OpenGL\TextureOpenGL.cpp">
+    <ClCompile Include="src\Avokii\Plugins\OpenGL\VideoOpenGL.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Plugins\OpenGL\VertexArrayOpenGL.cpp">
+    <ClCompile Include="src\Avokii\Plugins\OpenGL\OpenGLCompile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Plugins\OpenGL\VideoOpenGL.cpp">
+    <ClCompile Include="src\Avokii\Graphics\Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
