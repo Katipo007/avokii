@@ -1,14 +1,14 @@
 
 #ifdef AVOKII_PLATFORM_WINDOWS
 
-#include "Visual/Input/Input.hpp"
+#include "Avokii/Input/Input.hpp"
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_keyboard.h>
 #ifdef _WIN64
-#	pragma comment(lib, "Visual/Vendor/SDL2/lib/x64/SDL2.lib")
+#	pragma comment(lib, "SDL2/lib/x64/SDL2.lib")
 #else
-#	pragma comment(lib, "Visual/Vendor/SDL2/lib/x86/SDL2.lib")
+#	pragma comment(lib, "SDL2/lib/x86/SDL2.lib")
 #endif
 
 namespace

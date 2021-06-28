@@ -10,9 +10,9 @@
 #pragma warning(pop)
 
 #ifdef _DEBUG
-#	pragma comment(lib, "Vendor/spdlog/build/Debug/spdlogd.lib")
+#	pragma comment(lib, "spdlog/build/Debug/spdlogd.lib")
 #else
-#	pragma comment(lib, "Vendor/spdlog/build/Release/spdlog.lib")
+#	pragma comment(lib, "spdlog/build/Release/spdlog.lib")
 #endif
 
 namespace
