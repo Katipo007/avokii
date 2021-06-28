@@ -1,50 +1,52 @@
 #pragma once
 
-#include "Engine/Core/API/DearImGuiAPI.hpp"
+#include "Avokii/API/DearImGuiAPI.hpp"
+#include "Avokii/Geometry/Size.hpp"
 
-#include "Engine/Geometry/Size.hpp"
-
-namespace API
+namespace Avokii
 {
-	class SystemAPI;
-	class VideoAPI;
-}
-
-namespace Graphics::API
-{
-	class DearImGuiPlugin final
-		: public ::API::DearImGuiAPI
+	namespace API
 	{
-		friend class ::Core;
+		class SystemAPI;
+		class VideoAPI;
+	}
 
-	public:
-		DearImGuiPlugin( ::API::SystemAPI& system, ::API::VideoAPI& video );
-		~DearImGuiPlugin();
+	namespace Plugins
+	{
+		class DearImGuiPlugin final
+			: public API::DearImGuiAPI
+		{
+			friend class Core;
 
-		void SetEnabled( const bool enable ) override;
-		bool GetEnabled() const noexcept override { return enabled; }
+		public:
+			DearImGuiPlugin( API::SystemAPI& system, API::VideoAPI& video );
+			~DearImGuiPlugin();
 
-		bool WantsToCaptureKeyboard() const noexcept override;
-		bool WantsToCaptureMouse() const noexcept override;
+			void SetEnabled( const bool enable ) override;
+			bool GetEnabled() const noexcept override { return enabled; }
 
-		std::string_view GetName() const noexcept override { return "DearImGui Plugin"; }
+			bool WantsToCaptureKeyboard() const noexcept override;
+			bool WantsToCaptureMouse() const noexcept override;
 
-	protected:
-		void Init() override;
-		void Shutdown() override;
+			std::string_view GetName() const noexcept override { return "DearImGui Plugin"; }
 
-		void OnVariableUpdate( const PreciseTimestep&, const StepType ) override;
-		void OnRender( const PreciseTimestep&, const StepType ) override;
+		protected:
+			void Init() override;
+			void Shutdown() override;
 
-		void ProcessSystemEvent( void* e ) override;
-		void OnWindowResized( Size<uint32_t> new_window_size ) override;
+			void OnVariableUpdate( const PreciseTimestep&, const StepType ) override;
+			void OnRender( const PreciseTimestep&, const StepType ) override;
 
-	private:
-		::API::SystemAPI& system;
-		::API::VideoAPI& video;
+			void ProcessSystemEvent( void* e ) override;
+			void OnWindowResized( Size<uint32_t> new_window_size ) override;
 
-		struct Data;
-		std::unique_ptr<Data> data;
-		bool enabled = false;
-	};
+		private:
+			API::SystemAPI& system;
+			API::VideoAPI& video;
+
+			struct Data;
+			std::unique_ptr<Data> data;
+			bool enabled = false;
+		};
+	}
 }

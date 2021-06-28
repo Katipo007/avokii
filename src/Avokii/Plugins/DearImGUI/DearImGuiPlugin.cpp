@@ -1,16 +1,16 @@
 #include "DearImGuiPlugin.hpp"
 
-#include "Engine/Core/API/SystemAPI.hpp"
-#include "Engine/Core/API/VideoAPI.hpp"
-#include "Engine/Core/Graphics/Window.hpp"
+#include "Avokii/API/SystemAPI.hpp"
+#include "Avokii/API/VideoAPI.hpp"
+#include "Avokii/Graphics/Window.hpp"
 
-#include "Visual/Plugins/OpenGL/OpenGLHeader.hpp"
-#include "Visual/DearImGui/DearImGui.hpp"
+#include "Avokii/Plugins/OpenGL/OpenGLHeader.hpp"
+#include "Avokii/DearImGui/DearImGui.hpp"
 #define IMGUI_IMPL_OPENGL_LOADER_GLEW
-#include "Visual/Vendor/dearimgui/backends/imgui_impl_opengl3.h"
-#include "Visual/Vendor/dearimgui/backends/imgui_impl_sdl.h"
+#include <dearimgui/backends/imgui_impl_opengl3.h>
+#include <dearimgui/backends/imgui_impl_sdl.h>
 
-#include "Visual/Plugins/SDL2/WindowSDL2.hpp"
+#include "Avokii/Plugins/SDL2/WindowSDL2.hpp"
 
 using namespace std::string_literals;
 
@@ -23,7 +23,7 @@ namespace
 	};
 }
 
-namespace Graphics::API
+namespace Avokii::Plugins
 {
 	/// 
 	/// Data
