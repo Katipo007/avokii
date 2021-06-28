@@ -5,7 +5,7 @@
 #include "Avokii/Graphics/Window.hpp"
 
 #include "Avokii/Plugins/OpenGL/OpenGLHeader.hpp"
-#include "Avokii/DearImGui/DearImGui.hpp"
+#include "Avokii/Graphics/DearImGui/DearImGui.hpp"
 #define IMGUI_IMPL_OPENGL_LOADER_GLEW
 #include <dearimgui/backends/imgui_impl_opengl3.h>
 #include <dearimgui/backends/imgui_impl_sdl.h>
@@ -41,7 +41,7 @@ namespace Avokii::Plugins
 	/// DearImGuiPlugin
 	/// 
 	
-	DearImGuiPlugin::DearImGuiPlugin( ::API::SystemAPI& system_, ::API::VideoAPI& video_ )
+	DearImGuiPlugin::DearImGuiPlugin( API::SystemAPI& system_, API::VideoAPI& video_ )
 		: data( std::make_unique<DearImGuiPlugin::Data>() )
 		, system( system_ )
 		, video( video_ )
@@ -77,13 +77,13 @@ namespace Avokii::Plugins
 		{
 			if (!data->implementation_initalised)
 			{
-				ASSERT( video.HasWindow() );
+				AV_ASSERT( video.HasWindow() );
 				switch (data->impl)
 				{
 				case Impl::SDL2_OpenGL:
 				{
 					auto* sdl_window = static_cast<const WindowSDL2&>(video.GetWindow()).GetSDLWindow();
-					ASSERT( sdl_window );
+					AV_ASSERT( sdl_window );
 					ImGui_ImplSDL2_InitForOpenGL( sdl_window, NULL /*temp*/ );
 					ImGui_ImplOpenGL3_Init( "#version 410" );
 					break;
@@ -99,7 +99,7 @@ namespace Avokii::Plugins
 				case Impl::SDL2_OpenGL:
 				{
 					auto* sdl_window = static_cast<const WindowSDL2&>(video.GetWindow()).GetSDLWindow();
-					ASSERT( sdl_window );
+					AV_ASSERT( sdl_window );
 					ImGui_ImplOpenGL3_NewFrame();
 					ImGui_ImplSDL2_NewFrame( sdl_window );
 
@@ -142,7 +142,7 @@ namespace Avokii::Plugins
 				}
 			}
 			else
-				LOG_WARN( LoggingChannels::Application, "DearImGui draw data was NULL" );
+				AV_LOG_WARN( LoggingChannels::Application, "DearImGui draw data was NULL" );
 		}
 	}
 
@@ -226,6 +226,6 @@ namespace Avokii::Plugins
 #		pragma warning(disable : 4996)
 #	endif
 
-#	include "Visual/Vendor/dearimgui/backends/imgui_impl_opengl3.cpp"
-#	include "Visual/Vendor/dearimgui/backends/imgui_impl_sdl.cpp"
+#	include <dearimgui/backends/imgui_impl_opengl3.cpp>
+#	include <dearimgui/backends/imgui_impl_sdl.cpp>
 #pragma warning(pop)

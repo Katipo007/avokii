@@ -46,6 +46,7 @@
     <ClInclude Include="src\Avokii\Core.hpp" />
     <ClInclude Include="src\Avokii\Graphics\OpenGLContext.hpp" />
     <ClInclude Include="src\Avokii\Graphics\Window.hpp" />
+    <ClInclude Include="src\Avokii\Plugins\DearImGUI\DearImGuiPlugin.hpp" />
     <ClInclude Include="src\Avokii\Plugins\OpenGL\BufferOpenGL.hpp" />
     <ClInclude Include="src\Avokii\Plugins\OpenGL\FrameBufferOpenGL.hpp" />
     <ClInclude Include="src\Avokii\Plugins\OpenGL\OpenGLHeader.hpp" />
@@ -126,6 +127,7 @@
     <ClCompile Include="src\Avokii\Input\KeyboardInput.cpp" />
     <ClCompile Include="src\Avokii\Logging.cpp" />
     <ClCompile Include="src\Avokii\Core.cpp" />
+    <ClCompile Include="src\Avokii\Plugins\DearImGUI\DearImGuiPlugin.cpp" />
     <ClCompile Include="src\Avokii\Plugins\OpenGL\BufferOpenGL.cpp" />
     <ClCompile Include="src\Avokii\Plugins\OpenGL\FrameBufferOpenGL.cpp" />
     <ClCompile Include="src\Avokii\Plugins\OpenGL\OpenGLCompile.cpp" />
