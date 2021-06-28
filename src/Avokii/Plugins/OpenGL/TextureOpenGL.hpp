@@ -3,7 +3,7 @@
 #include "Avokii/File/Filepath.hpp"
 #include "Avokii/Graphics/Texture.hpp"
 
-namespace Avokii::API
+namespace Avokii::Plugins
 {
 	class TextureOpenGL
 		: public Graphics::Texture

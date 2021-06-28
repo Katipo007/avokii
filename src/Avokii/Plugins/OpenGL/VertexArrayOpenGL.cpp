@@ -63,7 +63,7 @@ namespace
 	}
 }
 
-namespace Avokii::API
+namespace Avokii::Plugins
 {
 	VertexArrayOpenGL::VertexArrayOpenGL( const Graphics::VertexArrayDefinition& props )
 		: name( props.name ? *props.name : "Unnamed vertex array" )

@@ -7,7 +7,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>$(AvokiiDir)vendor\;$(AvokiiDir)vendor\glm\;$(AvokiiDir)vendor\entt\src\;$(AvokiiDir)vendor\glew\include\;$(AvokiiDir)vendor\spdlog\include\;$(AvokiiDir)vendor\dearimgui\include\;$(AvokiiDir)vendor\frozen\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(AvokiiDir)vendor\;$(AvokiiDir)vendor\glm\;$(AvokiiDir)vendor\entt\src\;$(AvokiiDir)vendor\glew\include\;$(AvokiiDir)vendor\spdlog\include\;$(AvokiiDir)vendor\dearimgui\;$(AvokiiDir)vendor\SDL2\;$(AvokiiDir)vendor\frozen\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup />

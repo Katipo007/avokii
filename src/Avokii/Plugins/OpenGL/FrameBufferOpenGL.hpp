@@ -2,7 +2,7 @@
 
 #include "Avokii/Graphics/FrameBuffer.hpp"
 
-namespace Avokii::API
+namespace Avokii::Plugins
 {
 	class FrameBufferOpenGL
 		: public Graphics::FrameBuffer

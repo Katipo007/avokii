@@ -39,7 +39,7 @@ namespace
 	}
 }
 
-namespace Avokii::API
+namespace Avokii::Plugins
 {
 	VertexBufferOpenGL::VertexBufferOpenGL( const Graphics::VertexBufferDefinition& definition )
 		: name( definition.name.value_or( "Unnamed vertex buffer" ) )

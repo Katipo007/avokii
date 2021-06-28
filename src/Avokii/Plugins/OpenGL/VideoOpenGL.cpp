@@ -11,9 +11,9 @@
 #include "TextureOpenGL.hpp"
 #include "VertexArrayOpenGL.hpp"
 
-namespace Avokii::API
+namespace Avokii::Plugins
 {
-	VideoOpenGL::VideoOpenGL( SystemAPI& system_ )
+	VideoOpenGL::VideoOpenGL( API::SystemAPI& system_ )
 		: system( system_ )
 	{
 	}

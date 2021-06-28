@@ -21,7 +21,7 @@ namespace
 	}
 }
 
-namespace Avokii::API
+namespace Avokii::Plugins
 {
 	ShaderOpenGL::ShaderOpenGL( const Filepath& filepath )
 		: opengl_program_id( 0 )

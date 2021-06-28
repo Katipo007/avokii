@@ -6,7 +6,7 @@ namespace
 	constexpr uint32_t MaxFramebufferSize = 8192u;
 }
 
-namespace Avokii::API
+namespace Avokii::Plugins
 {
 	FrameBufferOpenGL::FrameBufferOpenGL( const Graphics::FrameBufferSpecification & spec )
 		: specification( spec )

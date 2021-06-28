@@ -5,7 +5,7 @@
 
 #include <stb_image/stb_image.h>
 
-namespace Avokii::API
+namespace Avokii::Plugins
 {
 	namespace
 	{

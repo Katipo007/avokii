@@ -2,7 +2,7 @@
 
 #include "Avokii/Graphics/VertexArray.hpp"
 
-namespace Avokii::API
+namespace Avokii::Plugins
 {
 	class VertexArrayOpenGL
 		: public Graphics::VertexArray

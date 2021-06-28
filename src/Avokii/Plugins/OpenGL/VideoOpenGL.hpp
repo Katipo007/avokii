@@ -8,7 +8,7 @@ namespace Avokii
 	namespace API { class SystemAPI; }
 	namespace Graphics { class OpenGLContext; }
 
-	namespace API
+	namespace Plugins
 	{
 		class VideoOpenGL final
 			: public API::VideoAPI
@@ -58,7 +58,7 @@ namespace Avokii
 			void OnOpenGLDebugMessage( unsigned source, unsigned type, unsigned id, unsigned severity, int length, const char* message ) const;
 
 		private:
-			SystemAPI& system;
+			API::SystemAPI& system;
 			std::unique_ptr<Graphics::OpenGLContext> context;
 			bool initialised = false;
 

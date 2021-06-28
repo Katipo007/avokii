@@ -3,7 +3,7 @@
 #include "Avokii/File/Filepath.hpp"
 #include "Avokii/Graphics/Shader.hpp"
 
-namespace Avokii::API
+namespace Avokii::Plugins
 {
 	class ShaderOpenGL
 		: public Graphics::Shader

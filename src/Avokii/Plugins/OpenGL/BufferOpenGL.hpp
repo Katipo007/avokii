@@ -2,7 +2,7 @@
 
 #include "Avokii/Graphics/GraphicsBuffer.hpp"
 
-namespace Avokii::API
+namespace Avokii::Plugins
 {
 	class VertexBufferOpenGL
 		: public Graphics::VertexBuffer
