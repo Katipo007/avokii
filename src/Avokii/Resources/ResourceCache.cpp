@@ -44,7 +44,7 @@ namespace Avokii
 			loaded_resource->mAssetId = loader.GetAssetId();
 			loaded_resource->mResourceId = loader.GetResourceId();
 
-			AV_ASSERT( !loaded_resource->GetResourceId() != ResourceId_T{} );
+			AV_ASSERT( loaded_resource->GetResourceId() != ResourceId_T{} );
 			return AddResource( loaded_resource );
 		}
 
