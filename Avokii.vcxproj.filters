@@ -410,5 +410,8 @@
     <ClCompile Include="src\Avokii\Graphics\DearImGui\DearImGui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Avokii\Graphics\stb_image_compile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -120,6 +120,7 @@
     <ClCompile Include="src\Avokii\Graphics\Resources\Material.cpp" />
     <ClCompile Include="src\Avokii\Graphics\Resources\Mesh.cpp" />
     <ClCompile Include="src\Avokii\Graphics\Resources\SpriteSheet.cpp" />
+    <ClCompile Include="src\Avokii\Graphics\stb_image_compile.cpp" />
     <ClCompile Include="src\Avokii\Graphics\Texture.cpp" />
     <ClCompile Include="src\Avokii\Input\InputButtonDevice.cpp" />
     <ClCompile Include="src\Avokii\Input\KeyboardInput.cpp" />
