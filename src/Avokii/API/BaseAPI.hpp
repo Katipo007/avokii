@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Avokii/Timestep.hpp"
+#include "Avokii/String.hpp"
 
 namespace Avokii
 {

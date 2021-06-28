@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Types/String.hpp"
+#include "Avokii/String.hpp"
 
 namespace Avokii::OS
 {

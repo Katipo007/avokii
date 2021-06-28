@@ -1,6 +1,7 @@
 #pragma once
 
-#include <entt/src/entt/core/hashed_string.hpp>
+#include <entt/core/hashed_string.hpp>
+#include "Avokii/String.hpp"
 
 namespace Avokii
 {
