@@ -3,7 +3,6 @@
 #include "Avokii/Resources/BaseResource.hpp"
 #include "Avokii/Resources/ResourceTypes.hpp"
 
-#include "Avokii/Containers/StringHashMap.hpp"
 #include "Avokii/File/Filepath.hpp"
 #include "Avokii/Geometry/Point2D.hpp"
 #include "Avokii/Geometry/Size.hpp"
@@ -20,6 +19,7 @@ namespace Avokii
 
 		struct SpriteSheetEntry
 		{
+			String assetId;
 			Point2D<float> pivot;
 			Rect<float> uvs;
 			Size<float> size;
@@ -36,16 +36,20 @@ namespace Avokii
 			SpriteSheet( ResourceManager& _rManager );
 
 			const std::shared_ptr<const Texture>& GetTexture() const noexcept;
-			const SpriteSheetEntry& GetSprite( StringView name ) const;
-			const SpriteSheetEntry& GetSprite( SpriteIdx_T idx ) const;
+			[[nodiscard]] const SpriteSheetEntry& GetSpriteByAssetId( StringView assetId ) const;
+			[[nodiscard]] const SpriteSheetEntry& GetSpriteByResourceId( ResourceId_T resourceId ) const;
+			[[nodiscard]] const SpriteSheetEntry& GetSpriteBySpriteIndex( SpriteIdx_T idx ) const;
 
-			size_t GetNumSprites() const noexcept;
-			SpriteIdx_T GetSpriteIndex( StringView name ) const;
-			bool HasSprite( StringView name ) const;
+			[[nodiscard]] size_t GetNumSprites() const noexcept;
+			[[nodiscard]] SpriteIdx_T GetSpriteIndexByAssetId( StringView assetId ) const;
+			[[nodiscard]] SpriteIdx_T GetSpriteIndexByResourceId( ResourceId_T resourceId ) const;
+			[[nodiscard]] bool HasSprite( StringView assetId ) const noexcept;
+			[[nodiscard]] bool HasSprite( ResourceId_T resourceId ) const noexcept;
 
 			bool LoadFromJson( StringView json_string, const Filepath& filepath_prefix );
-			void SetTextureId( StringView new_texture_id );
-			void AddSprite( StringView name, const SpriteSheetEntry& sprite );
+			void SetTextureId( StringView textureAssetId );
+			void AddSprite( StringView assetId, const SpriteSheetEntry& sprite );
+			void AddSprite( ResourceId_T resourceId, const SpriteSheetEntry& sprite );
 
 			static constexpr AssetType GetResourceType() noexcept { return AssetType::SpriteSheet; }
 			static std::shared_ptr<SpriteSheet> LoadResource( ResourceLoader& loader );
@@ -59,7 +63,7 @@ namespace Avokii
 			String mTextureAssetId;
 			mutable std::shared_ptr<const Texture> mpTexture;
 			std::vector<SpriteSheetEntry> mSprites;
-			StringHashMap<SpriteIdx_T> mIdToSpriteIdxMap;
+			std::unordered_map<ResourceId_T, SpriteIdx_T> mSpriteIdxMapping;
 		};
 
 		class Sprite final

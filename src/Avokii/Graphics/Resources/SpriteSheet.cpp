@@ -10,13 +10,15 @@
 
 #ifdef _DEBUG
 #	define DEBUG_SPRITESHEET_LOADING 1
+#else
+#	define DEBUG_SPRITESHEET_LOADING 0
 #endif
 
 namespace
 {
 	using namespace Avokii;
 
-	bool ParseFreeTexPackerSpritesheetJson( const Json& json, const Filepath& filepath_prefix, std::vector<std::pair<std::string, Graphics::SpriteSheetEntry>>& out, Filepath& texture_filename_out )
+	bool ParseFreeTexPackerSpritesheetJson( const Json& json, const Filepath& filepath_prefix, std::vector<Graphics::SpriteSheetEntry>& out, Filepath& texture_filename_out )
 	{
 		AV_ASSERT( std::filesystem::is_directory( filepath_prefix ) );
 
@@ -59,13 +61,16 @@ namespace
 				pivot = { pivot_obj["x"].get<float>(), pivot_obj["y"].get<float>() };
 			}
 
-			Graphics::SpriteSheetEntry entry;
-			entry.size = { rect.w, rect.h };
-			entry.pivot = { entry.size.width * pivot.x, entry.size.height * pivot.y };
-			entry.uvs = { Point2D<float>{ rect.x / texture_size.width, rect.y / texture_size.height }, Size<float>{ rect.w / texture_size.width, rect.h / texture_size.height } };
-			entry.rotated = rotated;
-			entry.trimmed = trimmed;
-			out.emplace_back( key, std::move( entry ) );
+			out.emplace_back(
+				Graphics::SpriteSheetEntry
+				{
+					.assetId = String{ key },
+					.pivot = { rect.w * pivot.x, rect.h * pivot.y },
+					.uvs = { Point2D<float>{ rect.x / texture_size.width, rect.y / texture_size.height }, Size<float>{ rect.w / texture_size.width, rect.h / texture_size.height } },
+					.size = { rect.w, rect.h },
+					.rotated = rotated,
+					.trimmed = trimmed,
+				} );
 		};
 
 		Size<float> texture_size;
@@ -124,12 +129,17 @@ namespace Avokii::Graphics
 		return mpTexture;
 	}
 
-	const SpriteSheetEntry& SpriteSheet::GetSprite( StringView name ) const
+	const SpriteSheetEntry& SpriteSheet::GetSpriteByAssetId( StringView _assetId ) const
 	{
-		return GetSprite( GetSpriteIndex( name ) );
+		return GetSpriteBySpriteIndex( GetSpriteIndexByAssetId( _assetId ) );
 	}
 
-	const SpriteSheetEntry& SpriteSheet::GetSprite( SpriteIdx_T idx ) const
+	const SpriteSheetEntry& SpriteSheet::GetSpriteByResourceId( ResourceId_T _resourceId ) const
+	{
+		return GetSpriteBySpriteIndex( GetSpriteIndexByResourceId( _resourceId ) );
+	}
+
+	const SpriteSheetEntry& SpriteSheet::GetSpriteBySpriteIndex( SpriteIdx_T idx ) const
 	{
 		return mSprites.at( idx );
 	}
@@ -139,18 +149,28 @@ namespace Avokii::Graphics
 		return std::size( mSprites );
 	}
 
-	SpriteSheet::SpriteIdx_T SpriteSheet::GetSpriteIndex( StringView name ) const
+	SpriteSheet::SpriteIdx_T SpriteSheet::GetSpriteIndexByAssetId( StringView _assetId ) const
 	{
-		if (const auto found = mIdToSpriteIdxMap.find( name ); found != std::end( mIdToSpriteIdxMap ))
+		return GetSpriteIndexByResourceId( ToResourceId( _assetId ) );
+	}
+
+	SpriteSheet::SpriteIdx_T SpriteSheet::GetSpriteIndexByResourceId( ResourceId_T _resourceId ) const
+	{
+		if (const auto found = mSpriteIdxMapping.find( _resourceId ); found != std::end( mSpriteIdxMapping ))
 			return found->second;
-		
-		AV_LOG_ERROR( LoggingChannels::Resource, "SpriteSheet does not contain sprite '{}'", name );
+
+		AV_LOG_ERROR( LoggingChannels::Resource, "SpriteSheet does not contain sprite with resource id '{}'", _resourceId );
 		return static_cast<SpriteIdx_T>(-1);
 	}
 
-	bool SpriteSheet::HasSprite( StringView name ) const
+	bool SpriteSheet::HasSprite( StringView _assetId ) const noexcept
 	{
-		return mIdToSpriteIdxMap.contains( name );
+		return mSpriteIdxMapping.contains( ToResourceId( _assetId ) );
+	}
+
+	bool SpriteSheet::HasSprite( ResourceId_T _resourceId ) const noexcept
+	{
+		return mSpriteIdxMapping.contains( _resourceId );
 	}
 
 	bool SpriteSheet::LoadFromJson( StringView json_string, const Filepath& filepath_prefix )
@@ -160,7 +180,7 @@ namespace Avokii::Graphics
 		bool handled = false;
 
 		Filepath texture_filename;
-		std::vector<std::pair<std::string, SpriteSheetEntry>> entries;
+		std::vector<SpriteSheetEntry> entries;
 		try
 		{
 			if (j.contains( "frames" ) && j.contains( "meta" ) && j["meta"]["app"].is_string() && j["meta"]["app"].get<std::string>() == "http://free-tex-packer.com")
@@ -180,7 +200,7 @@ namespace Avokii::Graphics
 		mTextureAssetId = Filepath{ texture_filename }.lexically_normal().generic_string();
 		AV_ASSERT( !mTextureAssetId.empty() );
 		for (auto& entry : entries)
-			AddSprite( entry.first, entry.second );
+			AddSprite( entry.assetId, entry );
 
 		return handled;
 	}
@@ -192,9 +212,14 @@ namespace Avokii::Graphics
 			ReloadTexture( mrManager );
 	}
 
-	void SpriteSheet::AddSprite( StringView _name, const SpriteSheetEntry& _sprite )
+	void SpriteSheet::AddSprite( StringView _assetId, const SpriteSheetEntry& _sprite )
 	{
-		const auto [it, success] = mIdToSpriteIdxMap.try_emplace( _name.data(), static_cast<SpriteIdx_T>(mSprites.size()) );
+		return AddSprite( ToResourceId( _assetId ), _sprite );
+	}
+
+	void SpriteSheet::AddSprite( ResourceId_T _resourceId, const SpriteSheetEntry& _sprite )
+	{
+		const auto [it, success] = mSpriteIdxMapping.try_emplace( _resourceId, static_cast<SpriteIdx_T>(mSprites.size()) );
 		if (success)
 			mSprites.push_back( _sprite );
 	}
@@ -234,7 +259,7 @@ namespace Avokii::Graphics
 	const SpriteSheetEntry& Sprite::GetSprite() const
 	{
 		if( auto sheet = GetSpriteSheet() )
-			return sheet->GetSprite( mIndex );
+			return sheet->GetSpriteBySpriteIndex( mIndex );
 
 		throw std::runtime_error( "Spritesheet has expired" );
 	}
@@ -258,8 +283,9 @@ namespace Avokii::Graphics
 				return entry.HasSprite( loader.GetAssetId() );
 			} );
 
+
 		if (the_sheet)
-			return std::make_shared<Sprite>( the_sheet, the_sheet->GetSpriteIndex( loader.GetAssetId() ) );
+			return std::make_shared<Sprite>( the_sheet, the_sheet->GetSpriteIndexByAssetId( loader.GetAssetId() ) );
 
 		return nullptr;
 	}
