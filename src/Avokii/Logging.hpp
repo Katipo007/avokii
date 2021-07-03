@@ -12,6 +12,7 @@
 #include "Utility/Hashing.hpp"
 
 #pragma warning(push, 0) // This ignores all warnings raised inside External headers
+#pragma warning(disable : ALL_CODE_ANALYSIS_WARNINGS)
 #define SPDLOG_COMPILED_LIB
 #include <spdlog/spdlog.h>
 #include <spdlog/fmt/ostr.h>

@@ -22,7 +22,7 @@
       <PrecompiledHeaderFile>$(ProjectDir)src\pch.hpp</PrecompiledHeaderFile>
       <ForcedIncludeFiles>$(ProjectDir)src\pch.hpp</ForcedIncludeFiles>
       <TreatAngleIncludeAsExternal>true</TreatAngleIncludeAsExternal>
-      <DisableSpecificWarnings>4652;5045</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4652</DisableSpecificWarnings>
       <AdditionalIncludeDirectories>$(ProjectDir)src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
