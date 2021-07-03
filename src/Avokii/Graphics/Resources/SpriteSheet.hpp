@@ -1,5 +1,7 @@
 #pragma once
 
+#include <ranges>
+
 #include "Avokii/Resources/BaseResource.hpp"
 #include "Avokii/Resources/ResourceTypes.hpp"
 
@@ -46,10 +48,16 @@ namespace Avokii
 			[[nodiscard]] bool HasSprite( StringView assetId ) const noexcept;
 			[[nodiscard]] bool HasSprite( ResourceId_T resourceId ) const noexcept;
 
+			[[nodiscard]] auto GetSprites() const noexcept { return std::views::all( mSpriteIdxMapping ); }
+			[[nodiscard]] auto GetSpriteEntries() const noexcept { return std::views::all( mSprites ); }
+
 			bool LoadFromJson( StringView json_string, const Filepath& filepath_prefix );
 			void SetTextureId( StringView textureAssetId );
 			void AddSprite( StringView assetId, const SpriteSheetEntry& sprite );
 			void AddSprite( ResourceId_T resourceId, const SpriteSheetEntry& sprite );
+
+			// Load the contained sprites into the resource manager
+			void LoadSprites() const noexcept;
 
 			static constexpr AssetType GetResourceType() noexcept { return AssetType::SpriteSheet; }
 			static std::shared_ptr<SpriteSheet> LoadResource( ResourceLoader& loader );

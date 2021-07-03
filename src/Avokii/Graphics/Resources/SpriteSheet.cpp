@@ -224,6 +224,12 @@ namespace Avokii::Graphics
 			mSprites.push_back( _sprite );
 	}
 
+	void SpriteSheet::LoadSprites() const noexcept
+	{
+		for (auto& entry : mSprites)
+			mrManager.Load<Sprite>( entry.assetId );
+	}
+
 	std::shared_ptr<SpriteSheet> SpriteSheet::LoadResource( ResourceLoader& loader )
 	{
 		using namespace StringLiterals;
