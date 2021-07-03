@@ -19,7 +19,7 @@ namespace Avokii
 
 	private:
 		friend class BaseResourceCache;
-		std::optional<String> mAssetId;
-		ResourceId_T mResourceId;
+		std::optional<String> mAssetId{ std::nullopt };
+		ResourceId_T mResourceId{};
 	};
 }
