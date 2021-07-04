@@ -107,7 +107,7 @@ namespace Avokii::Graphics
 		constexpr auto identity_mat = glm::identity<Mat4f>();
 
 		mRotation = glm::eulerAngleXZ( mPitch, mYaw ); // equivalent: glm::rotate( identity_mat, pitch, Worldspace::Right3 )* glm::rotate( identity_mat, yaw, Worldspace::Up3 );
-		mMatView = glm::translate( identity_mat, Worldspace::Up3 * mRadius ) * mRotation * glm::translate( identity_mat, mTargetPosition );
+		mMatView = glm::translate( identity_mat, Worldspace::Up3 * mRadius ) * mRotation * glm::translate( identity_mat, -mTargetPosition );
 		mMatViewProjection = GetProjectionMatrix() * mMatView;
 		mDirty = false;
 	}
