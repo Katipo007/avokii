@@ -312,6 +312,12 @@
     <ClInclude Include="src\Avokii\Plugins\DearImGUI\DearImGuiPlugin.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Avokii\Input\GamepadInput.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Avokii\Plugins\SDL2\GamepadInputSDL2.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Avokii\Resources\ResourceCache.cpp">
@@ -417,6 +423,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Avokii\Plugins\DearImGUI\DearImGuiPlugin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Avokii\Plugins\SDL2\GamepadInputSDL2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Avokii\Input\GamepadInput.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

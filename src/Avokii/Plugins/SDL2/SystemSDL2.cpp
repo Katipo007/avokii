@@ -31,11 +31,19 @@ namespace Avokii::Plugins
                 AV_LOG_CRITICAL( LoggingChannels::Application, "SDL2 could not initialize! SDL_Error: '{0}'", SDL_GetError() );
                 AV_FATAL( "SDL2 could not initialize!" );
             }
+
+            if (SDL_InitSubSystem( SDL_INIT_EVENTS ) != 0)
+                throw std::runtime_error{ std::string{} + "Failed to init SDL2 events subsystem: " + SDL_GetError() };
+
+            if (SDL_InitSubSystem( SDL_INIT_TIMER ) != 0)
+                throw std::runtime_error{ std::string{} + "Failed to init SDL2 timer subsystem: " + SDL_GetError() };
         }
     }
 
     void SystemSDL2::Shutdown()
     {
+        SDL_QuitSubSystem( SDL_INIT_EVENTS );
+        SDL_InitSubSystem( SDL_INIT_TIMER );
         SDL_Quit();
     }
 
@@ -244,7 +252,43 @@ namespace Avokii::Plugins
                 }
                 break;
             }
+            case SDL_CONTROLLERAXISMOTION:
+            {
+                if (auto* input_sdl2 = dynamic_cast<Plugins::InputSDL2*>(input); (input_sdl2 != nullptr))
+                    input_sdl2->ProcessEvent( event.caxis );
+                break;
             }
+            case SDL_CONTROLLERBUTTONUP:
+            case SDL_CONTROLLERBUTTONDOWN:
+            {
+                if (auto* input_sdl2 = dynamic_cast<Plugins::InputSDL2*>(input); (input_sdl2 != nullptr))
+                    input_sdl2->ProcessEvent( event.cbutton );
+                break;
+            }
+            case SDL_CONTROLLERDEVICEADDED:
+            case SDL_CONTROLLERDEVICEREMAPPED:
+            case SDL_CONTROLLERDEVICEREMOVED:
+            {
+                if (auto* input_sdl2 = dynamic_cast<Plugins::InputSDL2*>(input); (input_sdl2 != nullptr))
+                    input_sdl2->ProcessEvent( event.cdevice );
+                break;
+            }
+            case SDL_CONTROLLERSENSORUPDATE:
+            {
+                if (auto* input_sdl2 = dynamic_cast<Plugins::InputSDL2*>(input); (input_sdl2 != nullptr))
+                    input_sdl2->ProcessEvent( event.csensor );
+                break;
+            }
+            case SDL_CONTROLLERTOUCHPADDOWN:
+            case SDL_CONTROLLERTOUCHPADUP:
+            case SDL_CONTROLLERTOUCHPADMOTION:
+            {
+                if (auto* input_sdl2 = dynamic_cast<Plugins::InputSDL2*>(input); (input_sdl2 != nullptr))
+                    input_sdl2->ProcessEvent( event.ctouchpad );
+                break;
+            }
+
+            } // end switch
         }
 
         return true;

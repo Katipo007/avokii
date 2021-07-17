@@ -28,6 +28,7 @@
     <ClInclude Include="src\Avokii\Graphics\Types.hpp" />
     <ClInclude Include="src\Avokii\Graphics\VertexArray.hpp" />
     <ClInclude Include="src\Avokii\Graphics\WorldSpace.hpp" />
+    <ClInclude Include="src\Avokii\Input\GamepadInput.hpp" />
     <ClInclude Include="src\Avokii\PlatformDetection.hpp" />
     <ClInclude Include="src\Avokii\AbstractGame.hpp" />
     <ClInclude Include="src\Avokii\API\BaseAPI.hpp" />
@@ -54,6 +55,7 @@
     <ClInclude Include="src\Avokii\Plugins\OpenGL\TextureOpenGL.hpp" />
     <ClInclude Include="src\Avokii\Plugins\OpenGL\VertexArrayOpenGL.hpp" />
     <ClInclude Include="src\Avokii\Plugins\OpenGL\VideoOpenGL.hpp" />
+    <ClInclude Include="src\Avokii\Plugins\SDL2\GamepadInputSDL2.hpp" />
     <ClInclude Include="src\Avokii\Plugins\SDL2\InputSDL2.hpp" />
     <ClInclude Include="src\Avokii\Plugins\SDL2\KeyboardInputSDL2.hpp" />
     <ClInclude Include="src\Avokii\Plugins\SDL2\OpenGLContextSDL2.hpp" />
@@ -123,6 +125,7 @@
     <ClCompile Include="src\Avokii\Graphics\Resources\SpriteSheet.cpp" />
     <ClCompile Include="src\Avokii\Graphics\stb_image_compile.cpp" />
     <ClCompile Include="src\Avokii\Graphics\Texture.cpp" />
+    <ClCompile Include="src\Avokii\Input\GamepadInput.cpp" />
     <ClCompile Include="src\Avokii\Input\InputButtonDevice.cpp" />
     <ClCompile Include="src\Avokii\Input\KeyboardInput.cpp" />
     <ClCompile Include="src\Avokii\Logging.cpp" />
@@ -135,6 +138,7 @@
     <ClCompile Include="src\Avokii\Plugins\OpenGL\TextureOpenGL.cpp" />
     <ClCompile Include="src\Avokii\Plugins\OpenGL\VertexArrayOpenGL.cpp" />
     <ClCompile Include="src\Avokii\Plugins\OpenGL\VideoOpenGL.cpp" />
+    <ClCompile Include="src\Avokii\Plugins\SDL2\GamepadInputSDL2.cpp" />
     <ClCompile Include="src\Avokii\Plugins\SDL2\InputSDL2.cpp" />
     <ClCompile Include="src\Avokii\Plugins\SDL2\KeyboardInputSDL2.cpp" />
     <ClCompile Include="src\Avokii\Plugins\SDL2\OpenGLContextSDL2.cpp" />
