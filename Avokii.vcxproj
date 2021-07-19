@@ -62,6 +62,7 @@
     <ClInclude Include="src\Avokii\Plugins\SDL2\SDL2Include.hpp" />
     <ClInclude Include="src\Avokii\Plugins\SDL2\SystemSDL2.hpp" />
     <ClInclude Include="src\Avokii\Plugins\SDL2\WindowSDL2.hpp" />
+    <ClInclude Include="src\Avokii\Random\Random.hpp" />
     <ClInclude Include="src\Avokii\Resources\ResourceId.hpp" />
     <ClInclude Include="src\Avokii\Resources\ResourceManager.hpp" />
     <ClInclude Include="src\Avokii\Resources\Concepts.hpp" />

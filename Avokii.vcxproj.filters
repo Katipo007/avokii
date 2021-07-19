@@ -318,6 +318,9 @@
     <ClInclude Include="src\Avokii\Plugins\SDL2\GamepadInputSDL2.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Avokii\Random\Random.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Avokii\Resources\ResourceCache.cpp">
