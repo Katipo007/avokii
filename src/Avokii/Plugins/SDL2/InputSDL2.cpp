@@ -67,6 +67,7 @@ namespace Avokii::Plugins
 	void InputSDL2::Shutdown()
 	{
 		keyboards.clear();
+		gamepads.clear();
 
 		SDL_QuitSubSystem( SDL_INIT_GAMECONTROLLER );
 	}
