@@ -9,8 +9,7 @@ namespace Avokii::Random
 
 	Generator CreateGenerator( unsigned int seed )
 	{
-		auto device{ std::random_device() };
-		return Generator{  };
+		return Generator{ seed };
 	}
 
 	Generator CreateGenerator()
