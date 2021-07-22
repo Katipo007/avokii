@@ -59,4 +59,10 @@ namespace Avokii::ContainerOps
 	{
 		return std::count_if( std::begin( container ), std::end( container ), pred );
 	}
+
+	template<std::ranges::range CONTAINER>
+	auto RemoveIf( CONTAINER& container, std::predicate<std::ranges::range_value_t<const CONTAINER>> auto pred ) -> std::ranges::iterator_t<CONTAINER>
+	{
+		return std::remove_if( std::begin( container ), std::end( container ), pred );
+	}
 }
