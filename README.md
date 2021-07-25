@@ -22,6 +22,7 @@ A small C++20 game engine designed for personal use
 | [pugixml](https://pugixml.org/) | [MIT](https://github.com/zeux/pugixml/blob/master/LICENSE.md) | XML parser |
 | [magic_enum](https://github.com/Neargye/magic_enum) | [MIT](https://github.com/Neargye/magic_enum/blob/master/LICENSE) | A great utility library providing static reflection for enums |
 | [frozen](https://github.com/serge-sans-paille/frozen) | [Apache-2.0 License](https://github.com/serge-sans-paille/frozen/blob/master/LICENSE) | Header-only library for 0 initialization cost containers |
+| [yaml-cpp](https://github.com/jbeder/yaml-cpp) | [MIT](https://github.com/jbeder/yaml-cpp/blob/master/LICENSE) | Yaml file parsing |
 
 ## Getting Started
 TODO
