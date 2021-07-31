@@ -26,11 +26,11 @@ namespace Avokii
 
 		[[nodiscard]] AssetType GetResourceType() const noexcept { return mAssetType; }
 
-		[[nodiscard]] bool Exists( ResourceId_T resource_id ) const noexcept;
-		[[nodiscard]] UntypedResourcePtr GetUntyped( ResourceId_T _resourceId ) const noexcept;
+		[[nodiscard]] bool Exists( ResourceId resource_id ) const noexcept;
+		[[nodiscard]] UntypedResourcePtr GetUntyped( ResourceId _resourceId ) const noexcept;
 
 		UntypedResourcePtr LoadUntyped( StringView _assetId );
-		void Unload( ResourceId_T _resourceId );
+		void Unload( ResourceId _resourceId );
 		/// <summary>
 		/// Unload resources that currently aren't being used.
 		/// </summary>
@@ -59,7 +59,7 @@ namespace Avokii
 				: resource{ std::move( ptr ) }, generation{ generation }
 			{}
 		};
-		using ResourceHashmap_T = std::unordered_map<ResourceId_T, ResourceEntry>;
+		using ResourceHashmap_T = std::unordered_map<ResourceId, ResourceEntry>;
 
 		ResourceHashmap_T mResources;
 		size_t mCurrentGeneration{ 0 };
@@ -78,7 +78,7 @@ namespace Avokii
 		{}
 		virtual ~ResourceCache() {}
 
-		[[nodiscard]] ResourcePtr Get( ResourceId_T _resourceId ) const
+		[[nodiscard]] ResourcePtr Get( ResourceId _resourceId ) const
 		{
 			return std::dynamic_pointer_cast<const R>(GetUntyped( _resourceId ));
 		}

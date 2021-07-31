@@ -134,7 +134,7 @@ namespace Avokii::Graphics
 		return GetSpriteBySpriteIndex( GetSpriteIndexByAssetId( _assetId ) );
 	}
 
-	const SpriteSheetEntry& SpriteSheet::GetSpriteByResourceId( ResourceId_T _resourceId ) const
+	const SpriteSheetEntry& SpriteSheet::GetSpriteByResourceId( ResourceId _resourceId ) const
 	{
 		return GetSpriteBySpriteIndex( GetSpriteIndexByResourceId( _resourceId ) );
 	}
@@ -154,7 +154,7 @@ namespace Avokii::Graphics
 		return GetSpriteIndexByResourceId( ToResourceId( _assetId ) );
 	}
 
-	SpriteSheet::SpriteIdx_T SpriteSheet::GetSpriteIndexByResourceId( ResourceId_T _resourceId ) const
+	SpriteSheet::SpriteIdx_T SpriteSheet::GetSpriteIndexByResourceId( ResourceId _resourceId ) const
 	{
 		if (const auto found = mSpriteIdxMapping.find( _resourceId ); found != std::end( mSpriteIdxMapping ))
 			return found->second;
@@ -168,7 +168,7 @@ namespace Avokii::Graphics
 		return mSpriteIdxMapping.contains( ToResourceId( _assetId ) );
 	}
 
-	bool SpriteSheet::HasSprite( ResourceId_T _resourceId ) const noexcept
+	bool SpriteSheet::HasSprite( ResourceId _resourceId ) const noexcept
 	{
 		return mSpriteIdxMapping.contains( _resourceId );
 	}
@@ -217,7 +217,7 @@ namespace Avokii::Graphics
 		return AddSprite( ToResourceId( _assetId ), _sprite );
 	}
 
-	void SpriteSheet::AddSprite( ResourceId_T _resourceId, const SpriteSheetEntry& _sprite )
+	void SpriteSheet::AddSprite( ResourceId _resourceId, const SpriteSheetEntry& _sprite )
 	{
 		const auto [it, success] = mSpriteIdxMapping.try_emplace( _resourceId, static_cast<SpriteIdx_T>(mSprites.size()) );
 		if (success)

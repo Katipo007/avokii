@@ -34,13 +34,13 @@ namespace Avokii
 		}
 
 		template<Concepts::Resource R>
-		[[nodiscard]] bool Exists( ResourceId_T _resourceId ) const noexcept { return GetCache<R>().Exists( _resourceId ); }
+		[[nodiscard]] bool Exists( ResourceId _resourceId ) const noexcept { return GetCache<R>().Exists( _resourceId ); }
 
 		template<Concepts::Resource R>
-		[[nodiscard]] bool IsLoaded( ResourceId_T _resourceId ) const noexcept { return GetCache<R>().IsLoaded( _resourceId ); }
+		[[nodiscard]] bool IsLoaded( ResourceId _resourceId ) const noexcept { return GetCache<R>().IsLoaded( _resourceId ); }
 
 		template<Concepts::Resource R>
-		[[nodiscard]] ResourceHandle<const R> Get( ResourceId_T _resourceId ) const { return ResourceHandle<const R>( GetCache<R>().Get( _resourceId ) ); }
+		[[nodiscard]] ResourceHandle<const R> Get( ResourceId _resourceId ) const { return ResourceHandle<const R>( GetCache<R>().Get( _resourceId ) ); }
 
 		template<Concepts::Resource R>
 		[[nodiscard]] ResourceHandle<const R> GetOrLoad( StringView _assetId )
@@ -55,7 +55,7 @@ namespace Avokii
 		ResourceHandle<const R> Load( StringView _assetId ) { return rGetCache<R>().Load( _assetId ); }
 
 		template<Concepts::Resource R>
-		void Unload( ResourceId_T _resourceId ) { GetCache<R>().Unload( _resourceId ); }
+		void Unload( ResourceId _resourceId ) { GetCache<R>().Unload( _resourceId ); }
 
 		template<Concepts::Resource R>
 		void Purge( size_t _minGenerations = 3 ) { GetCache<R>().Purge( _minGenerations ); }

@@ -12,7 +12,7 @@ namespace Avokii
 		virtual ~BaseResource() = default;
 		
 		StringView GetAssetId() const noexcept { return mAssetId.has_value() ? *mAssetId : StringView{}; }
-		ResourceId_T GetResourceId() const noexcept { return mResourceId; }
+		ResourceId GetResourceId() const noexcept { return mResourceId; }
 	
 	protected:
 		BaseResource() = default;
@@ -20,6 +20,6 @@ namespace Avokii
 	private:
 		friend class BaseResourceCache;
 		std::optional<String> mAssetId{ std::nullopt };
-		ResourceId_T mResourceId{};
+		ResourceId mResourceId{};
 	};
 }

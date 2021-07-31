@@ -14,7 +14,7 @@ namespace Avokii
 		friend class BaseResourceCache;
 
 		StringView GetAssetId() const noexcept { return mAssetId; }
-		ResourceId_T GetResourceId() const noexcept { return mResourceId; }
+		ResourceId GetResourceId() const noexcept { return mResourceId; }
 
 		ResourceManager& GetManager() const noexcept { return mManager; }
 
@@ -23,7 +23,7 @@ namespace Avokii
 		virtual ~ResourceLoader();
 
 		String mAssetId;
-		ResourceId_T mResourceId;
+		ResourceId mResourceId;
 		ResourceManager& mManager;
 	};
 }

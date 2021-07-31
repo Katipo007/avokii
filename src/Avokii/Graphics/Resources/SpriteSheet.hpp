@@ -39,14 +39,14 @@ namespace Avokii
 
 			const std::shared_ptr<const Texture>& GetTexture() const noexcept;
 			[[nodiscard]] const SpriteSheetEntry& GetSpriteByAssetId( StringView assetId ) const;
-			[[nodiscard]] const SpriteSheetEntry& GetSpriteByResourceId( ResourceId_T resourceId ) const;
+			[[nodiscard]] const SpriteSheetEntry& GetSpriteByResourceId( ResourceId resourceId ) const;
 			[[nodiscard]] const SpriteSheetEntry& GetSpriteBySpriteIndex( SpriteIdx_T idx ) const;
 
 			[[nodiscard]] size_t GetNumSprites() const noexcept;
 			[[nodiscard]] SpriteIdx_T GetSpriteIndexByAssetId( StringView assetId ) const;
-			[[nodiscard]] SpriteIdx_T GetSpriteIndexByResourceId( ResourceId_T resourceId ) const;
+			[[nodiscard]] SpriteIdx_T GetSpriteIndexByResourceId( ResourceId resourceId ) const;
 			[[nodiscard]] bool HasSprite( StringView assetId ) const noexcept;
-			[[nodiscard]] bool HasSprite( ResourceId_T resourceId ) const noexcept;
+			[[nodiscard]] bool HasSprite( ResourceId resourceId ) const noexcept;
 
 			[[nodiscard]] auto GetSprites() const noexcept { return std::views::all( mSpriteIdxMapping ); }
 			[[nodiscard]] auto GetSpriteEntries() const noexcept { return std::views::all( mSprites ); }
@@ -54,7 +54,7 @@ namespace Avokii
 			bool LoadFromJson( StringView json_string, const Filepath& filepath_prefix );
 			void SetTextureId( StringView textureAssetId );
 			void AddSprite( StringView assetId, const SpriteSheetEntry& sprite );
-			void AddSprite( ResourceId_T resourceId, const SpriteSheetEntry& sprite );
+			void AddSprite( ResourceId resourceId, const SpriteSheetEntry& sprite );
 
 			// Load the contained sprites into the resource manager
 			void LoadSprites() const noexcept;
@@ -71,7 +71,7 @@ namespace Avokii
 			String mTextureAssetId;
 			mutable std::shared_ptr<const Texture> mpTexture;
 			std::vector<SpriteSheetEntry> mSprites;
-			std::unordered_map<ResourceId_T, SpriteIdx_T> mSpriteIdxMapping;
+			std::unordered_map<ResourceId, SpriteIdx_T> mSpriteIdxMapping;
 		};
 
 		class Sprite final
