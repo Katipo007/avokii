@@ -61,7 +61,11 @@ namespace Avokii
 		ResourceManager& GetResourceManager() const { return *mpResourceManager; }
 
 		template<APIConcept API_T>
-		API_T* GetAPI() noexcept { return const_cast<API_T*>(((const Core*)this)->GetAPI<API_T>()); }
+		API_T* GetAPI() noexcept
+		{
+			constexpr auto type{ API_T::GetType() };
+			return dynamic_cast<API_T*>(rGetAPI( type ));
+		}
 
 		template<APIConcept API_T>
 		const API_T* GetAPI() const noexcept
@@ -71,19 +75,35 @@ namespace Avokii
 		}
 
 		template<APIConcept API_T>
-		API_T& GetRequiredAPI() noexcept { return const_cast<API_T&>(((const Core*)this)->GetRequiredAPI<API_T>()); }
+		API_T& rGetRequiredAPI()
+		{
+			constexpr auto type{ API_T::GetType() };
+			return dynamic_cast<API_T&>(rGetRequiredAPI( type ));
+		}
 
 		template<APIConcept API_T>
-		const API_T& GetRequiredAPI() const noexcept
+		const API_T& GetRequiredAPI() const
 		{
 			constexpr auto type{ API_T::GetType() };
 			return dynamic_cast<const API_T&>(GetRequiredAPI( type ));
 		}
 
-		inline API::BaseAPI* GetAPI( const APIType type ) noexcept;
-		inline const API::BaseAPI* GetAPI( const APIType type ) const noexcept;
-		inline API::BaseAPI& rGetRequiredAPI( const APIType type );
-		inline const API::BaseAPI& GetRequiredAPI( const APIType type ) const;
+		inline API::BaseAPI* rGetAPI( const APIType type ) noexcept { return mApis.at( type ).get(); }
+		inline const API::BaseAPI* GetAPI( const APIType type ) const noexcept { return mApis.at( type ).get(); }
+		inline API::BaseAPI& rGetRequiredAPI( const APIType type )
+		{
+			if (auto* const api = rGetAPI( type ))
+				return *api;
+
+			throw std::runtime_error( "Missing required API" );
+		}
+		inline const API::BaseAPI& GetRequiredAPI( const APIType type ) const
+		{
+			if (const auto* const api = GetAPI( type ))
+				return *api;
+
+			throw std::runtime_error( "Missing required API" );
+		}
 
 		int Dispatch();
 

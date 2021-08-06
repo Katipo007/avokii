@@ -63,32 +63,6 @@ namespace Avokii
 		mIsInitialised = true;
 	}
 
-	inline API::BaseAPI* Core::GetAPI( const APIType type ) noexcept
-	{
-		return mApis.at( type ).get();
-	}
-
-	inline const API::BaseAPI* Core::GetAPI( const APIType type ) const noexcept
-	{
-		return mApis.at( type ).get();
-	}
-
-	inline API::BaseAPI& Core::rGetRequiredAPI( const APIType type )
-	{
-		if (auto* api = GetAPI( type ))
-			return *api;
-		
-		throw std::runtime_error( "Missing required API" );
-	}
-
-	inline const API::BaseAPI& Core::GetRequiredAPI( const APIType type ) const
-	{
-		if (auto* api = GetAPI( type ))
-			return *api;
-		
-		throw std::runtime_error( "Missing required API" );
-	}
-
 	int Core::Dispatch()
 	{
 		using Clock_T = std::chrono::steady_clock;
@@ -110,7 +84,7 @@ namespace Avokii
 				const auto timestep = PreciseTimestep( current_time_seconds, FixedDeltaTimeSeconds );
 				DoFixedUpdate( timestep );
 				DoVariableUpdate( timestep );
-				GetRequiredAPI<API::SystemAPI>().Sleep( static_cast<unsigned long>(FixedDeltaTimeSeconds * 1000) );
+				rGetRequiredAPI<API::SystemAPI>().Sleep( static_cast<unsigned long>(FixedDeltaTimeSeconds * 1000) );
 			}
 		}
 		else
