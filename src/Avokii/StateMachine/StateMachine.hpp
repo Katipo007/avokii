@@ -120,12 +120,12 @@ namespace Avokii
 			/// Have the current state of this machine handle an event, performing the action on a given machine
 			/// </summary>
 			template<Concepts::Event Event>
-			void HandleBy( const Event& event, Machine& machine )
+			void HandleBy( const Event& e, Machine& machine )
 			{
-				auto PassEventToState = [&machine, &event]( auto* state )
+				auto PassEventToState = [&machine, &e]( auto* state )
 				{
-					Concepts::Action auto action = state->HandleEvent( event );
-					action.Execute( machine, *state, event );
+					Concepts::Action auto action = state->HandleEvent( e );
+					action.Execute( machine, *state, e );
 				};
 				std::visit( PassEventToState, current_state );
 			}

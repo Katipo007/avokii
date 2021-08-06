@@ -47,39 +47,23 @@ namespace Avokii
 			constexpr TransitionTo() = default;
 
 			template<typename Machine, Concepts::State PreviousState, Concepts::Event Event>
-			void Execute( Machine& machine, PreviousState& previous_state, const Event& event )
+			void Execute( Machine& machine, PreviousState& previous_state, const Event& e )
 			{
+				static_assert(std::same_as<PreviousState, TargetState> == false, "Not allowed to transition to current state");
 				static_assert(Concepts::State<TargetState>); // we have this concept requirement inside the definition so that we can using in-complete types
-				static_assert(Concepts::Event<Event>);
 
-#pragma warning(push)
-#pragma warning(disable:4839)
-				LeaveState( previous_state, event );
+				if constexpr (detail::HasOnLeaveMethod<PreviousState, const Event&>)
+					previous_state.OnLeave( e );
+				else if constexpr (detail::HasDefaultOnLeaveMethod<PreviousState>)
+					previous_state.OnLeave();
+
 				TargetState& new_state = machine.template TransitionTo<TargetState>();
-				Concepts::Action auto enter_action = EnterState( new_state, event ); // we allow EnterState to return an action so we can have transient states
-				enter_action.Execute( machine, new_state, event );
-#pragma warning(pop)
+
+				if constexpr (detail::HasOnEnterMethod<TargetState, const Event&>)
+					new_state.OnEnter( e ).Execute( machine, new_state, e );
+				else if constexpr (detail::HasDefaultOnEnterMethod<TargetState>)
+					new_state.OnEnter().Execute( machine, new_state, e );
 			}
-
-		private:
-			// NOTE: using SFINAE to detect whether a OnEnter or OnLeave method was defined for a given transition type
-
-			void LeaveState( ... ) {}
-			Concepts::Action auto EnterState( ... ) { return NoAction{}; }
-
-			// version which doesn't take event
-			template<Concepts::State NewState, Concepts::Event Event>
-			Concepts::Action auto EnterState( NewState& new_state, const Event& ) requires(!detail::HasOnEnterMethod<NewState, const Event&>&& detail::HasDefaultOnEnterMethod<NewState>) { return new_state.OnEnter(); }
-
-			template<Concepts::State PreviousState, Concepts::Event Event>
-			void LeaveState( PreviousState& previous_state, const Event& ) requires(!detail::HasOnLeaveMethod<PreviousState, const Event&>&& detail::HasDefaultOnLeaveMethod<PreviousState>) { return previous_state.OnLeave(); }
-
-			// version which does take event
-			template<Concepts::State NewState, Concepts::Event Event>
-			Concepts::Action auto EnterState( NewState& new_state, const Event& event ) requires(detail::HasOnEnterMethod<NewState, const Event&>) { return new_state.OnEnter( event ); }
-
-			template<Concepts::State PreviousState, Concepts::Event Event>
-			void LeaveState( PreviousState& previous_state, const Event& event ) requires(detail::HasOnLeaveMethod<PreviousState, const Event&>) { return previous_state.OnLeave( event ); }
 		};
 	}
 }

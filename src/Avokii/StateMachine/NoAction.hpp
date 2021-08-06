@@ -14,7 +14,7 @@ namespace Avokii
 			constexpr NoAction() = default;
 
 			template<typename Machine, Concepts::State State, Concepts::Event Event>
-			inline void Execute( Machine&, State&, const Event& ) {}
+			inline void Execute( Machine&, State&, const Event& ) noexcept {}
 		};
 	}
 }
