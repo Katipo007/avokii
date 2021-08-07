@@ -41,7 +41,7 @@ namespace Avokii
 		/// </summary>
 		/// <typeparam name="TargetState">State type to transition to</typeparam>
 		template<class TargetState>
-		class TransitionTo
+		class [[nodiscard]] TransitionTo
 		{
 		public:
 			constexpr TransitionTo() = default;

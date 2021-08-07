@@ -9,7 +9,7 @@ namespace Avokii
 		/// <summary>
 		/// Informs that the state machine does not change from the event
 		/// </summary>
-		struct NoAction
+		struct [[nodiscard]] NoAction
 		{
 			constexpr NoAction() = default;
 
