@@ -22,8 +22,8 @@ namespace Avokii::Graphics
 	/// Renderer
 	/// 
 
-	Renderer::Renderer( API::VideoAPI& _rVideo )
-		: mrVideo( _rVideo )
+	Renderer::Renderer( API::VideoAPI& rVideo )
+		: mrVideo( rVideo )
 	{
 	}
 
@@ -45,29 +45,29 @@ namespace Avokii::Graphics
 		mrVideo.SetViewport( Rect<uint32_t>( 0, 0, width, height ) );
 	}
 
-	void Renderer::BeginScene( Camera& _rCamera )
+	void Renderer::BeginScene( Camera& rCamera )
 	{	
 		//mrVideo.SetClearColour( 0x101010FF_rgba );
 		//mrVideo.Clear();
 
-		msSceneData->viewProjectionMatrix = _rCamera.GetViewProjectionMatrix();
+		msSceneData->viewProjectionMatrix = rCamera.GetViewProjectionMatrix();
 	}
 
 	void Renderer::EndScene()
 	{
 	}
 
-	void Renderer::Submit( const std::shared_ptr<Graphics::Shader>& _shader, const std::shared_ptr<Graphics::VertexArray>& _vertexArray, const Mat4f& _modelTransform )
+	void Renderer::Submit( const std::shared_ptr<Graphics::Shader>& shader, const std::shared_ptr<Graphics::VertexArray>& vertexArray, const Mat4f& modelTransform )
 	{
-		AV_ASSERT( _shader != nullptr );
-		if (!_shader)
+		AV_ASSERT( shader != nullptr );
+		if (!shader)
 			return;
 
-		_shader->Bind();
-		_shader->SetMat4( "u_ViewProjection", msSceneData->viewProjectionMatrix );
-		_shader->SetMat4( "u_Model", _modelTransform );
+		shader->Bind();
+		shader->SetMat4( "u_ViewProjection", msSceneData->viewProjectionMatrix );
+		shader->SetMat4( "u_Model", modelTransform );
 
-		_vertexArray->Bind();
-		mrVideo.DrawIndexed( _vertexArray );
+		vertexArray->Bind();
+		mrVideo.DrawIndexed( vertexArray );
 	}
 }

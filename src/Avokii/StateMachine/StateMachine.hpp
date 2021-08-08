@@ -22,10 +22,10 @@ namespace Avokii
 {
 	namespace fsm
 	{
-		template<Concepts::State... _States>
+		template<Concepts::State... States_>
 		class States;
 
-		template<Concepts::Event... _Events>
+		template<Concepts::Event... Events_>
 		class Events;
 
 		template<class States, class Events>
@@ -40,35 +40,35 @@ namespace Avokii
 		/// </summary>
 		/// <typeparam name="..._States"></typeparam>
 		/// <typeparam name="..._Events"></typeparam>
-		template<Concepts::State... _States, Concepts::Event... _Events>
-		class Machine<States<_States...>, Events<_Events...>>
+		template<Concepts::State... States_, Concepts::Event... Events_>
+		class Machine<States<States_...>, Events<Events_...>>
 		{
 			// Allow TransitionTo action to access protected members so it can call TransitionTo method
 			template<class>
 			friend class ::Avokii::fsm::TransitionTo;
 
-			using States_T = std::tuple<_States...>;
-			using Events_T = std::tuple<_Events...>;
+			using States_T = std::tuple<States_...>;
+			using Events_T = std::tuple<Events_...>;
 		public:
-			using EventsVariant_T = std::variant<_Events...>;
+			using EventsVariant_T = std::variant<Events_...>;
 
 			Machine()
-				: states{}
-				, current_state{ &std::get<0>( states ) }
+				: mStates{}
+				, mCurrentState{ &std::get<0>( mStates ) }
 			{}
 			virtual ~Machine() noexcept {}
 
 			// contruct the machine with pre-created states
-			explicit Machine( _States&&... states_ )
-				: states{ std::forward<_States>( states_ )... }
-				, current_state{ &std::get<0>( states ) }
+			explicit Machine( States_&&... states_ )
+				: mStates{ std::forward<States_>( states_ )... }
+				, mCurrentState{ &std::get<0>( mStates ) }
 			{
 			}
 
 			/// <summary>
 			/// Get the current state variant
 			/// </summary>
-			std::variant<_States*...> GetActiveState() { return current_state; }
+			std::variant<States_*...> GetActiveState() { return mCurrentState; }
 
 			/// <summary>
 			/// Test whether the machine is currently in a given state
@@ -78,7 +78,7 @@ namespace Avokii
 			{
 				static_assert(TupleReflection::tuple_contains<States_T, State>(), "StateMachine doesn't contain state State");
 
-				return std::get_if<State*>( &current_state ) != nullptr;
+				return std::get_if<State*>( &mCurrentState ) != nullptr;
 			}
 
 			/// <summary>
@@ -90,7 +90,7 @@ namespace Avokii
 				static_assert(TupleReflection::tuple_contains<States_T, State>(), "StateMachine doesn't contain state State");
 
 				constexpr auto state_index = TupleReflection::tuple_index<States_T, State>::value;
-				return std::get<state_index>( states );
+				return std::get<state_index>( mStates );
 			}
 
 			/// <summary>
@@ -102,7 +102,7 @@ namespace Avokii
 				static_assert(TupleReflection::tuple_contains<States_T, State>(), "StateMachine doesn't contain state State");
 
 				constexpr auto state_index = TupleReflection::tuple_index<States_T, State>::value;
-				return std::get<state_index>( states );
+				return std::get<state_index>( mStates );
 			}
 
 			/// <summary>
@@ -127,7 +127,7 @@ namespace Avokii
 					Concepts::Action auto action = state->HandleEvent( e );
 					action.Execute( machine, *state, e );
 				};
-				std::visit( PassEventToState, current_state );
+				std::visit( PassEventToState, mCurrentState );
 			}
 
 			/// <summary>
@@ -138,14 +138,14 @@ namespace Avokii
 			template<Concepts::State State>
 			State& TransitionTo()
 			{
-				auto& new_state = std::get<State>( states );
-				current_state = &new_state;
+				auto& new_state = std::get<State>( mStates );
+				mCurrentState = &new_state;
 				return new_state;
 			}
 
-		protected:
-			std::tuple<_States...> states;
-			std::variant<_States*...> current_state; // start in the first listed event
+		private:
+			std::tuple<States_...> mStates;
+			std::variant<States_*...> mCurrentState; // start in the first listed event
 
 		private:
 			//

@@ -24,10 +24,10 @@ namespace Avokii
 
 	namespace fsm
 	{
-		template<Concepts::State... _States>
+		template<Concepts::State... States_>
 		class States;
 
-		template<Concepts::Event... _Events>
+		template<Concepts::Event... Events_>
 		class Events;
 
 		template<class States, class Events>

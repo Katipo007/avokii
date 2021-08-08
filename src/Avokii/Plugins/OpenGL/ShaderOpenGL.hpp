@@ -25,7 +25,7 @@ namespace Avokii::Plugins
 		virtual void SetFloat4( const std::string& name, glm::vec4 value ) override;
 		virtual void SetMat4( const std::string& name, glm::mat4 value ) override;
 
-		virtual std::string_view GetName() const { return name; }
+		virtual std::string_view GetName() const { return mName; }
 
 		// OpenGL impl
 
@@ -43,7 +43,7 @@ namespace Avokii::Plugins
 		void UploadUniformMat4( const std::string& name, glm::mat4 value );
 
 		// FOR DEBUGGING PURPOSES ONLY!!!
-		int GetNativeProgramID() const { return opengl_program_id; }
+		int GetNativeProgramID() const { return mOpenGlProgramId; }
 
 	private:
 		std::string ReadFile( const std::filesystem::path& filepath );
@@ -51,8 +51,8 @@ namespace Avokii::Plugins
 		void Compile( const std::unordered_map<unsigned int, std::string>& shader_sources );
 
 	private:
-		std::string name;
-		int opengl_program_id;
+		std::string mName;
+		int mOpenGlProgramId;
 	};
 
 }

@@ -5,7 +5,7 @@
 
 namespace Avokii
 {
-	namespace __detail
+	namespace av_detail_
 	{
 		struct string_hash
 		{
@@ -23,5 +23,5 @@ namespace Avokii
 	/// </summary>
 	/// <typeparam name="Value_T">Value type for the hashmap</typeparam>
 	template<typename Value_T>
-	using StringHashMap = std::unordered_map<std::string, Value_T, __detail::string_hash, std::equal_to<>>;
+	using StringHashMap = std::unordered_map<std::string, Value_T, av_detail_::string_hash, std::equal_to<>>;
 }

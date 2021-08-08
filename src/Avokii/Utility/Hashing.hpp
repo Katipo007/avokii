@@ -5,7 +5,7 @@
 
 namespace Avokii::CompileTime
 {
-	namespace __internal
+	namespace av_detail_
 	{
 		constexpr static uint32_t default_offset_basis_32 = static_cast<uint32_t>( 0x811C9DC5u );
 		constexpr static uint32_t prime_32 = static_cast<uint32_t>( 0x01000193u );
@@ -16,20 +16,20 @@ namespace Avokii::CompileTime
 
 #pragma warning( push )
 #pragma warning( disable:4307 )
-	constexpr inline uint32_t FNV32Hash( const char* const aString, const uint32_t val = __internal::default_offset_basis_32 )
+	constexpr inline uint32_t FNV32Hash( const char* const aString, const uint32_t val = av_detail_::default_offset_basis_32 )
 	{
-		return ( aString[ 0 ] == '\0' ) ? val : FNV32Hash( &aString[ 1 ], static_cast<uint32_t>( ( val * static_cast<unsigned long long>( __internal::prime_32 ) ) ^ static_cast<uint32_t>( aString[ 0 ] ) ) );
+		return ( aString[ 0 ] == '\0' ) ? val : FNV32Hash( &aString[ 1 ], static_cast<uint32_t>( ( val * static_cast<unsigned long long>(av_detail_::prime_32 ) ) ^ static_cast<uint32_t>( aString[ 0 ] ) ) );
 	}
 
-	constexpr inline uint16_t FNV16Hash( const char* const aString, const uint32_t val = __internal::default_offset_basis_32 )
+	constexpr inline uint16_t FNV16Hash( const char* const aString, const uint32_t val = av_detail_::default_offset_basis_32 )
 	{
 		const uint32_t hval = FNV32Hash( aString, val );
 		return ( hval >> 16 ) ^ ( hval & 0xFFFF );
 	}
 
-	constexpr inline uint64_t FNV64Hash( const char* const aString, const uint64_t val = __internal::default_offset_basis_64 )
+	constexpr inline uint64_t FNV64Hash( const char* const aString, const uint64_t val = av_detail_::default_offset_basis_64 )
 	{
-		return ( aString[ 0 ] == '\0' ) ? val : FNV64Hash( &aString[ 1 ], ( val * __internal::prime_64 ) ^ static_cast<uint64_t>( aString[ 0 ] ) );
+		return ( aString[ 0 ] == '\0' ) ? val : FNV64Hash( &aString[ 1 ], ( val * av_detail_::prime_64 ) ^ static_cast<uint64_t>( aString[ 0 ] ) );
 	}
 #pragma warning( pop )
 }

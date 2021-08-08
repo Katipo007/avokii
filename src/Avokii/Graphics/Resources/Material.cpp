@@ -6,26 +6,26 @@ namespace Avokii::Graphics
 	{
 	}
 
-	Material::Material( ResourceLoader& _rLoader )
+	Material::Material( ResourceLoader& r_loader )
 	{
-		(void)_rLoader;
+		(void)r_loader;
 		AV_NOT_IMPLEMENTED;
 	}
 
-	std::shared_ptr<Material> Material::LoadResource( ResourceLoader& _rLoader )
+	std::shared_ptr<Material> Material::LoadResource( ResourceLoader& r_loader )
 	{
-		(void)_rLoader;
+		(void)r_loader;
 		AV_NOT_IMPLEMENTED;
 		return {};
 	}
 
-	void Material::SetShader( std::shared_ptr<const Shader> _newShader )
+	void Material::SetShader( std::shared_ptr<const Shader> new_shader )
 	{
-		shader = _newShader;
+		mShader = new_shader;
 	}
 
-	void Material::SetTextures( std::vector<std::shared_ptr<const Texture>> _newTextures )
+	void Material::SetTextures( std::vector<std::shared_ptr<const Texture>> new_textures )
 	{
-		textures = _newTextures;
+		mTextures = new_textures;
 	}
 }

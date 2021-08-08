@@ -23,18 +23,18 @@ namespace Avokii
 	{
 		int fps = 60;
 
-		std::function<void( ResourceManager& )> resource_initaliser_func;
+		std::function<void( ResourceManager& )> resourceInitaliserFunc;
 
-		unsigned max_plugins = 0;
-		std::function<std::unique_ptr<API::BaseAPI>( Core&, APIType )> plugin_factory;
+		unsigned maxPlugins = 0;
+		std::function<std::unique_ptr<API::BaseAPI>( Core&, APIType )> pluginFactory;
 
 		bool IsValid() const noexcept
 		{
 			return true
 				&& (fps >= 0)
-				&& (max_plugins >= CoreAPIs::Type::User)
-				&& (bool)resource_initaliser_func
-				&& (bool)plugin_factory
+				&& (maxPlugins >= CoreAPIs::Type::User)
+				&& (bool)resourceInitaliserFunc
+				&& (bool)pluginFactory
 				;
 		}
 	};

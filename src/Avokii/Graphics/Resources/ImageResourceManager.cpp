@@ -43,11 +43,11 @@ namespace Resources
 	{
 		// Using this to cut down on std::string allocations per lookup.
 		// Once c++20 is stable should replace with the new options they have.
-		thread_local static std::string _working_str;
-		_working_str.reserve( image_id.size() );
-		_working_str.assign( image_id.data(), image_id.size() );
+		thread_local static std::string working_str;
+		working_str.reserve( image_id.size() );
+		working_str.assign( image_id.data(), image_id.size() );
 
-		const auto it = id_to_image_def.find( _working_str );
+		const auto it = id_to_image_def.find( working_str );
 		if (it != std::end( id_to_image_def ))
 			return Image( it->second );
 

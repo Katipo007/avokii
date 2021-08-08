@@ -116,8 +116,8 @@ namespace
 
 namespace Avokii::Graphics
 {
-	SpriteSheet::SpriteSheet( ResourceManager& _rManager )
-		: mrManager{ _rManager }
+	SpriteSheet::SpriteSheet( ResourceManager& r_manager )
+		: mrManager{ r_manager }
 	{
 	}
 
@@ -129,14 +129,14 @@ namespace Avokii::Graphics
 		return mpTexture;
 	}
 
-	const SpriteSheetEntry& SpriteSheet::GetSpriteByAssetId( StringView _assetId ) const
+	const SpriteSheetEntry& SpriteSheet::GetSpriteByAssetId( StringView asset_id ) const
 	{
-		return GetSpriteBySpriteIndex( GetSpriteIndexByAssetId( _assetId ) );
+		return GetSpriteBySpriteIndex( GetSpriteIndexByAssetId( asset_id ) );
 	}
 
-	const SpriteSheetEntry& SpriteSheet::GetSpriteByResourceId( ResourceId _resourceId ) const
+	const SpriteSheetEntry& SpriteSheet::GetSpriteByResourceId( ResourceId resource_id ) const
 	{
-		return GetSpriteBySpriteIndex( GetSpriteIndexByResourceId( _resourceId ) );
+		return GetSpriteBySpriteIndex( GetSpriteIndexByResourceId( resource_id ) );
 	}
 
 	const SpriteSheetEntry& SpriteSheet::GetSpriteBySpriteIndex( SpriteIdx_T idx ) const
@@ -149,28 +149,28 @@ namespace Avokii::Graphics
 		return std::size( mSprites );
 	}
 
-	SpriteSheet::SpriteIdx_T SpriteSheet::GetSpriteIndexByAssetId( StringView _assetId ) const
+	SpriteSheet::SpriteIdx_T SpriteSheet::GetSpriteIndexByAssetId( StringView asset_id ) const
 	{
-		return GetSpriteIndexByResourceId( ToResourceId( _assetId ) );
+		return GetSpriteIndexByResourceId( ToResourceId( asset_id ) );
 	}
 
-	SpriteSheet::SpriteIdx_T SpriteSheet::GetSpriteIndexByResourceId( ResourceId _resourceId ) const
+	SpriteSheet::SpriteIdx_T SpriteSheet::GetSpriteIndexByResourceId( ResourceId resource_id ) const
 	{
-		if (const auto found = mSpriteIdxMapping.find( _resourceId ); found != std::end( mSpriteIdxMapping ))
+		if (const auto found = mSpriteIdxMapping.find( resource_id ); found != std::end( mSpriteIdxMapping ))
 			return found->second;
 
-		AV_LOG_ERROR( LoggingChannels::Resource, "SpriteSheet does not contain sprite with resource id '{}'", _resourceId );
+		AV_LOG_ERROR( LoggingChannels::Resource, "SpriteSheet does not contain sprite with resource id '{}'", resource_id );
 		return static_cast<SpriteIdx_T>(-1);
 	}
 
-	bool SpriteSheet::HasSprite( StringView _assetId ) const noexcept
+	bool SpriteSheet::HasSprite( StringView asset_id ) const noexcept
 	{
-		return mSpriteIdxMapping.contains( ToResourceId( _assetId ) );
+		return mSpriteIdxMapping.contains( ToResourceId( asset_id ) );
 	}
 
-	bool SpriteSheet::HasSprite( ResourceId _resourceId ) const noexcept
+	bool SpriteSheet::HasSprite( ResourceId resource_id ) const noexcept
 	{
-		return mSpriteIdxMapping.contains( _resourceId );
+		return mSpriteIdxMapping.contains( resource_id );
 	}
 
 	bool SpriteSheet::LoadFromJson( StringView json_string, const Filepath& filepath_prefix )
@@ -205,23 +205,23 @@ namespace Avokii::Graphics
 		return handled;
 	}
 
-	void SpriteSheet::SetTextureId( StringView _textureId )
+	void SpriteSheet::SetTextureId( StringView textureId )
 	{
-		mTextureAssetId = _textureId;
+		mTextureAssetId = textureId;
 		if (mpTexture)
 			ReloadTexture( mrManager );
 	}
 
-	void SpriteSheet::AddSprite( StringView _assetId, const SpriteSheetEntry& _sprite )
+	void SpriteSheet::AddSprite( StringView asset_id, const SpriteSheetEntry& sprite )
 	{
-		return AddSprite( ToResourceId( _assetId ), _sprite );
+		return AddSprite( ToResourceId( asset_id ), sprite );
 	}
 
-	void SpriteSheet::AddSprite( ResourceId _resourceId, const SpriteSheetEntry& _sprite )
+	void SpriteSheet::AddSprite( ResourceId resource_id, const SpriteSheetEntry& sprite )
 	{
-		const auto [it, success] = mSpriteIdxMapping.try_emplace( _resourceId, static_cast<SpriteIdx_T>(mSprites.size()) );
+		const auto [it, success] = mSpriteIdxMapping.try_emplace( resource_id, static_cast<SpriteIdx_T>(mSprites.size()) );
 		if (success)
-			mSprites.push_back( _sprite );
+			mSprites.push_back( sprite );
 	}
 
 	void SpriteSheet::LoadSprites() const noexcept
@@ -246,9 +246,9 @@ namespace Avokii::Graphics
 		return sheet;
 	}
 
-	void SpriteSheet::ReloadTexture( ResourceManager& _manager ) const
+	void SpriteSheet::ReloadTexture( ResourceManager& manager ) const
 	{
-		mpTexture = _manager.GetOrLoad<Texture>( mTextureAssetId );
+		mpTexture = manager.GetOrLoad<Texture>( mTextureAssetId );
 	}
 
 
@@ -256,9 +256,9 @@ namespace Avokii::Graphics
 	/// Sprite
 	/// 
 
-	Sprite::Sprite( std::shared_ptr<const SpriteSheet> _parent, SpriteSheet::SpriteIdx_T _idx )
-		: mpParentSpriteSheet{ _parent }
-		, mIndex{ _idx }
+	Sprite::Sprite( std::shared_ptr<const SpriteSheet> parent, SpriteSheet::SpriteIdx_T idx )
+		: mpParentSpriteSheet{ parent }
+		, mIndex{ idx }
 	{
 	}
 

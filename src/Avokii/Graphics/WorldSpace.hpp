@@ -6,18 +6,15 @@
 
 namespace Avokii::Worldspace
 {
-	namespace _constexpr
-	{
-		constexpr Vec3f Up3{ 0.f, 0.f, -1.f };
-		constexpr Vec3f Forward3{ 0.f, 1.f, 0.f };
-		constexpr Vec3f Right3{ 1.f, 0.f, 0.f };
+	constexpr Vec3f cxUp3{ 0.f, 0.f, -1.f };
+	constexpr Vec3f cxForward3{ 0.f, 1.f, 0.f };
+	constexpr Vec3f cxRight3{ 1.f, 0.f, 0.f };
 
-		static_assert(glm::cross( Up3, Forward3 ) == Right3);
-	}
+	static_assert(glm::cross( cxUp3, cxForward3 ) == cxRight3);
 
-	inline static const Vec3f Up3{ _constexpr::Up3 };
-	inline static const Vec3f Forward3{ _constexpr::Forward3 };
-	inline static const Vec3f Right3{ _constexpr::Right3 };
+	inline static const Vec3f Up3{ cxUp3 };
+	inline static const Vec3f Forward3{ cxForward3 };
+	inline static const Vec3f Right3{ cxRight3 };
 
 	inline static const Vec4f Up4{ Up3, 1.f };
 	inline static const Vec4f Forward4{ Forward3, 1.f };

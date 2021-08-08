@@ -64,16 +64,16 @@ namespace Avokii::Graphics
 		mDirty = true;
 	}
 
-	void SphericalCamera::SetRadius( float radius_ )
+	void SphericalCamera::SetRadius( float radius )
 	{
-		mRadius = radius_;
+		mRadius = radius;
 		mDirty = true;
 	}
 
-	void SphericalCamera::SetRotation( float pitch_, float yaw_ )
+	void SphericalCamera::SetRotation( float pitch, float yaw )
 	{
-		mPitch = pitch_;
-		mYaw = yaw_;
+		mPitch = pitch;
+		mYaw = yaw;
 		mDirty = true;
 	}
 
@@ -125,11 +125,11 @@ namespace Avokii::Graphics
 	{
 	}
 
-	PerspectiveCamera::PerspectiveCamera( float _fov_rad, float _aspect, float _clip_near, float _clip_far )
-		: mFov{ _fov_rad }
-		, mAspect{ _aspect }
-		, mClipNear{ _clip_near }
-		, mClipFar{ _clip_far }
+	PerspectiveCamera::PerspectiveCamera( float fov_rad, float aspect, float clip_near, float clip_far )
+		: mFov{ fov_rad }
+		, mAspect{ aspect }
+		, mClipNear{ clip_near }
+		, mClipFar{ clip_far }
 		, mProjectionDirty{ true }
 	{
 	}
@@ -138,12 +138,12 @@ namespace Avokii::Graphics
 	{
 	}
 
-	void PerspectiveCamera::Reset( float _fov_rad, float _aspect, float _clip_near, float _clip_far )
+	void PerspectiveCamera::Reset( float fov_rad, float aspect, float clip_near, float clip_far )
 	{
-		mFov = _fov_rad;
-		mAspect = _aspect;
-		mClipNear = _clip_near;
-		mClipFar = _clip_far;
+		mFov = fov_rad;
+		mAspect = aspect;
+		mClipNear = clip_near;
+		mClipFar = clip_far;
 		mProjectionDirty = true;
 	}
 
@@ -152,9 +152,9 @@ namespace Avokii::Graphics
 		Reset( glm::radians( fov_deg ), aspect, clip_near, clip_far );
 	}
 
-	void PerspectiveCamera::SetFOV( float _fov_rad )
+	void PerspectiveCamera::SetFOV( float fov_rad )
 	{
-		mFov = _fov_rad;
+		mFov = fov_rad;
 		mProjectionDirty = true;
 	}
 
@@ -163,16 +163,16 @@ namespace Avokii::Graphics
 		SetFOV( glm::radians( fov_deg ) );
 	}
 
-	void PerspectiveCamera::SetAspectRatio( float _aspect )
+	void PerspectiveCamera::SetAspectRatio( float aspect )
 	{
-		mAspect = _aspect;
+		mAspect = aspect;
 		mProjectionDirty = true;
 	}
 
-	void PerspectiveCamera::SetClipSpace( float _clip_near, float _clip_far )
+	void PerspectiveCamera::SetClipSpace( float clip_near, float clip_far )
 	{
-		mClipNear = _clip_near;
-		mClipFar = _clip_far;
+		mClipNear = clip_near;
+		mClipFar = clip_far;
 		mProjectionDirty = true;
 	}
 

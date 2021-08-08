@@ -11,9 +11,9 @@ using namespace Avokii::ContainerOps;
 
 namespace Avokii
 {
-	BaseResourceCache::BaseResourceCache( ResourceManager& _manager, const AssetType _type )
-		: mManager{ _manager }
-		, mAssetType{ _type }
+	BaseResourceCache::BaseResourceCache( ResourceManager& manager, const AssetType type )
+		: mManager{ manager }
+		, mAssetType{ type }
 	{
 	}
 
@@ -22,23 +22,23 @@ namespace Avokii
 		mResources.clear();
 	}
 
-	bool BaseResourceCache::Exists( ResourceId _resource_id ) const noexcept
+	bool BaseResourceCache::Exists( ResourceId resource_id ) const noexcept
 	{
-		return mResources.find( _resource_id ) != std::end( mResources );
+		return mResources.find( resource_id ) != std::end( mResources );
 	}
 
-	BaseResourceCache::UntypedResourcePtr BaseResourceCache::GetUntyped( ResourceId _resource_id ) const noexcept
+	BaseResourceCache::UntypedResourcePtr BaseResourceCache::GetUntyped( ResourceId resource_id ) const noexcept
 	{
-		if (const auto found = mResources.find( _resource_id ); found != std::end( mResources ))
+		if (const auto found = mResources.find( resource_id ); found != std::end( mResources ))
 			return found->second.resource;
 		
 		return UntypedResourcePtr{};
 	}
 
-	BaseResourceCache::UntypedResourcePtr BaseResourceCache::LoadUntyped( StringView _assetId )
+	BaseResourceCache::UntypedResourcePtr BaseResourceCache::LoadUntyped( StringView asset_id )
 	{
 		// not in the cache, try loading
-		ResourceLoader loader{ mManager, _assetId };
+		ResourceLoader loader{ mManager, asset_id };
 		if (auto loaded_resource = LoadResource( loader ))
 		{
 			loaded_resource->mAssetId = loader.GetAssetId();
@@ -48,19 +48,19 @@ namespace Avokii
 			return AddResource( loaded_resource );
 		}
 
-		AV_LOG_ERROR( LoggingChannels::Resource, "Failed to load asset with id '{}'", _assetId );
+		AV_LOG_ERROR( LoggingChannels::Resource, "Failed to load asset with id '{}'", asset_id );
 		return UntypedResourcePtr{};
 	}
 
-	void BaseResourceCache::Unload( ResourceId _resource_id )
+	void BaseResourceCache::Unload( ResourceId resource_id )
 	{
-		if (const auto found = mResources.find( _resource_id ); found != std::end( mResources ))
+		if (const auto found = mResources.find( resource_id ); found != std::end( mResources ))
 			mResources.erase( found );
 	}
 
-	void BaseResourceCache::Purge( size_t _min_generations )
+	void BaseResourceCache::Purge( size_t min_generations )
 	{
-		const auto generation_threshold = std::min( mCurrentGeneration, mCurrentGeneration - _min_generations );
+		const auto generation_threshold = std::min( mCurrentGeneration, mCurrentGeneration - min_generations );
 
 		const auto old_size = mResources.size();
 		for (auto it = std::begin( mResources ), last = std::end( mResources ); it != last; )
@@ -83,18 +83,18 @@ namespace Avokii
 			} );
 	}
 
-	BaseResourceCache::UntypedResourcePtr BaseResourceCache::AddResource( UntypedResourcePtr& _new_resource )
+	BaseResourceCache::UntypedResourcePtr BaseResourceCache::AddResource( UntypedResourcePtr& new_resource )
 	{
-		AV_ASSERT( _new_resource );
-		if (!_new_resource)
+		AV_ASSERT( new_resource );
+		if (!new_resource)
 			return nullptr;
 
-		const ResourceId resource_id{ _new_resource->GetResourceId() };
+		const ResourceId resource_id{ new_resource->GetResourceId() };
 		AV_ASSERT( resource_id != ResourceId{} );
 		if (resource_id == ResourceId{})
 			return nullptr;
 
-		auto [it, success] = mResources.try_emplace( resource_id, _new_resource, mCurrentGeneration );
+		auto [it, success] = mResources.try_emplace( resource_id, new_resource, mCurrentGeneration );
 		if (success)
 			return it->second.resource;
 
@@ -102,18 +102,18 @@ namespace Avokii
 		return nullptr;
 	}
 
-	BaseResourceCache::UntypedResourcePtr BaseResourceCache::AddResource( UntypedNonConstResourcePtr& _new_resource )
+	BaseResourceCache::UntypedResourcePtr BaseResourceCache::AddResource( UntypedNonConstResourcePtr& new_resource )
 	{
-		AV_ASSERT( _new_resource );
-		if (!_new_resource)
+		AV_ASSERT( new_resource );
+		if (!new_resource)
 			return nullptr;
 
-		const ResourceId resource_id{ _new_resource->GetResourceId() };
+		const ResourceId resource_id{ new_resource->GetResourceId() };
 		AV_ASSERT( resource_id != ResourceId{} );
 		if (resource_id == ResourceId{})
 			return nullptr;
 
-		auto [it, success] = mResources.try_emplace( resource_id, _new_resource, mCurrentGeneration );
+		auto [it, success] = mResources.try_emplace( resource_id, new_resource, mCurrentGeneration );
 		if (success)
 			return it->second.resource;
 

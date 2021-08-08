@@ -25,30 +25,30 @@ namespace Avokii
 		{
 		public:
 			Mesh( BufferLayout layout );
-			explicit Mesh( ResourceLoader& rLoader );
+			explicit Mesh( ResourceLoader& r_loader );
 
 			static constexpr AssetType GetResourceType() noexcept { return AssetType::Mesh; }
-			static std::shared_ptr<Mesh> LoadResource( ResourceLoader& rLoader );
+			static std::shared_ptr<Mesh> LoadResource( ResourceLoader& r_loader );
 
-			uint32_t GetVertexCount() const noexcept { return numVertices; }
-			std::span<const std::byte> GetVertices() const noexcept { return vertexData; }
-			std::span<const Index_T> GetIndices() const noexcept { return indices; }
-			const std::shared_ptr<const Material>& GetMaterial() const noexcept { return material; }
+			uint32_t GetVertexCount() const noexcept { return mNumVertices; }
+			std::span<const std::byte> GetVertices() const noexcept { return mVertexData; }
+			std::span<const Index_T> GetIndices() const noexcept { return mIndices; }
+			const std::shared_ptr<const Material>& GetMaterial() const noexcept { return mMaterial; }
 
 			void SetVertices( std::span<const std::byte> bytes, uint32_t num_vertices );
 			void SetIndices( std::span<const Index_T> indices );
 			void SetMaterial( std::shared_ptr<const Material> material );
 
-			virtual const BufferLayout& GetLayout() const noexcept { return vertexLayout; }
+			virtual const BufferLayout& GetLayout() const noexcept { return mVertexLayout; }
 
 		protected:
-			uint32_t numVertices{ 0 };
-			std::vector<std::byte> vertexData;
-			std::vector<Index_T> indices;
-			BufferLayout vertexLayout;
+			uint32_t mNumVertices{ 0 };
+			std::vector<std::byte> mVertexData;
+			std::vector<Index_T> mIndices;
+			BufferLayout mVertexLayout;
 
-			std::vector<std::shared_ptr<const Texture>> textures;
-			std::shared_ptr<const Material> material;
+			std::vector<std::shared_ptr<const Texture>> mTextures;
+			std::shared_ptr<const Material> mMaterial;
 		};
 
 
@@ -76,8 +76,8 @@ namespace Avokii
 					: position{ 0, 0, 0, 1 }, normal{ 0, 0, 0, 1 }, colour{ 1, 1, 1, 1 }, texcoord0{ 0, 0, 0, 0 }
 				{}
 
-				constexpr Vertex( Vec4f _pos, Vec4f _normal, Vec4f _colour, Vec4f _texcoord0 )
-					: position{ _pos }, normal{ _normal }, colour{ _colour }, texcoord0{ _texcoord0 }
+				constexpr Vertex( Vec4f pos, Vec4f normal, Vec4f colour, Vec4f texcoord0 )
+					: position{ pos }, normal{ normal }, colour{ colour }, texcoord0{ texcoord0 }
 				{}
 			};
 #pragma pack(pop)

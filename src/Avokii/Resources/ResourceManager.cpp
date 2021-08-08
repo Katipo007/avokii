@@ -2,8 +2,8 @@
 
 namespace Avokii
 {
-	ResourceManager::ResourceManager( Core& _core )
-		: mCore{ _core }
+	ResourceManager::ResourceManager( Core& r_core )
+		: mCore{ r_core }
 	{
 	}
 

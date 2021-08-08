@@ -3,10 +3,10 @@
 
 namespace Avokii
 {
-	ResourceLoader::ResourceLoader( ResourceManager& _manager, StringView _asset_id )
-		: mManager{ _manager }
-		, mAssetId{ _asset_id }
-		, mResourceId{ ToResourceId( _asset_id ) }
+	ResourceLoader::ResourceLoader( ResourceManager& r_manager, StringView asset_id )
+		: mManager{ r_manager }
+		, mAssetId{ asset_id }
+		, mResourceId{ ToResourceId( asset_id ) }
 	{
 	}
 

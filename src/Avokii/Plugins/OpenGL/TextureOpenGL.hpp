@@ -13,7 +13,7 @@ namespace Avokii::Plugins
 		TextureOpenGL( const Filepath& path, const Graphics::TextureLoadProperties& props );
 		virtual ~TextureOpenGL() override;
 
-		virtual const Size<uint32_t>& GetSize() const noexcept override { return size; }
+		virtual const Size<uint32_t>& GetSize() const noexcept override { return mSize; }
 
 		virtual void SetData( void* data, uint32_t size ) override;
 
@@ -21,14 +21,14 @@ namespace Avokii::Plugins
 
 		virtual bool operator==( const Texture& other ) const override;
 
-		virtual uint32_t GetNativeId() const noexcept override { return opengl_texture_id; }
+		virtual uint32_t GetNativeId() const noexcept override { return mOpenGlTextureId; }
 
 	private:
-		std::string filepath;
-		Size<uint32_t> size;
+		std::string mFilepath;
+		Size<uint32_t> mSize;
 
-		unsigned int opengl_internal_format;
-		unsigned int opengl_data_format;
-		unsigned int opengl_texture_id;
+		unsigned int mOpenGlInternalFormat;
+		unsigned int mOpenGlDataFormat;
+		unsigned int mOpenGlTextureId;
 	};
 }

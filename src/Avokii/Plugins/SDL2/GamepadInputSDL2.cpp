@@ -35,9 +35,9 @@ namespace Avokii::Plugins
 		ClearButtonPresses();
 	}
 
-	GamepadInputSDL2::GamepadInputSDL2( const int _idx )
+	GamepadInputSDL2::GamepadInputSDL2( const int idx )
 		: GamepadInput( static_cast<size_t>(SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_MAX) )
-		, mControllerIdx{ _idx }
+		, mControllerIdx{ idx }
 		, mControllerPtr{ SDL_GameControllerOpen( mControllerIdx ) }
 	{
 		AV_ASSERT( mControllerPtr != NULL );

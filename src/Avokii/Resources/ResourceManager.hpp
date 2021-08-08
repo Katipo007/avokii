@@ -34,31 +34,31 @@ namespace Avokii
 		}
 
 		template<Concepts::Resource R>
-		[[nodiscard]] bool Exists( ResourceId _resourceId ) const noexcept { return GetCache<R>().Exists( _resourceId ); }
+		[[nodiscard]] bool Exists( ResourceId resource_id ) const noexcept { return GetCache<R>().Exists( resource_id ); }
 
 		template<Concepts::Resource R>
-		[[nodiscard]] bool IsLoaded( ResourceId _resourceId ) const noexcept { return GetCache<R>().IsLoaded( _resourceId ); }
+		[[nodiscard]] bool IsLoaded( ResourceId resource_id ) const noexcept { return GetCache<R>().IsLoaded( resource_id ); }
 
 		template<Concepts::Resource R>
-		[[nodiscard]] ResourceHandle<const R> Get( ResourceId _resourceId ) const { return ResourceHandle<const R>( GetCache<R>().Get( _resourceId ) ); }
+		[[nodiscard]] ResourceHandle<const R> Get( ResourceId resource_id ) const { return ResourceHandle<const R>( GetCache<R>().Get( resource_id ) ); }
 
 		template<Concepts::Resource R>
-		[[nodiscard]] ResourceHandle<const R> GetOrLoad( StringView _assetId )
+		[[nodiscard]] ResourceHandle<const R> GetOrLoad( StringView asset_id )
 		{
-			if (auto found = Get<R>( ToResourceId( _assetId ) ))
+			if (auto found = Get<R>( ToResourceId( asset_id ) ))
 				return found;
 
-			return Load<R>( _assetId );
+			return Load<R>( asset_id );
 		}
 
 		template<Concepts::Resource R>
-		ResourceHandle<const R> Load( StringView _assetId ) { return rGetCache<R>().Load( _assetId ); }
+		ResourceHandle<const R> Load( StringView asset_id ) { return rGetCache<R>().Load( asset_id ); }
 
 		template<Concepts::Resource R>
-		void Unload( ResourceId _resourceId ) { GetCache<R>().Unload( _resourceId ); }
+		void Unload( ResourceId resource_id ) { GetCache<R>().Unload( resource_id ); }
 
 		template<Concepts::Resource R>
-		void Purge( size_t _minGenerations = 3 ) { GetCache<R>().Purge( _minGenerations ); }
+		void Purge( size_t minGenerations = 3 ) { GetCache<R>().Purge( minGenerations ); }
 
 		template<Concepts::Resource R>
 		[[nodiscard]] const ResourceCache<R>& GetCache() const

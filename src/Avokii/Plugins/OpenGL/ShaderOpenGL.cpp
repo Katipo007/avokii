@@ -24,7 +24,7 @@ namespace
 namespace Avokii::Plugins
 {
 	ShaderOpenGL::ShaderOpenGL( const Filepath& filepath )
-		: opengl_program_id( 0 )
+		: mOpenGlProgramId( 0 )
 	{
 		AV_ASSERT( !std::filesystem::is_directory( filepath ) );
 		AV_ASSERT( !filepath.empty(), "Empty filename!" );
@@ -33,12 +33,12 @@ namespace Avokii::Plugins
 		const auto shader_sources = PreProcess( file_src );
 		Compile( shader_sources );
 
-		name = filepath.filename().string();
+		mName = filepath.filename().string();
 	}
 
 	ShaderOpenGL::ShaderOpenGL( std::string_view name_, std::string_view vertex_src_, std::string_view fragment_src_ )
-		: opengl_program_id( 0 )
-		, name( static_cast<std::string>(name_) )
+		: mOpenGlProgramId( 0 )
+		, mName( name_.data() )
 	{
 		std::unordered_map<GLenum, std::string> sources;
 		sources[GL_VERTEX_SHADER] = static_cast<std::string>(vertex_src_);
@@ -48,13 +48,13 @@ namespace Avokii::Plugins
 
 	ShaderOpenGL::~ShaderOpenGL()
 	{
-		if (opengl_program_id)
-			glDeleteProgram( opengl_program_id );
+		if (mOpenGlProgramId)
+			glDeleteProgram( mOpenGlProgramId );
 	}
 
 	void ShaderOpenGL::Bind() const
 	{
-		glUseProgram( opengl_program_id );
+		glUseProgram( mOpenGlProgramId );
 	}
 
 	void ShaderOpenGL::Unbind() const
@@ -104,85 +104,84 @@ namespace Avokii::Plugins
 
 	void ShaderOpenGL::UploadUniformInt( const std::string& uniform_name, int value )
 	{
-		const GLint location = glGetUniformLocation( opengl_program_id, uniform_name.c_str() ); // TODO: cache locations
+		const GLint location = glGetUniformLocation( mOpenGlProgramId, uniform_name.c_str() ); // TODO: cache locations
 		glUniform1i( location, value );
 	}
 
 	void ShaderOpenGL::UploadUniformUInt( const std::string& uniform_name, unsigned int value )
 	{
-		const GLint location = glGetUniformLocation( opengl_program_id, uniform_name.c_str() ); // TODO: cache locations
+		const GLint location = glGetUniformLocation( mOpenGlProgramId, uniform_name.c_str() ); // TODO: cache locations
 		glUniform1ui( location, value );
 	}
 
 	void ShaderOpenGL::UploadUniformIntArray( const std::string& uniform_name, int* values, uint32_t count )
 	{
-		const GLint location = glGetUniformLocation( opengl_program_id, uniform_name.c_str() ); // TODO: cache locations
+		const GLint location = glGetUniformLocation( mOpenGlProgramId, uniform_name.c_str() ); // TODO: cache locations
 		glUniform1iv( location, count, values );
 	}
 
 	void ShaderOpenGL::UploadUniformUIntArray( const std::string& uniform_name, unsigned int* values, uint32_t count )
 	{
-		const GLint location = glGetUniformLocation( opengl_program_id, uniform_name.c_str() ); // TODO: cache locations
+		const GLint location = glGetUniformLocation( mOpenGlProgramId, uniform_name.c_str() ); // TODO: cache locations
 		glUniform1uiv( location, count, values );
 	}
 
 	void ShaderOpenGL::UploadUniformFloat( const std::string& uniform_name, float value )
 	{
-		const GLint location = glGetUniformLocation( opengl_program_id, uniform_name.c_str() ); // TODO: cache locations
+		const GLint location = glGetUniformLocation( mOpenGlProgramId, uniform_name.c_str() ); // TODO: cache locations
 		glUniform1f( location, value );
 	}
 
 	void ShaderOpenGL::UploadUniformFloat2( const std::string& uniform_name, glm::vec2 value )
 	{
-		const GLint location = glGetUniformLocation( opengl_program_id, uniform_name.c_str() ); // TODO: cache locations
+		const GLint location = glGetUniformLocation( mOpenGlProgramId, uniform_name.c_str() ); // TODO: cache locations
 		glUniform2f( location, value.x, value.y );
 	}
 
 	void ShaderOpenGL::UploadUniformFloat3( const std::string& uniform_name, glm::vec3 value )
 	{
-		const GLint location = glGetUniformLocation( opengl_program_id, uniform_name.c_str() ); // TODO: cache locations
+		const GLint location = glGetUniformLocation( mOpenGlProgramId, uniform_name.c_str() ); // TODO: cache locations
 		glUniform3f( location, value.x, value.y, value.z );
 	}
 
 	void ShaderOpenGL::UploadUniformFloat4( const std::string& uniform_name, glm::vec4 value )
 	{
-		const GLint location = glGetUniformLocation( opengl_program_id, uniform_name.c_str() ); // TODO: cache locations
+		const GLint location = glGetUniformLocation( mOpenGlProgramId, uniform_name.c_str() ); // TODO: cache locations
 		glUniform4f( location, value.x, value.y, value.z, value.w );
 	}
 
 	void ShaderOpenGL::UploadUniformMat3( const std::string& uniform_name, glm::mat3 value )
 	{
-		const GLint location = glGetUniformLocation( opengl_program_id, uniform_name.c_str() ); // TODO: cache locations
+		const GLint location = glGetUniformLocation( mOpenGlProgramId, uniform_name.c_str() ); // TODO: cache locations
 		glUniformMatrix3fv( location, 1, GL_FALSE, glm::value_ptr( glm::mat3( value ) ) );
 	}
 
 	void ShaderOpenGL::UploadUniformMat4( const std::string& uniform_name, glm::mat4 value )
 	{
-		const GLint location = glGetUniformLocation( opengl_program_id, uniform_name.c_str() ); // TODO: cache locations
+		const GLint location = glGetUniformLocation( mOpenGlProgramId, uniform_name.c_str() ); // TODO: cache locations
 		glUniformMatrix4fv( location, 1, GL_FALSE, glm::value_ptr( value ) );
 	}
 
 	std::string ShaderOpenGL::ReadFile( const std::filesystem::path& filepath )
 	{
-		std::string _result;
+		std::string result;
 
-		std::ifstream _input_file( filepath, std::ios::in | std::ios::binary );
-		if (_input_file)
+		if (auto input_file = std::ifstream{ filepath, std::ios::in | std::ios::binary })
 		{
-			_input_file.seekg( 0, std::ios::end );
-			size_t _filesize = _input_file.tellg();
-			if (_filesize != static_cast<size_t>(-1))
+			input_file.seekg( 0, std::ios::end );
+			size_t filesize = input_file.tellg();
+			if (filesize != static_cast<size_t>(-1))
 			{
-				_result.resize( _filesize );
-				_input_file.seekg( 0, std::ios::beg );
-				_input_file.read( &_result[0], _filesize );
+				result.resize( filesize );
+				input_file.seekg( 0, std::ios::beg );
+				input_file.read( &result[0], filesize );
 			}
 			else
 			{
 				AV_LOG_ERROR( LoggingChannels::OpenGL, "Could not read from file '{0}'", filepath.string().c_str() );
 			}
 
-			return _result;
+			return result;
 
 		}
 		else
@@ -271,7 +270,7 @@ namespace Avokii::Plugins
 			shader_ids[type] = shader;
 		}
 
-		this->opengl_program_id = program;
+		mOpenGlProgramId = program;
 
 		// link the program
 		glLinkProgram( program );

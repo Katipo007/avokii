@@ -19,13 +19,13 @@ using namespace Avokii::ContainerOps;
 
 namespace Avokii
 {
-	Core::Core( CoreProperties&& _props, std::unique_ptr<AbstractGame> _game )
-		: mpGame( std::move( _game ) )
-		, mResourceInitaliserFunc{ _props.resource_initaliser_func }
-		, mTargetFps{ std::max( 0, _props.fps ) }
+	Core::Core( CoreProperties&& props, std::unique_ptr<AbstractGame> game )
+		: mpGame( std::move( game ) )
+		, mResourceInitaliserFunc{ props.resourceInitaliserFunc }
+		, mTargetFps{ std::max( 0, props.fps ) }
 	{
-		AV_ASSERT( _props.IsValid() );
-		if (!_props.IsValid())
+		AV_ASSERT( props.IsValid() );
+		if (!props.IsValid())
 			throw std::runtime_error( "Bad core properties" );
 
 		if (!mpGame)
@@ -34,10 +34,10 @@ namespace Avokii
 		///
 		/// initialise plugins
 		///
-		mApis.resize( _props.max_plugins );
-		for (APIType t = 0; t < _props.max_plugins; t++)
+		mApis.resize( props.maxPlugins );
+		for (APIType t = 0; t < props.maxPlugins; t++)
 		{
-			if (auto plugin = _props.plugin_factory( *this, t ))
+			if (auto plugin = props.pluginFactory( *this, t ))
 				mApis[t] = std::move( plugin );
 		}
 		AV_LOG_INFO( LoggingChannels::Application, "{} plugins initalised", CountIf( mApis, []( const auto& entry ) { return entry != nullptr; } ) );

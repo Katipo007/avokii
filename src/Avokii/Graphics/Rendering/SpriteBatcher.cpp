@@ -89,12 +89,12 @@ namespace Avokii::Graphics
 		const Camera* pSceneCamera = nullptr;
 		Mat4f scene_transform{ 1.f };
 
-		Data( API::VideoAPI& _rVideo, const uint32_t _maxQuads, const uint32_t _maxTextureSlots )
-			: rVideo{ _rVideo }
-			, NMaxQuads{ _maxQuads }
+		Data( API::VideoAPI& r_video, const uint32_t max_quads, const uint32_t max_texture_slots )
+			: rVideo{ r_video }
+			, NMaxQuads{ max_quads }
 			, NMaxVertices{ NMaxQuads * 4 }
 			, NMaxIndices{ NMaxQuads * 6 }
-			, NMaxTextureSlots{ std::min( (uint32_t)32, _maxTextureSlots ) }
+			, NMaxTextureSlots{ std::min( (uint32_t)32, max_texture_slots ) }
 		{
 			if (NMaxQuads < 1)
 				throw std::runtime_error( "Device reported it can't render quads?" );
@@ -180,8 +180,8 @@ namespace Avokii::Graphics
 	/// SpriteBatcher
 	/// 
 
-	SpriteBatcher::SpriteBatcher( API::VideoAPI& _rVideo )
-		: mrVideo( _rVideo )
+	SpriteBatcher::SpriteBatcher( API::VideoAPI& r_video )
+		: mrVideo( r_video )
 	{
 		const auto& capabilities = mrVideo.GetDeviceCapabilities();
 
@@ -288,18 +288,18 @@ namespace Avokii::Graphics
 		return index;
 	}
 
-	void SpriteBatcher::DrawStandingSprite( const ResourceHandle<Sprite>& _sprite, Vec3f _location )
+	void SpriteBatcher::DrawStandingSprite( const ResourceHandle<Sprite>& sprite, Vec3f location )
 	{
-		if (!_sprite)
+		if (!sprite)
 			return;
-		auto sprite_sheet = _sprite->GetSpriteSheet();
+		auto sprite_sheet = sprite->GetSpriteSheet();
 		if (!sprite_sheet)
 			return;
 
 		if (mpData->quad_index_count >= mpData->NMaxIndices)
 			NextBatch();
 
-		auto& img = _sprite->GetSprite();
+		auto& img = sprite->GetSprite();
 		
 		const auto img_size_vec = glm::vec2( img.size.width, img.size.height );
 		const auto min = glm::vec2( -img.pivot.x, -img.pivot.y );
@@ -309,10 +309,10 @@ namespace Avokii::Graphics
 		const auto& uvs = img.uvs;
 		const auto& multiply_colour = mpData->multiply_colour.top();
 
-		mpData->vertex_data.emplace_back( Vec3f{ _location.x + min.x, _location.y + 0.f, _location.z + min.y }, multiply_colour, Vec2f( uvs.GetLeft(), uvs.GetTop() ), texture_id ); // top left
-		mpData->vertex_data.emplace_back( Vec3f{ _location.x + max.x, _location.y + 0.f, _location.z + min.y }, multiply_colour, Vec2f( uvs.GetRight(), uvs.GetTop() ), texture_id ); // top right
-		mpData->vertex_data.emplace_back( Vec3f{ _location.x + min.x, _location.y + 0.f, _location.z + max.y }, multiply_colour, Vec2f( uvs.GetLeft(), uvs.GetBottom() ), texture_id ); // bottom left
-		mpData->vertex_data.emplace_back( Vec3f{ _location.x + max.x, _location.y + 0.f, _location.z + max.y }, multiply_colour, Vec2f( uvs.GetRight(), uvs.GetBottom() ), texture_id ); // bottom right
+		mpData->vertex_data.emplace_back( Vec3f{ location.x + min.x, location.y + 0.f, location.z + min.y }, multiply_colour, Vec2f( uvs.GetLeft(), uvs.GetTop() ), texture_id ); // top left
+		mpData->vertex_data.emplace_back( Vec3f{ location.x + max.x, location.y + 0.f, location.z + min.y }, multiply_colour, Vec2f( uvs.GetRight(), uvs.GetTop() ), texture_id ); // top right
+		mpData->vertex_data.emplace_back( Vec3f{ location.x + min.x, location.y + 0.f, location.z + max.y }, multiply_colour, Vec2f( uvs.GetLeft(), uvs.GetBottom() ), texture_id ); // bottom left
+		mpData->vertex_data.emplace_back( Vec3f{ location.x + max.x, location.y + 0.f, location.z + max.y }, multiply_colour, Vec2f( uvs.GetRight(), uvs.GetBottom() ), texture_id ); // bottom right
 
 		mpData->quad_index_count += 6;
 		++mStatistics.nQuads;
