@@ -52,14 +52,16 @@ namespace Avokii
 				static_assert(std::same_as<PreviousState, TargetState> == false, "Not allowed to transition to current state");
 				static_assert(Concepts::State<TargetState>); // we have this concept requirement inside the definition so that we can using in-complete types
 
-				if constexpr (detail::HasOnLeaveMethod<PreviousState, const Event&>)
+				// Call OnLeave (if applicable) for the current state
+				if constexpr (detail::HasOnLeaveMethod<PreviousState, const Event&>) // pass it the event causing the transition if it has a matching method definition
 					previous_state.OnLeave( e );
 				else if constexpr (detail::HasDefaultOnLeaveMethod<PreviousState>)
 					previous_state.OnLeave();
 
 				TargetState& new_state = machine.template TransitionTo<TargetState>();
 
-				if constexpr (detail::HasOnEnterMethod<TargetState, const Event&>)
+				// Call OnEnter (if applicable) for the new state and execute the returned action
+				if constexpr (detail::HasOnEnterMethod<TargetState, const Event&>) // pass it the event causing the transition if it has a matching method definition
 					new_state.OnEnter( e ).Execute( machine, new_state, e );
 				else if constexpr (detail::HasDefaultOnEnterMethod<TargetState>)
 					new_state.OnEnter().Execute( machine, new_state, e );
