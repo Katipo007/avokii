@@ -15,6 +15,9 @@ namespace Avokii
 	public:
 		virtual ~AbstractGame();
 
+		/// <summary>
+		/// Doesn't cause an immediate exit. Sets the exit code which Core::Dispatch will return
+		/// </summary>
 		void Exit( int exit_code );
 
 	protected:
