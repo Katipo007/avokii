@@ -153,8 +153,8 @@ namespace Avokii
 			//
 			Machine( const Machine& ) = delete;
 			Machine( Machine&& ) = delete;
-			Machine operator=( const Machine& ) = delete;
-			Machine operator=( Machine&& ) = delete;
+			Machine& operator=( const Machine& ) = delete;
+			Machine& operator=( Machine&& ) = delete;
 		};
 	}
 }
