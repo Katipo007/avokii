@@ -14,11 +14,11 @@ namespace Avokii
 			;
 
 		template<class T>
-		concept Event = requires
+		concept Event = true;/*requires
 		{
 			std::movable<T>;
 			std::is_trivially_move_constructible<T>::value;
-		};
+		};*/
 
 	}
 
