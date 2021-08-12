@@ -196,7 +196,7 @@ namespace Avokii
 
 	void Core::DoRender( const PreciseTimestep& ts )
 	{
-		if (auto* video_api = GetAPI<API::VideoAPI>())
+		if (auto* video_api = rGetAPI<API::VideoAPI>())
 		{
 			video_api->BeginRender();
 
@@ -215,10 +215,10 @@ namespace Avokii
 
 	void Core::PumpEvents( const PreciseTimestep& ts )
 	{
-		auto* system_api = GetAPI<API::SystemAPI>();
-		auto* input_api = GetAPI<API::InputAPI>();
-		auto* video_api = GetAPI<API::VideoAPI>();
-		auto* dearimgui_api = GetAPI<API::DearImGuiAPI>();
+		auto* system_api = rGetAPI<API::SystemAPI>();
+		auto* input_api = rGetAPI<API::InputAPI>();
+		auto* video_api = rGetAPI<API::VideoAPI>();
+		auto* dearimgui_api = rGetAPI<API::DearImGuiAPI>();
 
 		if (input_api)
 			input_api->BeginEvents( ts );

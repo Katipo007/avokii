@@ -61,7 +61,7 @@ namespace Avokii
 		ResourceManager& GetResourceManager() const { return *mpResourceManager; }
 
 		template<APIConcept API_T>
-		API_T* GetAPI() noexcept
+		API_T* rGetAPI() noexcept
 		{
 			constexpr auto type{ API_T::GetType() };
 			return dynamic_cast<API_T*>(rGetAPI( type ));
