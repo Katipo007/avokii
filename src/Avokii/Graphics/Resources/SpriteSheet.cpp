@@ -226,8 +226,13 @@ namespace Avokii::Graphics
 
 	void SpriteSheet::LoadSprites() const noexcept
 	{
+		if (mSpritesLoadedIntoManager)
+			return;
+
 		for (auto& entry : mSprites)
 			mrManager.Load<Sprite>( entry.assetId );
+
+		mSpritesLoadedIntoManager = true;
 	}
 
 	std::shared_ptr<SpriteSheet> SpriteSheet::LoadResource( ResourceLoader& loader )

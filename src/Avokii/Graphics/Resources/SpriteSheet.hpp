@@ -72,6 +72,7 @@ namespace Avokii
 			mutable std::shared_ptr<const Texture> mpTexture;
 			std::vector<SpriteSheetEntry> mSprites;
 			std::unordered_map<ResourceId, SpriteIdx_T> mSpriteIdxMapping;
+			mutable bool mSpritesLoadedIntoManager{ false };
 		};
 
 		class Sprite final
