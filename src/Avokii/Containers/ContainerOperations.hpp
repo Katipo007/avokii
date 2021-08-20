@@ -61,8 +61,20 @@ namespace Avokii::ContainerOps
 	}
 
 	template<std::ranges::range CONTAINER>
+	bool Contains( const CONTAINER& container, const std::ranges::range_value_t<CONTAINER>& value )
+	{
+		return std::find( std::begin( container ), std::end( container ), value ) != std::end( container );
+	}
+
+	template<std::ranges::range CONTAINER>
 	auto RemoveIf( CONTAINER& container, std::predicate<std::ranges::range_value_t<const CONTAINER>> auto pred ) -> std::ranges::iterator_t<CONTAINER>
 	{
 		return std::remove_if( std::begin( container ), std::end( container ), pred );
+	}
+
+	template<std::ranges::range CONTAINER>
+	auto RemoveAll( CONTAINER& container, const std::ranges::range_value_t<CONTAINER>& value )
+	{
+		return std::remove( std::begin( container ), std::end( container ), value );
 	}
 }
