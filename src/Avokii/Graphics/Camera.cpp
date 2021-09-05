@@ -25,13 +25,6 @@ namespace Avokii::Graphics
 	///
 	/// SphericalCamera
 	/// 
-	SphericalCamera::SphericalCamera()
-	{
-	}
-
-	SphericalCamera::~SphericalCamera()
-	{
-	}
 
 	void SphericalCamera::SetPosition( const Vec3f& new_target_position )
 	{
@@ -131,10 +124,6 @@ namespace Avokii::Graphics
 		, mClipNear{ clip_near }
 		, mClipFar{ clip_far }
 		, mProjectionDirty{ true }
-	{
-	}
-
-	PerspectiveCamera::~PerspectiveCamera()
 	{
 	}
 

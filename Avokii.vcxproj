@@ -79,6 +79,7 @@
     <ClInclude Include="src\Avokii\Geometry\Point2D.hpp" />
     <ClInclude Include="src\Avokii\Geometry\Rect.hpp" />
     <ClInclude Include="src\Avokii\Geometry\Size.hpp" />
+    <ClInclude Include="src\Avokii\Types\Quaternion.hpp" />
     <ClInclude Include="src\Avokii\Utility\Yaml.hpp" />
     <ClInclude Include="src\pch.hpp" />
     <ClInclude Include="src\Avokii\String.hpp" />

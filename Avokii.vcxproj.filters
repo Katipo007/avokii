@@ -324,6 +324,9 @@
     <ClInclude Include="src\Avokii\Utility\Yaml.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Avokii\Types\Quaternion.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Avokii\Resources\ResourceCache.cpp">
